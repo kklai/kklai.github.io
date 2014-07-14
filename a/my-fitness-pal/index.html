@@ -1,0 +1,117 @@
+<html>
+<head>
+  <title>My Fitness Pal</title>
+  <style type="text/css">
+    h3 {
+      font-family: 'adelle';
+      font-size: 2em;
+      padding-left: 30px;
+    }
+    table {
+      font-size: 1em;
+      font-family: 'DIN Next LT Pro';
+      font-weight: light;
+      display: inline;
+      margin-right: 30px;
+    }
+    table td {
+      max-width: 320px;
+      overflow: hidden;
+      border-bottom: 1px dashed #ececec;
+      padding-right: 10px;
+    }
+    table tr:first-child{
+      font-size: 2em;
+    }
+    table tr td:first-child {
+      font-weight: lighter;
+      font-size: 0.8em;
+      padding-right: 5px;
+      max-width: 25px;
+      text-align: right;
+    }
+    button {
+      font-family: ff-din-web-condensed, Helvetica, sans-serif;
+      font-weight: 400;
+      font-size: 0.9em;
+      color: #FFFFFF;
+      background-color: #000000;
+      /*text-transform: uppercase;*/
+      line-height: 1;
+      display: inline-block;
+      cursor: pointer;
+      width: 160px;
+      margin: 5px;
+      padding: .6em .7em .7em .6em;
+      border: 0;
+      }
+    button:hover {
+      background-color: #fb4834 !important;
+    }
+
+  </style>
+</head>
+<body>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="data.js"></script>
+  <div class="filters">
+    <div class="os">
+      <button class="os_filter" val="all">All</button>
+      <button class="os_filter" val="ios">iOS</button>
+      <button class="os_filter" val="android">Android</button>
+      <button class="os_filter" val="windows">Windows</button>
+    </div>
+    <div class="meal">
+      <button class="meal_filter" val="breakfast">Breakfast</button>
+      <button class="meal_filter" val="lunch">Lunch</button>
+      <button class="meal_filter" val="dinner">Dinner</button>
+      <button class="meal_filter" val="snack">Snack</button>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var list = ["ios_breakfast", "android_breakfast", "windows_breakfast", "ios_lunch", "android_lunch", "windows_lunch", "ios_dinner", "android_dinner", "windows_dinner", "ios_snack", "android_snack", "windows_snack"];
+
+    var types = ['Breakfast', 'Lunch', 'Dinner', 'Snacks'];
+    function buildGeneralTables() {
+      for (var i = 0; i < types.length; i++) {
+        $('body').append('<div class="' + types[i] + '"><h3>' + types[i] + '</h3></div>');
+      }
+    }
+
+    function buildtable(type, arr, arrname) {
+      $('.' + type).append('<table class=' + arrname + '></table>');
+      var target_div = $('.' + type + ' > .' + arrname)
+      target_div.append('<tr><td></td><td>' + arrname + '</td></tr>');
+      for (var i = 0; i < 20; i++) {
+        target_div.append('<tr><td>' + arr[i][0] + '</td><td>' + arr[i][1] + '</td>' + '<td>' + arr[i][2] + '</td></tr>');
+      }
+    }
+
+    function makeAll() {
+      arrs = [ios_breakfast, android_breakfast, windows_breakfast];
+    }
+
+    $(document).ready(function() {
+      buildGeneralTables();
+      $('.os_filter').on('click', function(){
+        console.log($(this).attr('val'));
+      })
+      // buildtable('breakfast', ios_breakfast, 'iOS');
+      // buildtable('breakfast', android_breakfast, 'Android');
+      // buildtable('breakfast', windows_breakfast, 'Windows');
+
+      // buildtable('lunch', ios_lunch, 'iOS');
+      // buildtable('lunch', android_lunch, 'Android');
+      // buildtable('lunch', windows_lunch, 'Windows');
+
+      // buildtable('dinner', ios_dinner, 'iOS');
+      // buildtable('dinner', android_dinner, 'Android');
+      // buildtable('dinner', windows_dinner, 'Windows');
+
+      // buildtable('snacks', ios_snack, 'iOS');
+      // buildtable('snacks', android_snack, 'Android');
+      // buildtable('snacks', windows_snack, 'Windows');
+    });
+  </script>
+</body>
+</html>
