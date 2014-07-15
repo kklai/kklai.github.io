@@ -20,11 +20,12 @@
       text-transform:capitalize;
       font-weight:700;
     }
-    p.source {
-      margin: 0 0 2em 2em;
+    td.source {
+      margin: 2em 0 2em 2em;
       color: #414141;
       font-style: italic;
       font-size: 0.7em;
+      padding-top: 1.5em;
     }
     .os, .meal {
       margin-left: 1em;
@@ -64,6 +65,9 @@
       text-transform: uppercase;
       font-style: italic;
     }
+    table tr:last-child td {
+      border: 0;
+    }
     button {
       font-family: ff-din-web-condensed, Helvetica, sans-serif;
       font-weight: 400;
@@ -90,7 +94,6 @@
 </head>
 <body style="max-width: 565px;">
   <h3>Top 20 foods entered into MyFitnessPal by operating system and meal</h3>
-  <p class="source">Data source: MyFitnessPal from 2005-2014</p>
   <div class="filters">
     <div class="os" style="overflow:hidden;">
       <button class="os_filter" val="all">All</button>
@@ -132,6 +135,7 @@
       for (var i = 0; i < 20; i++) {
         target_div.append('<tr><td>' + arr[i][0] + '</td><td>' + arr[i][1] + '</td></tr>');
       }
+      target_div.append("<tr><td></td><td class='source'>Data source: MyFitnessPal from 2005-2014</td></tr>");
       target_div.fadeIn();  
     }
 
