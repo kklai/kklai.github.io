@@ -6,6 +6,7 @@
       font-family: 'adelle';
       font-size: 2em;
       padding-left: 30px;
+      text-transform:capitalize;
     }
     table {
       font-size: 1em;
@@ -48,12 +49,13 @@
     button:hover {
       background-color: #fb4834 !important;
     }
+    button.selected {
+      background-color: #fb4834 !important;
+    }
 
   </style>
 </head>
 <body>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="data.js"></script>
   <div class="filters">
     <div class="os" style="overflow:hidden;">
       <button class="os_filter" val="all">All</button>
@@ -69,48 +71,67 @@
       <button class="meal_filter" val="snack">Snack</button>
     </div>
   </div>
+  <div class="container"></div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="data.js"></script>
   <script type="text/javascript">
     var list = ["ios_breakfast", "android_breakfast", "windows_breakfast", "ios_lunch", "android_lunch", "windows_lunch", "ios_dinner", "android_dinner", "windows_dinner", "ios_snack", "android_snack", "windows_snack"];
 
     var types = ['Breakfast', 'Lunch', 'Dinner', 'Snacks'];
-    function buildGeneralTables() {
-      for (var i = 0; i < types.length; i++) {
-        $('body').append('<div class="' + types[i] + '"><h3>' + types[i] + '</h3></div>');
-      }
+
+    function makeDiv(type) {
+      $('.container').append('<div class="' + type + '"><h3>' + type + '</h3></div>');
     }
 
-    function buildtable(type, arr, arrname) {
+    function buildTable(type, arr, arrname) {
       $('.' + type).append('<table class=' + arrname + '></table>');
       var target_div = $('.' + type + ' > .' + arrname)
       target_div.append('<tr><td></td><td>' + arrname + '</td></tr>');
       for (var i = 0; i < 20; i++) {
-        target_div.append('<tr><td>' + arr[i][0] + '</td><td>' + arr[i][1] + '</td></tr>');
+        target_div.append('<tr><td>' + arr[i][0] + '</td><td>' + arr[i][1] + '</td><td>' + arr[i][3] + '</td></tr>');
       }
     }
 
-    function makeAll() {
-      arrs = [ios_breakfast, android_breakfast, windows_breakfast];
+    function checkFilters(){
+      if (meal != undefined && os != undefined) {
+        $('.container').empty();
+        data_source = os + "_" + meal
+        makeDiv(meal);
+        buildTable(meal, window[data_source], os); 
+      }
     }
 
+    var meal = 'breakfast';
+    var os = 'ios';
     $(document).ready(function() {
-      buildGeneralTables();
+      checkFilters();
+      $("[val=ios]").addClass('selected');
+      $("[val=breakfast]").addClass('selected');
       $('.os_filter').on('click', function(){
-        buildtable('breakfast', ios_breakfast, 'iOS');
-      })
-      // buildtable('breakfast', android_breakfast, 'Android');
-      // buildtable('breakfast', windows_breakfast, 'Windows');
-
-      // buildtable('lunch', ios_lunch, 'iOS');
-      // buildtable('lunch', android_lunch, 'Android');
-      // buildtable('lunch', windows_lunch, 'Windows');
-
-      // buildtable('dinner', ios_dinner, 'iOS');
-      // buildtable('dinner', android_dinner, 'Android');
-      // buildtable('dinner', windows_dinner, 'Windows');
-
-      // buildtable('snacks', ios_snack, 'iOS');
-      // buildtable('snacks', android_snack, 'Android');
-      // buildtable('snacks', windows_snack, 'Windows');
+        buttonType = $(this).attr('class');
+        $('.' + buttonType).removeClass('selected');
+        if ($(this).hasClass('selected')) {
+          $(this).removeClass('selected');
+           os = undefined;
+        } else {
+          $(this).addClass('selected');
+          os = $(this).attr('val');
+          checkFilters();
+        }
+      });
+      $('.meal_filter').on('click', function(){
+        buttonType = $(this).attr('class');
+        $('.' + buttonType).removeClass('selected');
+        if ($(this).hasClass('selected')) {
+          $(this).removeClass('selected');
+           meal = undefined;
+        } else {
+          $(this).addClass('selected');
+          meal = $(this).attr('val');
+          checkFilters();
+        }
+      });
     });
   </script>
 </body>
