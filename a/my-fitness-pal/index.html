@@ -103,10 +103,10 @@
     }
 
     var meal = 'breakfast';
-    var os = 'ios';
+    var os = 'all';
     $(document).ready(function() {
       checkFilters();
-      $("[val=ios]").addClass('selected');
+      $("[val=all]").addClass('selected');
       $("[val=breakfast]").addClass('selected');
       $('.os_filter').on('click', function(){
         buttonType = $(this).attr('class');
