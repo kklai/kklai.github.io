@@ -3,13 +3,28 @@
   <title>My Fitness Pal</title>
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <style type="text/css">
-    h3 {
+    body {
       font-family: 'DIN Next LT Pro';
-      font-size: 2em;
+    }
+    h3 {
+      font-size: 1.8em;
       padding-left: 0.8em;
       margin-bottom: 0.4em;
       text-transform:capitalize;
       font-weight:700;
+    }
+    h4 {
+      font-size: 1.5em;
+      padding-left: 0.8em;
+      margin-bottom: 0.4em;
+      text-transform:capitalize;
+      font-weight:700;
+    }
+    p.source {
+      margin: 0 0 1em 2em;
+      color: #414141;
+      font-style: italic;
+      font-size: 0.7em;
     }
     .os, .meal {
       margin-left: 1em;
@@ -74,6 +89,8 @@
   </style>
 </head>
 <body style="max-width: 565px;">
+  <h3>Top 20 foods entered into MyFitnessPal by operating system and meal</h3>
+  <p class="source">Data source: MyFitnessPal from 2005-2014</p>
   <div class="filters">
     <div class="os" style="overflow:hidden;">
       <button class="os_filter" val="all">All</button>
@@ -99,7 +116,7 @@
     var types = ['Breakfast', 'Lunch', 'Dinner', 'Snacks'];
 
     function makeDiv(type) {
-      $('.container').append('<div class="' + type + '"><h3>' + type + '</h3></div>');
+      $('.container').append('<div class="' + type + '"><h4>' + type + '</h4></div>');
     }
 
     function commaSeparateNumber(val){
@@ -113,9 +130,9 @@
       console.log(arrname);
       if (arrname == "ios") {
         arrname = "iOS";
-        $('.' + type + " h3").append("<span class='no-capitalize'> &mdash; " + arrname + "</span>");
+        $('.' + type + " h4").append("<span class='no-capitalize'> &mdash; " + arrname + "</span>");
       } else {
-        $('.' + type + " h3").append(" &mdash; " + arrname + "</span>");
+        $('.' + type + " h4").append(" &mdash; " + arrname + "</span>");
       }
       $('.' + type).append('<table style="display:none;" class=' + arrname + '></table>');
       var target_div = $('.' + type + ' > .' + arrname)
