@@ -5,24 +5,29 @@
     h3 {
       font-family: 'DIN Next LT Pro';
       font-size: 2em;
-      padding-left: 30px;
+      padding-left: 0.5em;
       text-transform:capitalize;
+      font-weight:700;
+    }
+
+    span.no-capitalize {
+      text-transform: none;
     }
     table {
       font-size: 1em;
       font-family: 'DIN Next LT Pro';
       font-weight: light;
       display: inline;
-      margin-right: 30px;
+      margin-right: 0.5em;
     }
     table td {
-      max-width: 320px;
-      overflow: hidden;
+      max-width: 350px;
       border-bottom: 1px dashed #ececec;
-      padding-right: 10px;
+      padding-right: 0.15em;
     }
-    table tr:first-child{
-      font-size: 2em;
+    table th {
+      text-align: left;
+      font-weight: 600;
     }
     table tr td:first-child {
       font-weight: lighter;
@@ -89,13 +94,20 @@
     }
 
     function buildTable(type, arr, arrname) {
+      console.log(arrname);
+      if (arrname == "ios") {
+        arrname = "iOS";
+        $('.' + type + " h3").append("<span class='no-capitalize'> &mdash; " + arrname + "</span>");
+      } else {
+        $('.' + type + " h3").append(" &mdash; " + arrname + "</span>");
+      }
       $('.' + type).append('<table style="display:none;" class=' + arrname + '></table>');
       var target_div = $('.' + type + ' > .' + arrname)
-      target_div.append('<tr><td></td><td class="filter_name">' + arrname + '</td></tr>');
+      target_div.append('<tr><th></th><th>Description</th><th>Entries</th></tr>');
       for (var i = 0; i < 20; i++) {
         target_div.append('<tr><td>' + arr[i][0] + '</td><td>' + arr[i][1] + '</td><td>' + arr[i][3] + '</td></tr>');
       }
-      target_div.fadeIn();
+      target_div.fadeIn();  
     }
 
     function checkFilters(){
@@ -132,6 +144,7 @@
       $('.meal_filter').on('click', filter);
 
     });
+
   </script>
 </body>
 </html>
