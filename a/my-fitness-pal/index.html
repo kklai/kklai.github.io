@@ -1,6 +1,7 @@
 <html>
 <head>
   <title>My Fitness Pal</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
   <style type="text/css">
     h3 {
       font-family: 'DIN Next LT Pro';
@@ -118,10 +119,10 @@
       }
       $('.' + type).append('<table style="display:none;" class=' + arrname + '></table>');
       var target_div = $('.' + type + ' > .' + arrname)
-      target_div.append('<tr><th></th><th>Description</th><th>Entries</th></tr>');
+      target_div.append('<tr><th></th><th>Description</th></tr>');
       for (var i = 0; i < 20; i++) {
-        entries = commaSeparateNumber(arr[i][3])
-        target_div.append('<tr><td>' + arr[i][0] + '</td><td>' + arr[i][1] + '</td><td>' + entries + '</td></tr>');
+        // entries = commaSeparateNumber(arr[i][3])
+        target_div.append('<tr><td>' + arr[i][0] + '</td><td>' + arr[i][1] + '</td></tr>');
       }
       target_div.fadeIn();  
     }
