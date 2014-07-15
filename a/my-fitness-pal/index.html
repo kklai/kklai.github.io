@@ -101,6 +101,13 @@
       $('.container').append('<div class="' + type + '"><h3>' + type + '</h3></div>');
     }
 
+    function commaSeparateNumber(val){
+      while (/(\d+)(\d{3})/.test(val.toString())){
+        val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+      }
+      return val;
+    }
+
     function buildTable(type, arr, arrname) {
       console.log(arrname);
       if (arrname == "ios") {
@@ -113,7 +120,8 @@
       var target_div = $('.' + type + ' > .' + arrname)
       target_div.append('<tr><th></th><th>Description</th><th>Entries</th></tr>');
       for (var i = 0; i < 20; i++) {
-        target_div.append('<tr><td>' + arr[i][0] + '</td><td>' + arr[i][1] + '</td><td>' + arr[i][3] + '</td></tr>');
+        entries = commaSeparateNumber(arr[i][3])
+        target_div.append('<tr><td>' + arr[i][0] + '</td><td>' + arr[i][1] + '</td><td>' + entries + '</td></tr>');
       }
       target_div.fadeIn();  
     }
