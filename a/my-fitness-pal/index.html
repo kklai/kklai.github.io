@@ -55,11 +55,12 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="data.js"></script>
   <div class="filters">
-    <div class="os">
+    <div class="os" style="overflow:hidden;">
       <button class="os_filter" val="all">All</button>
       <button class="os_filter" val="ios">iOS</button>
       <button class="os_filter" val="android">Android</button>
       <button class="os_filter" val="windows">Windows</button>
+      <hr style="width: 100%;">
     </div>
     <div class="meal">
       <button class="meal_filter" val="breakfast">Breakfast</button>
@@ -83,7 +84,7 @@
       var target_div = $('.' + type + ' > .' + arrname)
       target_div.append('<tr><td></td><td>' + arrname + '</td></tr>');
       for (var i = 0; i < 20; i++) {
-        target_div.append('<tr><td>' + arr[i][0] + '</td><td>' + arr[i][1] + '</td>' + '<td>' + arr[i][2] + '</td></tr>');
+        target_div.append('<tr><td>' + arr[i][0] + '</td><td>' + arr[i][1] + '</td></tr>');
       }
     }
 
@@ -94,9 +95,8 @@
     $(document).ready(function() {
       buildGeneralTables();
       $('.os_filter').on('click', function(){
-        console.log($(this).attr('val'));
+        buildtable('breakfast', ios_breakfast, 'iOS');
       })
-      // buildtable('breakfast', ios_breakfast, 'iOS');
       // buildtable('breakfast', android_breakfast, 'Android');
       // buildtable('breakfast', windows_breakfast, 'Windows');
 
