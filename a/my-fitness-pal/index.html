@@ -3,7 +3,7 @@
   <title>My Fitness Pal</title>
   <style type="text/css">
     h3 {
-      font-family: 'adelle';
+      font-family: 'DIN Next LT Pro';
       font-size: 2em;
       padding-left: 30px;
       text-transform:capitalize;
@@ -31,6 +31,10 @@
       max-width: 25px;
       text-align: right;
     }
+    table tr td.filter_name {
+      text-transform: uppercase;
+      font-style: italic;
+    }
     button {
       font-family: ff-din-web-condensed, Helvetica, sans-serif;
       font-weight: 400;
@@ -41,9 +45,9 @@
       line-height: 1;
       display: inline-block;
       cursor: pointer;
-      width: 160px;
+      width: 20%;
       margin: 5px;
-      padding: .6em .7em .7em .6em;
+      padding: 0.5em;
       border: 0;
       }
     button:hover {
@@ -55,7 +59,7 @@
 
   </style>
 </head>
-<body>
+<body style="max-width: 565px;">
   <div class="filters">
     <div class="os" style="overflow:hidden;">
       <button class="os_filter" val="all">All</button>
@@ -85,12 +89,13 @@
     }
 
     function buildTable(type, arr, arrname) {
-      $('.' + type).append('<table class=' + arrname + '></table>');
+      $('.' + type).append('<table style="display:none;" class=' + arrname + '></table>');
       var target_div = $('.' + type + ' > .' + arrname)
-      target_div.append('<tr><td></td><td>' + arrname + '</td></tr>');
+      target_div.append('<tr><td></td><td class="filter_name">' + arrname + '</td></tr>');
       for (var i = 0; i < 20; i++) {
         target_div.append('<tr><td>' + arr[i][0] + '</td><td>' + arr[i][1] + '</td><td>' + arr[i][3] + '</td></tr>');
       }
+      target_div.fadeIn();
     }
 
     function checkFilters(){
@@ -102,36 +107,30 @@
       }
     }
 
+    function filter(){
+      buttonType = $(this).attr('class');
+      type = buttonType.split(" ")[0].split("_")[0];
+      $('.' + buttonType).removeClass('selected');
+      if ($(this).hasClass('selected')) {
+        $(this).removeClass('selected');
+         window[type] = undefined;
+      } else {
+        $(this).addClass('selected');
+        window[type] = $(this).attr('val');
+        checkFilters(); 
+    }
+    }
+
     var meal = 'breakfast';
     var os = 'all';
     $(document).ready(function() {
       checkFilters();
       $("[val=all]").addClass('selected');
       $("[val=breakfast]").addClass('selected');
-      $('.os_filter').on('click', function(){
-        buttonType = $(this).attr('class');
-        $('.' + buttonType).removeClass('selected');
-        if ($(this).hasClass('selected')) {
-          $(this).removeClass('selected');
-           os = undefined;
-        } else {
-          $(this).addClass('selected');
-          os = $(this).attr('val');
-          checkFilters();
-        }
-      });
-      $('.meal_filter').on('click', function(){
-        buttonType = $(this).attr('class');
-        $('.' + buttonType).removeClass('selected');
-        if ($(this).hasClass('selected')) {
-          $(this).removeClass('selected');
-           meal = undefined;
-        } else {
-          $(this).addClass('selected');
-          meal = $(this).attr('val');
-          checkFilters();
-        }
-      });
+
+      $('.os_filter').on('click', filter);
+      $('.meal_filter').on('click', filter);
+
     });
   </script>
 </body>
