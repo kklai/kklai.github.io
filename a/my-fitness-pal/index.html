@@ -6,26 +6,19 @@
     body {
       font-family: 'DIN Next LT Pro';
     }
-    h3 {
+    h3.mfp-title {
       font-size: 1.8em;
       padding-left: 0.8em;
       margin-bottom: 0.4em;
       text-transform:capitalize;
       font-weight:700;
     }
-    h4 {
+    h4.mfp-title {
       font-size: 1.5em;
       padding-left: 1em;
       margin-bottom: 0.4em;
       text-transform:capitalize;
       font-weight:700;
-    }
-    td.source {
-      margin: 2em 0 2em 2em;
-      color: #414141;
-      font-style: italic;
-      font-size: 0.7em;
-      padding-top: 1.5em;
     }
     .os, .meal {
       margin-left: 1em;
@@ -38,37 +31,38 @@
     span.no-capitalize {
       text-transform: none;
     }
-    table {
+    table.mfp {
       font-size: 1em;
       font-family: 'DIN Next LT Pro';
       font-weight: light;
       display: inline;
       margin-left: 0.8em;
     }
-    table td {
+    table.mfp td {
       max-width: 350px;
       border-bottom: 1px dashed #ececec;
       padding-right: 0.15em;
     }
-    table th {
+    table.mfp th {
       text-align: left;
       font-weight: 600;
     }
-    table tr td:first-child {
+    table.mfp tr td:first-child {
       font-weight: lighter;
       font-size: 0.8em;
       padding-right: 5px;
       max-width: 25px;
       text-align: right;
     }
-    table tr td.filter_name {
-      text-transform: uppercase;
+    table.mfp td.source {
+      margin: 2em 0 2em 2em;
+      color: #414141;
       font-style: italic;
-    }
-    table tr:last-child td {
+      font-size: 0.7em;
+      padding-top: 1.5em;
       border: 0;
     }
-    button {
+    .button_filter {
       font-family: ff-din-web-condensed, Helvetica, sans-serif;
       font-weight: 400;
       font-size: 0.9em;
@@ -83,30 +77,30 @@
       padding: 0.5em;
       border: 0;
       }
-    button:hover {
+    .button_filter:hover {
       background-color: #fb4834 !important;
     }
-    button.selected {
+    .button_filter.selected {
       background-color: #fb4834 !important;
     }
 
   </style>
 </head>
 <body style="max-width: 565px;">
-  <h3>Top 20 foods entered into MyFitnessPal by operating system and meal</h3>
+  <h3 class='mfp-title'>Top 20 foods entered into MyFitnessPal by operating system and meal</h3>
   <div class="filters">
     <div class="os" style="overflow:hidden;">
-      <button class="os_filter" val="all">All</button>
-      <button class="os_filter" val="ios">iOS</button>
-      <button class="os_filter" val="android">Android</button>
-      <button class="os_filter" val="windows">Windows</button>
+      <button class="button_filter os_filter" val="all">All</button>
+      <button class="button_filter os_filter" val="ios">iOS</button>
+      <button class="button_filter os_filter" val="android">Android</button>
+      <button class="button_filter os_filter" val="windows">Windows</button>
     </div>
     <hr style="width: 100%;">
     <div class="meal">
-      <button class="meal_filter" val="breakfast">Breakfast</button>
-      <button class="meal_filter" val="lunch">Lunch</button>
-      <button class="meal_filter" val="dinner">Dinner</button>
-      <button class="meal_filter" val="snack">Snack</button>
+      <button class="button_filter meal_filter" val="breakfast">Breakfast</button>
+      <button class="button_filter meal_filter" val="lunch">Lunch</button>
+      <button class="button_filter meal_filter" val="dinner">Dinner</button>
+      <button class="button_filter meal_filter" val="snack">Snack</button>
     </div>
   </div>
   <div class="container"></div>
@@ -114,12 +108,10 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="data.js"></script>
   <script type="text/javascript">
-    var list = ["ios_breakfast", "android_breakfast", "windows_breakfast", "ios_lunch", "android_lunch", "windows_lunch", "ios_dinner", "android_dinner", "windows_dinner", "ios_snack", "android_snack", "windows_snack"];
-
     var types = ['Breakfast', 'Lunch', 'Dinner', 'Snacks'];
 
     function makeDiv(type) {
-      $('.container').append('<div class="' + type + '"><h4>' + type + '</h4></div>');
+      $('.container').append('<div class="' + type + '"><h4 class="mfp-title">' + type + '</h4></div>');
     }
 
     function buildTable(type, arr, arrname) {
@@ -130,7 +122,7 @@
       } else {
         $('.' + type + " h4").append(" &mdash; " + arrname + "</span>");
       }
-      $('.' + type).append('<table style="display:none;" class=' + arrname + '></table>');
+      $('.' + type).append('<table style="display:none;" class="mfp ' + arrname + '"></table>');
       var target_div = $('.' + type + ' > .' + arrname)
       for (var i = 0; i < 20; i++) {
         target_div.append('<tr><td>' + arr[i][0] + '</td><td>' + arr[i][1] + '</td></tr>');
@@ -149,7 +141,7 @@
     }
 
     function filter(){
-      buttonType = $(this).attr('class');
+      buttonType = $(this).attr('class').split(" ")[1];
       type = buttonType.split(" ")[0].split("_")[0];
       $('.' + buttonType).removeClass('selected');
       if ($(this).hasClass('selected')) {
