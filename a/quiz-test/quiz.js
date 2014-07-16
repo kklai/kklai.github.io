@@ -65,6 +65,7 @@
 
   // check answer by comparing selected html and correct answer from input
   var checkAnswer = function () {
+    _gaq.push(['_trackEvent', 'quiz', 'submit', 'User submitted answer for one question']);
     $("li").off('click');
     $(".hint").off('click');
     if ($(".selected").length > 0) {
