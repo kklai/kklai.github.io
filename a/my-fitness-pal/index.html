@@ -3,24 +3,13 @@
   <title>My Fitness Pal</title>
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <style type="text/css">
-    h3.mfp-title {
-      font-family: 'ff-din-web-condensed',helvetica,sans-serif;
-      font-size: 1.8em;
-      padding-left: 0.8em;
-      margin-bottom: 0.4em;
-      text-transform:capitalize;
-      font-weight:700;
-    }
-    h2.mfp-title {
-      font-size: 24px;
-      font-weight: normal;
-      color: #000;
-      text-transform: uppercase;
-      line-height: 1;
-      font-family: 'ff-din-web-condensed',helvetica,sans-serif;
-      margin: 30px 30px 20px 20px;
+    .mfp-title {
+      margin-left: 16px;
     }
     .meal {
+      margin-left: 1em;
+    }
+    .mfp-container {
       margin-left: 1em;
     }
     table.mfp {
@@ -31,9 +20,9 @@
       font-size: 14px;
     }
     table.mfp td {
-      max-width: 350px;
       border-bottom: 1px dashed #ececec;
       padding: 0.25em 0.15em 0.25em 0;
+      text-align: left !important;
     }
     table.mfp th {
       text-align: left;
@@ -56,24 +45,22 @@
     }
     .filters {
       margin-top: 1em;
-      border-bottom: solid 2 #000;
+      border-bottom: solid 2px #000;
       width: 100%;
     }
     .button-filter {
       font-family: ff-din-web-condensed, Helvetica, sans-serif;
-      font-weight: 400;
-      font-size: 0.9em;
-      color: #FFFFFF;
+      font-size: 18px;
+      color: #fff;
       background-color: #aaaaaa !important;
       line-height: 1;
       display: inline-block;
       cursor: pointer;
       width: 20%;
-      margin: 5px -2px 0 0;
-      padding: 0.5em;
+      margin: 5px -2px 1px 0;
+      padding: 0.4em 0 .2em 0;
       border: 0;
       text-transform: uppercase;
-      font-style: italic;
       }
     .button-filter:hover {
       background-color: #000 !important;
@@ -85,7 +72,7 @@
   </style>
 </head>
 <body style="max-width: 565px;">
-  <h3 class='mfp-title'>Top 20 foods entries in MyFitnessPal <br> by meal</h3>
+  <h2 class="mfp-title">Top 20 foods entries in MyFitnessPal by meal</h2>
   <div class="filters">
     <div class="meal">
       <button class="button-filter meal-filter" val="breakfast">Breakfast</button>
@@ -94,16 +81,15 @@
       <button class="button-filter meal-filter" val="snack">Snack</button>
     </div>
   </div>
-  <div class="container"></div>
+  <div class="mfp-container"></div>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script type="text/javascript" src="http://fonts.sbnation.com/wvq7oai.js"></script>
-  <script src="data.js"></script>
+  <script src="http://kkrebeccalai.com/a/my-fitness-pal/data.js"></script>
   <script type="text/javascript">
     var types = ['Breakfast', 'Lunch', 'Dinner', 'Snacks'];
 
     function makeDiv(type) {
-      $('.container').append('<div class="' + type + '"><h2 class="mfp-title">' + type + '</h2></div>');
+      $('.mfp-container').append('<div class="' + type + '"></div>');
     }
 
     function buildTable(type, arr) {
@@ -118,7 +104,7 @@
 
     function checkFilters(){
       if (meal != undefined) {
-        $('.container').empty();
+        $('.mfp-container').empty();
         makeDiv(meal);
         data_source = "all_" + meal;
         buildTable(meal, window[data_source]); 
