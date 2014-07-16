@@ -3,37 +3,37 @@
   <title>My Fitness Pal</title>
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <style type="text/css">
-    body {
-      font-family: 'DIN Next LT Pro';
-    }
     h3.mfp-title {
+      font-family: 'ff-din-web-condensed',helvetica,sans-serif;
       font-size: 1.8em;
       padding-left: 0.8em;
       margin-bottom: 0.4em;
       text-transform:capitalize;
       font-weight:700;
     }
-    h4.mfp-title {
-      font-size: 1.5em;
-      padding-left: 1em;
-      margin-bottom: 0.4em;
-      text-transform:capitalize;
-      font-weight:700;
+    h2.mfp-title {
+      font-size: 24px;
+      font-weight: normal;
+      color: #000;
+      text-transform: uppercase;
+      line-height: 1;
+      font-family: 'ff-din-web-condensed',helvetica,sans-serif;
+      margin: 30px 30px 20px 20px;
     }
     .meal {
       margin-left: 1em;
     }
     table.mfp {
-      font-size: 1em;
-      font-family: 'DIN Next LT Pro';
-      font-weight: light;
+      font-family: Helvetica,Arial,sans-serif;
       display: inline;
       margin-left: 0.8em;
+      color: #333;
+      font-size: 14px;
     }
     table.mfp td {
       max-width: 350px;
       border-bottom: 1px dashed #ececec;
-      padding-right: 0.15em;
+      padding: 0.25em 0.15em 0.25em 0;
     }
     table.mfp th {
       text-align: left;
@@ -54,48 +54,56 @@
       padding-top: 1.5em;
       border: 0;
     }
-    .button_filter {
+    .filters {
+      margin-top: 1em;
+      border-bottom: solid 2 #000;
+      width: 100%;
+    }
+    .button-filter {
       font-family: ff-din-web-condensed, Helvetica, sans-serif;
       font-weight: 400;
       font-size: 0.9em;
       color: #FFFFFF;
-      background-color: #000000;
+      background-color: #aaaaaa !important;
       line-height: 1;
       display: inline-block;
       cursor: pointer;
       width: 20%;
-      margin: 5px;
+      margin: 5px -2px 0 0;
       padding: 0.5em;
       border: 0;
+      text-transform: uppercase;
+      font-style: italic;
       }
-    .button_filter:hover {
-      background-color: #fb4834 !important;
+    .button-filter:hover {
+      background-color: #000 !important;
     }
-    .button_filter.selected {
-      background-color: #fb4834 !important;
+    .button-filter.selected {
+      background-color: #000 !important;
     }
 
   </style>
 </head>
 <body style="max-width: 565px;">
-  <h3 class='mfp-title'>Top 20 foods entered into MyFitnessPal by operating system and meal</h3>
+  <h3 class='mfp-title'>Top 20 foods entries in MyFitnessPal <br> by meal</h3>
   <div class="filters">
     <div class="meal">
-      <button class="button_filter meal_filter" val="breakfast">Breakfast</button>
-      <button class="button_filter meal_filter" val="lunch">Lunch</button>
-      <button class="button_filter meal_filter" val="dinner">Dinner</button>
-      <button class="button_filter meal_filter" val="snack">Snack</button>
+      <button class="button-filter meal-filter" val="breakfast">Breakfast</button>
+      <button class="button-filter meal-filter" val="lunch">Lunch</button>
+      <button class="button-filter meal-filter" val="dinner">Dinner</button>
+      <button class="button-filter meal-filter" val="snack">Snack</button>
     </div>
   </div>
   <div class="container"></div>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="http://fonts.sbnation.com/wvq7oai.js"></script>
   <script src="data.js"></script>
   <script type="text/javascript">
     var types = ['Breakfast', 'Lunch', 'Dinner', 'Snacks'];
 
     function makeDiv(type) {
-      $('.container').append('<div class="' + type + '"><h4 class="mfp-title">' + type + '</h4></div>');
+      $('.container').append('<div class="' + type + '"><h2 class="mfp-title">' + type + '</h2></div>');
     }
 
     function buildTable(type, arr) {
@@ -119,7 +127,7 @@
 
     function filter(){
       buttonType = $(this).attr('class').split(" ")[1];
-      type = buttonType.split(" ")[0].split("_")[0];
+      type = buttonType.split(" ")[0].split("-")[0];
       $('.' + buttonType).removeClass('selected');
       if ($(this).hasClass('selected')) {
         $(this).removeClass('selected');
@@ -135,7 +143,7 @@
     $(document).ready(function() {
       checkFilters();
       $("[val=breakfast]").addClass('selected');
-      $('.meal_filter').on('click', filter);
+      $('.meal-filter').on('click', filter);
     });
   </script>
 </body>
