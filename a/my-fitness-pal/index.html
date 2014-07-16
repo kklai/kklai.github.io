@@ -20,16 +20,8 @@
       text-transform:capitalize;
       font-weight:700;
     }
-    .os, .meal {
+    .meal {
       margin-left: 1em;
-    }
-    hr {
-      background-color: #ececec;
-      height: 1px;
-      border: 0;
-    }
-    span.no-capitalize {
-      text-transform: none;
     }
     table.mfp {
       font-size: 1em;
@@ -68,7 +60,6 @@
       font-size: 0.9em;
       color: #FFFFFF;
       background-color: #000000;
-      /*text-transform: uppercase;*/
       line-height: 1;
       display: inline-block;
       cursor: pointer;
@@ -89,13 +80,6 @@
 <body style="max-width: 565px;">
   <h3 class='mfp-title'>Top 20 foods entered into MyFitnessPal by operating system and meal</h3>
   <div class="filters">
-    <div class="os" style="overflow:hidden;">
-      <button class="button_filter os_filter" val="all">All</button>
-      <button class="button_filter os_filter" val="ios">iOS</button>
-      <button class="button_filter os_filter" val="android">Android</button>
-      <button class="button_filter os_filter" val="windows">Windows</button>
-    </div>
-    <hr style="width: 100%;">
     <div class="meal">
       <button class="button_filter meal_filter" val="breakfast">Breakfast</button>
       <button class="button_filter meal_filter" val="lunch">Lunch</button>
@@ -114,16 +98,9 @@
       $('.container').append('<div class="' + type + '"><h4 class="mfp-title">' + type + '</h4></div>');
     }
 
-    function buildTable(type, arr, arrname) {
-      console.log(arrname);
-      if (arrname == "ios") {
-        arrname = "iOS";
-        $('.' + type + " h4").append("<span class='no-capitalize'> &mdash; " + arrname + "</span>");
-      } else {
-        $('.' + type + " h4").append(" &mdash; " + arrname + "</span>");
-      }
-      $('.' + type).append('<table style="display:none;" class="mfp ' + arrname + '"></table>');
-      var target_div = $('.' + type + ' > .' + arrname)
+    function buildTable(type, arr) {
+      $('.' + type).append('<table style="display:none;" class="mfp"></table>');
+      var target_div = $('.' + type + ' > table');
       for (var i = 0; i < 20; i++) {
         target_div.append('<tr><td>' + arr[i][0] + '</td><td>' + arr[i][1] + '</td></tr>');
       }
@@ -132,11 +109,11 @@
     }
 
     function checkFilters(){
-      if (meal != undefined && os != undefined) {
+      if (meal != undefined) {
         $('.container').empty();
-        data_source = os + "_" + meal
         makeDiv(meal);
-        buildTable(meal, window[data_source], os); 
+        data_source = "all_" + meal;
+        buildTable(meal, window[data_source]); 
       }
     }
 
@@ -151,21 +128,15 @@
         $(this).addClass('selected');
         window[type] = $(this).attr('val');
         checkFilters(); 
-    }
+      } 
     }
 
     var meal = 'breakfast';
-    var os = 'all';
     $(document).ready(function() {
       checkFilters();
-      $("[val=all]").addClass('selected');
       $("[val=breakfast]").addClass('selected');
-
-      $('.os_filter').on('click', filter);
       $('.meal_filter').on('click', filter);
-
     });
-
   </script>
 </body>
 </html>
