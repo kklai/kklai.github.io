@@ -91,6 +91,7 @@
 
   // increment question count and built new question and answers
   var nextQuestion = function () {
+    _gaq.push(['_trackEvent', 'quiz', 'next', 'User clicked to the next question']);
     currentQuestion++;
     buildQuiz();
   }
