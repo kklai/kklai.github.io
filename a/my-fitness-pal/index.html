@@ -2,9 +2,16 @@
 <head>
   <title>My Fitness Pal</title>
   <meta name="viewport" content="width=device-width, user-scalable=no">
+  <link rel="stylesheet" href="http://use.typekit.net/c/6fd6e3/adelle:i4:n1:n4:n6,ff-din-web-condensed:i6:n6:n7.XKB:N:2,XJq:N:2,XK9:N:2,XKC:N:2,TnF:N:2,TnG:N:2,ThR:N:2/d?3bb2a6e53c9684ffdc9a98f2125b2a6261538209a3995387582a703ce922f7670ad5162da44ccb4cf6dabfb1c41cac78fa8f02a6abc36423cf4317209547728601fd64f320f0fd65a9cd95addc05ea65f3263f58084a627550e34f986d2ee0c61c335af228a0efd0bf6354576b76a163ed081716a83224ade087b23d5176289d37d17a77184d5ae42eb85b0588521ea5634fa5c864cbe1296c9d614cd2ebac160f3f5df4ebee2ad0c9dd1292fbd2052828b5216b29abc0aa09e986d390fa5ced96d894cd1a79fa208ba8df52ac42e8719c1eb38969469e9eceafde55e6f6916eec7ed9aed89326f204ee7269d89fdc151c498d37a9932591">
   <style type="text/css">
-    .mfp-title {
-      margin-left: 16px;
+    h2.mfp-title {
+      font-size: 24px;
+      font-weight: normal;
+      color: #000;
+      text-transform: uppercase;
+      line-height: 1;
+      font-family: ff-din-web-condensed,helvetica,sans-serif;
+      margin: 30px 0 10px 14px;
     }
     .meal {
       margin-left: 1em;
@@ -15,7 +22,7 @@
     table.mfp {
       font-family: Helvetica,Arial,sans-serif;
       display: inline;
-      margin-left: 0.8em;
+      margin: 20px 0 0 10px;
       color: #333;
       font-size: 14px;
     }
@@ -45,7 +52,7 @@
     }
     .filters {
       margin-top: 1em;
-      border-bottom: solid 2px #000;
+      border-bottom: solid 2px #fa4b2a;
       width: 100%;
     }
     .button-filter {
@@ -56,17 +63,24 @@
       line-height: 1;
       display: inline-block;
       cursor: pointer;
-      width: 20%;
+      width: 24%;
       margin: 5px -2px 1px 0;
       padding: 0.4em 0 .2em 0;
       border: 0;
       text-transform: uppercase;
-      }
+    }
     .button-filter:hover {
-      background-color: #000 !important;
+      background-color: #fa4b2a !important;
     }
     .button-filter.selected {
-      background-color: #000 !important;
+      background-color: #fa4b2a !important;
+    }
+
+    @media (max-width: 600px) {
+      .button-filter {
+        font-size: 15px;
+        margin-bottom: 0px;
+      }
     }
 
   </style>
@@ -82,9 +96,9 @@
     </div>
   </div>
   <div class="mfp-container"></div>
-
+  
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="http://kkrebeccalai.com/a/my-fitness-pal/data.js"></script>
+  <script src="http://cdn0.sbnation.com/features/verge-my-fitness-pal/data.js"></script>
   <script type="text/javascript">
     var types = ['Breakfast', 'Lunch', 'Dinner', 'Snacks'];
 
@@ -132,5 +146,7 @@
       $('.meal-filter').on('click', filter);
     });
   </script>
+  
+  <!-- <iframe width="100%" height="800" src="http://cdn0.sbnation.com/features/verge-my-fitness-pal/my-fitness-pal.html" frameborder="0" allowfullscreen></iframe> -->
 </body>
 </html>
