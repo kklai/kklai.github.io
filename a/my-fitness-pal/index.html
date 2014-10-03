@@ -1,138 +1,152 @@
 <html>
 <head>
   <title>My Fitness Pal</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <link rel="stylesheet" href="http://use.typekit.net/c/6fd6e3/adelle:i4:n1:n4:n6,ff-din-web-condensed:i6:n6:n7.XKB:N:2,XJq:N:2,XK9:N:2,XKC:N:2,TnF:N:2,TnG:N:2,ThR:N:2/d?3bb2a6e53c9684ffdc9a98f2125b2a6261538209a3995387582a703ce922f7670ad5162da44ccb4cf6dabfb1c41cac78fa8f02a6abc36423cf4317209547728601fd64f320f0fd65a9cd95addc05ea65f3263f58084a627550e34f986d2ee0c61c335af228a0efd0bf6354576b76a163ed081716a83224ade087b23d5176289d37d17a77184d5ae42eb85b0588521ea5634fa5c864cbe1296c9d614cd2ebac160f3f5df4ebee2ad0c9dd1292fbd2052828b5216b29abc0aa09e986d390fa5ced96d894cd1a79fa208ba8df52ac42e8719c1eb38969469e9eceafde55e6f6916eec7ed9aed89326f204ee7269d89fdc151c498d37a9932591">
   <style type="text/css">
-    h3 {
-      font-family: 'adelle';
-      font-size: 2em;
-      padding-left: 30px;
-      text-transform:capitalize;
+    h2.mfp-title {
+      font-size: 24px;
+      font-weight: normal;
+      color: #000;
+      text-transform: uppercase;
+      line-height: 1;
+      font-family: ff-din-web-condensed,helvetica,sans-serif;
+      margin: 30px 0 10px 14px;
     }
-    table {
-      font-size: 1em;
-      font-family: 'DIN Next LT Pro';
-      font-weight: light;
+    .meal {
+      margin-left: 1em;
+    }
+    .mfp-container {
+      margin-left: 1em;
+    }
+    table.mfp {
+      font-family: Helvetica,Arial,sans-serif;
       display: inline;
-      margin-right: 30px;
+      margin: 20px 0 0 10px;
+      color: #333;
+      font-size: 14px;
     }
-    table td {
-      max-width: 320px;
-      overflow: hidden;
+    table.mfp td {
       border-bottom: 1px dashed #ececec;
-      padding-right: 10px;
+      padding: 0.25em 0.15em 0.25em 0;
+      text-align: left !important;
     }
-    table tr:first-child{
-      font-size: 2em;
+    table.mfp th {
+      text-align: left;
+      font-weight: 600;
     }
-    table tr td:first-child {
+    table.mfp tr td:first-child {
       font-weight: lighter;
       font-size: 0.8em;
       padding-right: 5px;
       max-width: 25px;
       text-align: right;
     }
-    button {
+    table.mfp td.source {
+      margin: 2em 0 2em 2em;
+      color: #414141;
+      font-style: italic;
+      font-size: 0.7em;
+      padding-top: 1.5em;
+      border: 0;
+    }
+    .filters {
+      margin-top: 1em;
+      border-bottom: solid 2px #fa4b2a;
+      width: 100%;
+    }
+    .button-filter {
       font-family: ff-din-web-condensed, Helvetica, sans-serif;
-      font-weight: 400;
-      font-size: 0.9em;
-      color: #FFFFFF;
-      background-color: #000000;
-      /*text-transform: uppercase;*/
+      font-size: 18px;
+      color: #fff;
+      background-color: #aaaaaa !important;
       line-height: 1;
       display: inline-block;
       cursor: pointer;
-      width: 160px;
-      margin: 5px;
-      padding: .6em .7em .7em .6em;
+      width: 24%;
+      margin: 5px -2px 1px 0;
+      padding: 0.4em 0 .2em 0;
       border: 0;
-      }
-    button:hover {
-      background-color: #fb4834 !important;
+      text-transform: uppercase;
     }
-    button.selected {
-      background-color: #fb4834 !important;
+    .button-filter:hover {
+      background-color: #fa4b2a !important;
+    }
+    .button-filter.selected {
+      background-color: #fa4b2a !important;
+    }
+
+    @media (max-width: 600px) {
+      .button-filter {
+        font-size: 15px;
+        margin-bottom: 0px;
+      }
     }
 
   </style>
 </head>
-<body>
+<body style="max-width: 565px;">
+  <h2 class="mfp-title">Top 20 foods entries in MyFitnessPal by meal</h2>
   <div class="filters">
-    <div class="os" style="overflow:hidden;">
-      <button class="os_filter" val="all">All</button>
-      <button class="os_filter" val="ios">iOS</button>
-      <button class="os_filter" val="android">Android</button>
-      <button class="os_filter" val="windows">Windows</button>
-      <hr style="width: 100%;">
-    </div>
     <div class="meal">
-      <button class="meal_filter" val="breakfast">Breakfast</button>
-      <button class="meal_filter" val="lunch">Lunch</button>
-      <button class="meal_filter" val="dinner">Dinner</button>
-      <button class="meal_filter" val="snack">Snack</button>
+      <button class="button-filter meal-filter" val="breakfast">Breakfast</button>
+      <button class="button-filter meal-filter" val="lunch">Lunch</button>
+      <button class="button-filter meal-filter" val="dinner">Dinner</button>
+      <button class="button-filter meal-filter" val="snack">Snack</button>
     </div>
   </div>
-  <div class="container"></div>
-
+  <div class="mfp-container"></div>
+  
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="data.js"></script>
+  <script src="http://cdn0.sbnation.com/features/verge-my-fitness-pal/data.js"></script>
   <script type="text/javascript">
-    var list = ["ios_breakfast", "android_breakfast", "windows_breakfast", "ios_lunch", "android_lunch", "windows_lunch", "ios_dinner", "android_dinner", "windows_dinner", "ios_snack", "android_snack", "windows_snack"];
-
     var types = ['Breakfast', 'Lunch', 'Dinner', 'Snacks'];
 
     function makeDiv(type) {
-      $('.container').append('<div class="' + type + '"><h3>' + type + '</h3></div>');
+      $('.mfp-container').append('<div class="' + type + '"></div>');
     }
 
-    function buildTable(type, arr, arrname) {
-      $('.' + type).append('<table class=' + arrname + '></table>');
-      var target_div = $('.' + type + ' > .' + arrname)
-      target_div.append('<tr><td></td><td>' + arrname + '</td></tr>');
+    function buildTable(type, arr) {
+      $('.' + type).append('<table style="display:none;" class="mfp"></table>');
+      var target_div = $('.' + type + ' > table');
       for (var i = 0; i < 20; i++) {
-        target_div.append('<tr><td>' + arr[i][0] + '</td><td>' + arr[i][1] + '</td><td>' + arr[i][3] + '</td></tr>');
+        target_div.append('<tr><td>' + arr[i][0] + '</td><td>' + arr[i][1] + '</td></tr>');
       }
+      target_div.append("<tr><td></td><td class='source'>Data source: MyFitnessPal from 2005-2014</td></tr>");
+      target_div.fadeIn();  
     }
 
     function checkFilters(){
-      if (meal != undefined && os != undefined) {
-        $('.container').empty();
-        data_source = os + "_" + meal
+      if (meal != undefined) {
+        $('.mfp-container').empty();
         makeDiv(meal);
-        buildTable(meal, window[data_source], os); 
+        data_source = "all_" + meal;
+        buildTable(meal, window[data_source]); 
       }
     }
 
+    function filter(){
+      buttonType = $(this).attr('class').split(" ")[1];
+      type = buttonType.split(" ")[0].split("-")[0];
+      $('.' + buttonType).removeClass('selected');
+      if ($(this).hasClass('selected')) {
+        $(this).removeClass('selected');
+         window[type] = undefined;
+      } else {
+        $(this).addClass('selected');
+        window[type] = $(this).attr('val');
+        checkFilters(); 
+      } 
+    }
+
     var meal = 'breakfast';
-    var os = 'ios';
     $(document).ready(function() {
       checkFilters();
-      $("[val=ios]").addClass('selected');
       $("[val=breakfast]").addClass('selected');
-      $('.os_filter').on('click', function(){
-        buttonType = $(this).attr('class');
-        $('.' + buttonType).removeClass('selected');
-        if ($(this).hasClass('selected')) {
-          $(this).removeClass('selected');
-           os = undefined;
-        } else {
-          $(this).addClass('selected');
-          os = $(this).attr('val');
-          checkFilters();
-        }
-      });
-      $('.meal_filter').on('click', function(){
-        buttonType = $(this).attr('class');
-        $('.' + buttonType).removeClass('selected');
-        if ($(this).hasClass('selected')) {
-          $(this).removeClass('selected');
-           meal = undefined;
-        } else {
-          $(this).addClass('selected');
-          meal = $(this).attr('val');
-          checkFilters();
-        }
-      });
+      $('.meal-filter').on('click', filter);
     });
   </script>
+  
+  <!-- <iframe width="100%" height="800" src="http://cdn0.sbnation.com/features/verge-my-fitness-pal/my-fitness-pal.html" frameborder="0" allowfullscreen></iframe> -->
 </body>
 </html>
