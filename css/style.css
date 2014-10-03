@@ -36,6 +36,9 @@ body {
 	margin: 0 0 0 8px;
 }
 
+.about > .hero-unit {
+	height: 260px;
+}
 /* boxes */
 
 #work {
