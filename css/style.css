@@ -171,6 +171,12 @@ ul.social li p {
 	width: 56%;
 }
 
+#resume {
+	max-width: 1200px;
+	margin: 0 auto;
+	margin-top:40px;
+}
+
 .resume > .span4 > h2{
 	font-size: 22px;
 	font-weight:800;
@@ -242,6 +248,9 @@ footer p {
 		font-size: 20px;
 		line-height: 18px;
 		margin: 15px 10px 0 10px;
+	}
+	#resume {
+		margin-top: 0;
 	}
 	.navbar-inverse .navbar-inner {
 		padding: 0 0 0 30px;
