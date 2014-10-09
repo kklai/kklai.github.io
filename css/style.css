@@ -9,11 +9,12 @@ body {
 
 /* hero-unit */
 .hero-unit {
+	max-width: 1200px;
 	background-color: #fff;
-	width: auto;
 	margin: 0px 0 40px 0;
-	padding: 120px 30px 30px 90px;
+	padding: 120px 30px 30px 150px;
 	height: 200px;
+	margin: 0 auto;
 	/*background: url(../img/bg_two.jpg) no-repeat center center fixed;
 	-webkit-background-size: cover;
   -moz-background-size: cover;
