@@ -50,7 +50,10 @@ body {
 }
 
 .row {
-	margin: 0 30px 40px 60px;
+	margin: 0 auto;
+	display: block;
+	max-width: 1150px;
+	padding-left: 100px;
 }
 
 .row a {
@@ -217,10 +220,20 @@ footer p {
 	text-align: center;
 }
 
-@media screen and (max-width: 600px) {
-	.hero-unit {
-		padding: 40px 20px 0 40px;
+@media screen and (max-width: 1000px) {
+	.row {
+		padding-left: 30px;
+		padding-right: 30px;
 	}
+}
+@media screen and (max-width: 768px) {
+	.span4 {
+		display: inline-block;
+		vertical-align: top;
+		margin-bottom: 30px;
+	}
+}
+@media screen and (max-width: 698px) {
 	.clip {
 		display: none;
 	}
@@ -228,16 +241,13 @@ footer p {
 		width: 90%;
 	}
 	.span4 {
-		width: 90%;
-		margin: 0 0 50px 0;
+		width: 100%;
+		margin: 0 auto;
 	}
-}
-@media screen and (max-width: 768px) {
-	.hero-unit {
-		padding: 60px 20px 0 40px;
-	}
-	.span4 {
-		width: 90%;
+	.row {
+		padding-left: 0;
+		padding-left: 30px;
+		padding-right: 30px;
 	}
 }
 @media screen and (max-width: 500px) {
@@ -252,11 +262,13 @@ footer p {
 		padding: 0 0 0 30px;
 	}
 	.span4 {
-		width: 90%;
-		margin: 0 0 50px 0;
+		width: 100%;
+		margin: 0 auto;
 	}
 	.row {
 		margin: 0 20px 0 20px;
+		padding-left: 30px;
+		padding-right: 30px;
 	}
 	.navbar .nav > li > a {
 		padding: 10px 5px;

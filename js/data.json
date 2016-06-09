@@ -74,7 +74,7 @@
     "link": "http://www.nytimes.com/interactive/2015/09/14/world/middleeast/syria-war-deaths.html",
     "imglink": "img/thumbnail/syria_death.jpg",
     "pub": "NYT",
-    "description": "More than 200,000 people and counting have died in the Syrian civil war. Many were killed in shooting and mass killings, others in mortar, artillery and rocket attacks."
+    "description": "More than 200,000 people and counting have died in the Syrian civil war. Many were killed in shootings and mass killings, others in mortar, artillery and rocket attacks."
   },
   {
     "title": "Toxic Chemicals in China",
@@ -102,7 +102,7 @@
     "link": "http://www.nytimes.com/interactive/2014/12/31/world/middleeast/isis-airstrikes-map.html",
     "imglink": "img/thumbnail/isis_airstrikes.jpg",
     "pub": "NYT",
-    "description": "The American-led campaign against had been going on for a year when this published. This is an account of the areas that were targeted most and when and where the strikes intensified. The data was collected from United States Central Command press releases."
+    "description": "The American-led campaign against ISIS had been going on for a year when this published. This is an account of the areas that were targeted most and when and where the strikes intensified. The data was collected from United States Central Command press releases."
   },
   {
     "title": "Getting to Zero Ebola Cases",
@@ -116,7 +116,7 @@
     "link": "http://www.nytimes.com/interactive/2014/10/23/world/africa/ebola-drugs.html",
     "imglink": "img/thumbnail/ebola-drugs.jpg",
     "pub": "NYT",
-    "description": "There are no FDA-approved treatment for Ebola as of October 2014. To try to cover the topic comprehensively, I took a look at the pipeline of drugs and vaccines for Ebola, experimental drug treatments and outcomes and planned action by various health organizations."
+    "description": "There is no FDA-approved treatment for Ebola as of October 2014. To try to cover the topic comprehensively, I took a look at the pipeline of drugs and vaccines for Ebola, experimental drug treatments and outcomes and planned action by various health organizations."
   },
   {
     "title": "Areas of Protest in Hong Kong",
