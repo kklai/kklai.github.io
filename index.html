@@ -14,8 +14,11 @@
     <script src="js/script.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
-        addRows(content);
-        fillPage(content);
+
+        $.getJSON("js/data.json", function(json) {
+          addRows(json);
+          fillPage(json);
+        });
       })
     </script>
 
@@ -45,32 +48,12 @@
 
   <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="index.html"><img src="img/logo.png" width="22"></a>
-          <div class="nav">
-            <ul class="nav">
-              <li><a href="about.html">about  &nbsp;&nbsp; &#92;  </a></li>
-              <li><a href="index.html#work">work  &nbsp;&nbsp; &#92;  </a></li>
-              <li><a href="notwork.html">not work  &nbsp;&nbsp;  </a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-
     <div class="container">
 
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
         <!-- <div class="clip"></div> -->
-        <h1>KK Rebecca Lai</h1>
+        <h1>K.K. Rebecca Lai</h1>
         <p>Visual Journalist</p>
         <ul class="social">
           <li><a href="mailto:kkrebeccalai@gmail.com" target="_blank"><i class="icon-envelope"></i></a></li>
