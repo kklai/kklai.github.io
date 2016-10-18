@@ -132,9 +132,14 @@
     "imglink": "https://static01.nyt.com/images/2016/03/02/us/elections/clinton-sanders-core-voters-1456899771625/clinton-sanders-core-voters-1456899771625-articleLarge.jpg"
   },
   {
+    "title": "Classic Weather Chart",
+    "link": "http://www.nytimes.com/interactive/2016/02/18/upshot/the-times-classic-weather-chart-now-online-with-3000-cities.html",
+    "imglink": "img/thumbnail/weather.jpg"
+  },
+  {
     "title": "How Much Warmer Was It in 2015?",
     "link": "http://www.nytimes.com/interactive/2016/02/19/us/2015-year-in-weather-temperature-precipitation.html",
-    "imglink": "img/thumbnail/weather.jpg",
+    "imglink": "https://static01.nyt.com/images/2016/02/19/us/2015-year-in-weather-temperature-precipitation-1455859622684/2015-year-in-weather-temperature-precipitation-1455859622684-mediumThreeByTwo440.png",
     "pub": "NYT",
     "description": "Scientists declared that 2015 was Earth’s hottest year on record. In a database of 3,116 cities, about 90 percent of them were warmer than normal. Explore your city's weather in this interactive."
   },
