@@ -1,10 +1,111 @@
 [
   {
+    "title": "Iraq's Plan to Take Back Mosul",
+    "link": "http://www.nytimes.com/interactive/2016/10/17/world/middleeast/iraq-mosul-isis-map.html",
+    "imglink": "img/thumbnail/mosul.jpg"
+  },
+  {
+    "title": "Record Flooding in North Carolina",
+    "link": "http://www.nytimes.com/interactive/2016/10/12/us/record-flooding-north-carolina-hurricane-matthew.html",
+    "imglink": "img/thumbnail/nc-flooding.jpg",
+    "description": ""
+  },
+  {
+    "title": "Hurricane Matthew’s Aftermath in Haiti",
+    "link": "http://www.nytimes.com/interactive/2016/10/10/world/americas/haiti-hurricane-matthew-aftermath-destruction-maps-photos.html",
+    "imglink": "img/thumbnail/haiti.jpg"
+  },
+  {
+    "title": "Felony Convictions and Voting",
+    "link": "http://www.nytimes.com/interactive/2016/10/06/us/unequal-effect-of-laws-that-block-felons-from-voting.html",
+    "imglink": "img/thumbnail/felon-vote.jpg"
+  },
+  {
+    "title": "Scenes From the Protests in Charlotte",
+    "link": "http://www.nytimes.com/interactive/2016/09/22/us/charlotte-police-shooting-protest.html",
+    "imglink": "img/thumbnail/charlotte.jpg"
+  },
+  {
+    "title": "Chelsea Bombing Suspect Unfolded",
+    "link": "http://www.nytimes.com/interactive/2016/09/19/nyregion/chelsea-bombing-explosion-maps-timeline.html",
+    "imglink": "https://static01.nyt.com/images/2016/09/19/nyregion/chelsea-bombing-explosion-maps-timeline-1474293830894/chelsea-bombing-explosion-maps-timeline-1474293830894-articleLarge-v5.jpg"
+  },
+  {
+    "title":"Nick Kyrgios’s Explosive Forehand",
+    "link": "http://www.nytimes.com/interactive/2016/09/03/sports/tennis/us-open-nick-kyrgios-explosive-forehand.html",
+    "imglink": "https://static01.nyt.com/images/2016/09/04/sports/tennis/us-open-tennis-nick-kyrgios-forehand-1472932718285/us-open-tennis-nick-kyrgios-forehand-1472932718285-articleLarge.jpg"
+  },
+  {
+    "title": "Where Women Won More Medals",
+    "link": "http://www.nytimes.com/interactive/2016/08/24/sports/olympics/countries-where-women-won-more-medals-than-men-in-rio.html",
+    "imglink": "https://static01.nyt.com/images/2016/08/24/sports/olympics/women-olympics-1472066017101/women-olympics-1472066017101-articleLarge-v4.jpg",
+    "description": ""
+  },
+  {
+    "title": "Decisive Moments at the Rio",
+    "link": "http://www.nytimes.com/interactive/2016/08/20/sports/olympics/decisive-moments-rio-olympics-composite-pictures.html",
+    "imglink": "https://static01.nyt.com/images/2016/08/21/sports/olympics/rio-olympics-composite-1471674002989/rio-olympics-composite-1471674002989-articleLarge.jpg",
+    "description": ""
+  },
+  {
+    "title": "Athletes Suspended for Doping",
+    "link": "http://www.nytimes.com/interactive/2016/08/18/sports/olympics/athletes-at-the-rio-olympics-who-were-previously-suspended-for-doping-.html",
+    "imglink": "img/thumbnail/doping.jpg",
+    "description": ""
+  },
+  {
+    "title": "How Usain Bolt Won Gold",
+    "link": "http://www.nytimes.com/interactive/2016/08/15/sports/olympics/usain-bolt-mens-100-meters-final.html",
+    "imglink": "https://static01.nyt.com/images/2016/08/15/sports/olympics-usain-bolt-mens-100-meters-final-1471248154287/olympics-usain-bolt-mens-100-meters-final-1471248154287-articleLarge-v3.jpg",
+    "description": ""
+  },
+  {
+    "title": "Olympic Medal Moments Denied",
+    "link": "http://www.nytimes.com/interactive/2016/08/14/sports/olympics-medal-doping.html",
+    "imglink": "https://static01.nyt.com/images/2016/08/09/sports/olympics-medal-doping-1471018914321/olympics-medal-doping-1471018914321-articleLarge.png",
+    "description": ""
+  },
+  {
+    "title": "Shootings in Munich",
+    "link": "http://www.nytimes.com/interactive/2016/07/22/world/europe/munich-shopping-mall-shooting.html",
+    "imglink": "https://static01.nyt.com/images/2016/07/22/world/europe/munich-shopping-mall-shooting-1469213226573/munich-shopping-mall-shooting-1469213226573-articleLarge-v5.jpg"
+  },
+  {
+    "title": "G.O.P. Convention and Hillary Clinton",
+    "link": "http://www.nytimes.com/interactive/2016/07/21/us/elections/republican-convention-mentions-of-democratic-opponent-clinton.html",
+    "imglink": "img/thumbnail/gop-convention.jpg"
+  },
+  {
+    "title": "A Trail of Terror in Nice",
+    "link": "http://www.nytimes.com/interactive/2016/07/14/world/europe/trail-of-terror-france.html",
+    "imglink": "https://static01.nyt.com/images/2016/07/14/world/europe/france-attack-scroller-1468568262176/france-attack-scroller-1468568262176-articleLarge-v2.jpg"
+  },
+  {
+    "title": "Attack on Dallas Police",
+    "link": "http://www.nytimes.com/interactive/2016/07/08/us/dallas-police-shooting-map.html",
+    "imglink": "https://static01.nyt.com/images/2016/07/08/us/dallas-police-shooting-1467965526264/dallas-police-shooting-1467965526264-articleLarge.jpg"
+  },
+  {
+    "title": "Orlando Nightclub Shooting",
+    "link": "http://www.nytimes.com/interactive/2016/06/12/us/what-happened-at-the-orlando-nightclub-shooting.html",
+    "imglink": "https://static01.nyt.com/images/2016/06/12/us/orlando-shooting-stack-1465744418979/orlando-shooting-stack-1465744418979-articleLarge-v3.jpg"
+  },
+  {
+    "title": "The EgyptAir Flight",
+    "link": "http://www.nytimes.com/interactive/2016/05/19/world/europe/egyptair-flight-crash-paris-cairo.html",
+    "imglink": "https://static01.nyt.com/images/2016/05/19/world/europe/egyptair-flight-crash-paris-cairo-1463666586726/egyptair-flight-crash-paris-cairo-1463666586726-articleLarge-v4.jpg"
+  },
+  {
     "title": "Russia Doping at the Sochi Olympics",
     "link": "http://www.nytimes.com/interactive/2016/05/13/sports/russia-doping-sochi-olympics-2014.html",
     "imglink": "img/thumbnail/hole.jpg",
     "pub": "NYT",
     "description": "The Anti-Doping Laboratory was involved in an elaborate scheme to help athletes beat doping tests at the Sochi Olympics. We worked with the sports desk to help create an illustrated account of how the Russian doctor said they cheated the tests."
+  },
+  {
+    "title": "Trump’s Path to the Nomination",
+    "link": "http://www.nytimes.com/interactive/2016/04/27/upshot/donald-trumps-path-to-the-nomination-contest-by-contest.html",
+    "imglink": "img/thumbnail/trump-del.jpg"
   },
   {
     "title": "How the Delegate Race Could Unfold",
@@ -19,6 +120,16 @@
     "imglink": "img/thumbnail/pakistan.jpg",
     "pub": "NYT",
     "description": "A horrible terror attack struck a busy park in Lahore, Pakistan, on Easter Sunday. More than 70 people were killed. This was only one of the many deadly attacks Pakistan has suffered in the past few years."
+  },
+  {
+    "title": "Voting Blocs Behind Candidates",
+    "link": "http://www.nytimes.com/interactive/2016/03/02/us/elections/important-voting-blocs-republican-candidates.html",
+    "imglink": "https://static01.nyt.com/images/2016/03/02/us/elections/important-voting-blocs-republican-candidates-1456899477682/important-voting-blocs-republican-candidates-1456899477682-articleLarge.jpg"
+  },
+  {
+    "title": "Clinton vs. Sanders Voters",
+    "link": "http://www.nytimes.com/interactive/2016/03/02/us/elections/clinton-sanders-core-voters.html",
+    "imglink": "https://static01.nyt.com/images/2016/03/02/us/elections/clinton-sanders-core-voters-1456899771625/clinton-sanders-core-voters-1456899771625-articleLarge.jpg"
   },
   {
     "title": "How Much Warmer Was It in 2015?",
@@ -56,11 +167,21 @@
     "description": "Raqqa has become the de facto capital of the Islamic State since late 2013. Through a series of maps, images and quotes from former residents, we tried to paint a picture of life before and after ISIS."
   },
   {
+    "title": "Three Hours of Terror in Paris",
+    "link": "http://www.nytimes.com/interactive/2015/11/13/world/europe/paris-shooting-attacks.html",
+    "imglink": "img/thumbnail/paris.jpg"
+  },
+  {
     "title": "Overlapping Conflicts in the Syrian War",
     "link": "http://www.nytimes.com/interactive/2015/10/16/world/middleeast/untangling-the-overlapping-conflicts-in-the-syrian-war.html",
     "imglink": "img/thumbnail/syria_relations.jpg",
     "pub": "NYT",
     "description": "The war in Syria is complicated by the many foreign actors involved, becoming a proto-world war with nearly a dozen countries embroiled in two overlapping conflicts."
+  },
+  {
+    "title": "Oregon Community College Shooting",
+    "link": "http://www.nytimes.com/interactive/2015/10/02/us/oregon-shooting-maps-and-diagrams.html",
+    "imglink": "https://static01.nyt.com/images/2015/10/02/us/oregon-shooting-maps-and-diagrams-1443834064487/oregon-shooting-maps-and-diagrams-1443834064487-articleLarge.png"
   },
   {
     "title": "Trump Remains Center at G.O.P. Debate",
@@ -77,6 +198,11 @@
     "description": "More than 200,000 people and counting have died in the Syrian civil war. Many were killed in shootings and mass killings, others in mortar, artillery and rocket attacks."
   },
   {
+    "title": "The Wait",
+    "link": "http://www.nytimes.com/interactive/2015/09/01/nyregion/new-york-lines-photos.html",
+    "imglink": "img/thumbnail/wait.jpg"
+  },
+  {
     "title": "Toxic Chemicals in China",
     "link": "http://www.nytimes.com/interactive/2015/08/21/world/asia/tianjin-china-explosion-hazardous-chemical-sites.html",
     "imglink": "img/thumbnail/tianjin_explosion.jpg",
@@ -91,11 +217,63 @@
     "description": "An analysis of China's share of foreign investment in the world showed that China has displaced the U.S. and Europe as the leading financial power in the developing world."
   },
   {
+    "title": "Sandra Bland’s Arrest",
+    "link": "http://www.nytimes.com/interactive/2015/07/20/us/sandra-bland-arrest-death-videos-maps.html",
+    "imglink": "https://static01.nyt.com/images/2015/07/20/us/Disputed-Accounts-of-Arrest-and-Death-of-Sandra-Bland-map-videos-1437434665792/Disputed-Accounts-of-Arrest-and-Death-of-Sandra-Bland-map-videos-1437434665792-articleLarge-v6.jpg"
+  },
+  {
+    "title": "Three Attacks In Three Hours",
+    "link": "http://www.nytimes.com/interactive/2015/06/26/world/france-kuwait-tunisia-terror-attack-maps.html",
+    "imglink": "https://static01.nyt.com/images/2015/06/26/world/france-kuwait-tunisia-terror-attack-maps-1435339718982/france-kuwait-tunisia-terror-attack-maps-1435339718982-articleLarge.png"
+  },
+  {
+    "title": "Damage From the Nepal Earthquakes",
+    "link": "http://www.nytimes.com/interactive/2015/04/25/world/asia/nepal-earthquake-maps.html",
+    "imglink": "https://static01.nyt.com/images/2015/04/25/world/asia/nepal-earthquake-1430008511490/nepal-earthquake-1430008511490-mediumThreeByTwo440-v7.jpg"
+  },
+  {
+    "title": "Surge in Refugees",
+    "link": "http://www.nytimes.com/interactive/2015/04/20/world/europe/surge-in-refugees-crossing-the-mediterranean-sea-maps.html",
+    "imglink": "https://static01.nyt.com/images/2015/04/20/world/surge-in-refugees-crossing-the-mediterranean-sea-maps-1429556120160/surge-in-refugees-crossing-the-mediterranean-sea-maps-1429556120160-articleLarge-v2.png"
+  },
+  {
+    "title": "Iran Nuclear Deal’s Definition",
+    "link": "http://www.nytimes.com/interactive/2015/04/06/world/middleeast/iran-nuclear-deals-definition-depends-on-whos-talking.html",
+    "imglink": "https://static01.nyt.com/images/2015/04/06/world/middleeast/iran-nuclear-deals-definition-depends-on-whos-talking-1428368262301/iran-nuclear-deals-definition-depends-on-whos-talking-1428368262301-mediumThreeByTwo225.jpg"
+  },
+  {
+    "title": "East Village Explosion",
+    "link": "http://www.nytimes.com/interactive/2015/03/26/nyregion/the-four-buildings-affected-by-explosion-in-the-east-village.html",
+    "imglink": "https://static01.nyt.com/images/2015/03/26/nyregion/east-village-explosion-floor-by-floor-1427416462428/east-village-explosion-floor-by-floor-1427416462428-articleLarge-v2.png"
+  },
+  {
+    "title": "Saudi-Backed Forces Gain Momentum",
+    "link": "http://www.nytimes.com/interactive/2015/03/26/world/middleeast/geography-of-chaos-in-yemen-maps.html",
+    "imglink": "https://static01.nyt.com/images/2015/03/26/world/middleeast/geography-of-chaos-in-yemen-maps-1427396352427/geography-of-chaos-in-yemen-maps-1427396352427-articleLarge-v4.jpg"
+  },
+  {
+    "title": "Germanwings Flight Crash",
+    "link": "http://www.nytimes.com/interactive/2015/03/24/world/europe/germanwings-plane-crash-map.html",
+    "imglink": "https://static01.nyt.com/images/2015/03/24/world/europe/germanwings-plane-crash-map-1427222452575/germanwings-plane-crash-map-1427222452575-articleLarge-v8.png"
+  },
+  {
     "title": "Syria After Four Years of Mayhem",
     "link": "http://www.nytimes.com/interactive/2015/03/12/world/middleeast/syria-civil-war-after-four-years-map.html",
     "imglink": "img/thumbnail/syria_mayhem.jpg",
     "pub": "NYT",
     "description": "A nighttime lights analysis done by researchers from Wuhan University and University of Maryland showed the destruction of Syria after four-years of civil war."
+  },
+  {
+    "title": "Getting to Zero Ebola Cases",
+    "link": "http://www.nytimes.com/interactive/2015/02/24/world/africa/2015-02-24-ebola-outbreak.html",
+    "imglink": "img/thumbnail/ebola.jpg",
+    "pub": "NYT",
+    "description": "There were many reports on the total number of Ebola cases in affected countries, but less coverage on the regional distribution of cases. With data from the World Health Organization, I worked on a story about the rise and fall of cases and how the virus spread geographically over time."
+  },
+  {
+    "title": "Investigating the Metro-North Crash",
+    "link": "http://www.nytimes.com/interactive/2015/02/04/nyregion/2015-02-04-metro-north-crash.html",
+    "imglink": "https://static01.nyt.com/images/2015/02/04/us/2015-02-04-metro-north-crash-1423072086813/2015-02-04-metro-north-crash-1423072086813-mediumThreeByTwo440-v4.png"
   },
   {
     "title": "How the Air Campaign Against ISIS Grew",
@@ -105,11 +283,19 @@
     "description": "The American-led campaign against ISIS had been going on for a year when this published. This is an account of the areas that were targeted most and when and where the strikes intensified. The data was collected from United States Central Command press releases."
   },
   {
-    "title": "Getting to Zero Ebola Cases",
-    "link": "http://www.nytimes.com/interactive/2015/02/24/world/africa/2015-02-24-ebola-outbreak.html",
-    "imglink": "img/thumbnail/ebola.jpg",
-    "pub": "NYT",
-    "description": "There were many reports on the total number of Ebola cases in affected countries, but less coverage on the regional distribution of cases. With data from the World Health Organization, I worked on a story about the rise and fall of cases and how the virus spread geographically over time."
+    "title": "AirAsia Flight",
+    "link": "http://www.nytimes.com/interactive/2014/12/28/world/asia/airasia-flight-qz8501-map.html",
+    "imglink": "https://static01.nyt.com/images/2014/12/30/world/airasia-8501-debris-map/airasia-8501-debris-map-articleLarge.jpg"
+  },
+  {
+    "title": "Details of Duncan’s Treatment",
+    "link": "http://www.nytimes.com/interactive/2014/10/25/us/ebola-dallas-timeline.html",
+    "imglink": "https://static01.nyt.com/images/2014/10/25/us/ebola-dallas-timeline-1414253309230/ebola-dallas-timeline-1414253309230-mediumThreeByTwo440.png"
+  },
+  {
+    "title": "New York City Ebola Patient",
+    "link": "http://www.nytimes.com/interactive/2014/10/23/nyregion/new-york-city-ebola-patient-timeline-map.html",
+    "imglink": "https://static01.nyt.com/images/2014/10/23/nyregion/new-york-city-ebola-patient-map-1414137847417/new-york-city-ebola-patient-map-1414137847417-mediumThreeByTwo440.png"
   },
   {
     "title": "The Hunt for Ebola Treatment",
