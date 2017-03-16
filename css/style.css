@@ -92,6 +92,14 @@ body {
   color: #666;
 }
 
+.span4 h2 span {
+	font-size: 10px;
+	color: #cc0000;
+	white-space: nowrap;
+	font-family: arial;
+	font-weight: 100;
+}
+
 .span4 p {
 	font-size: 16px;
 	font-weight: 200;
