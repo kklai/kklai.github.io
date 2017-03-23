@@ -297,3 +297,9 @@ footer p {
 .navbar .btn-navbar {
 	display:none !important;
 }
+
+p.date {
+  font-size: 12px;
+  margin-bottom: -3px;
+  color: #999;
+}

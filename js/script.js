@@ -18,7 +18,7 @@ function fillPage(input) {
 		}
 
 		row = Math.floor(i/3) + 1;
-		$('#work .row:nth-child(' + row + ')').append('<div class="span4"><a href="' + input[i].link + '" target="_blank"><h2>' + input[i].title + ' <span>' + date + '</span></h2></a><a href="' + input[i].link + '" target="_blank"><div class="wrapper"><img src="' + input[i].imglink + '"></div></a></div>');
+		$('#work .row:nth-child(' + row + ')').append('<div class="span4"><p class="date">' + date + '</p> <a href="' + input[i].link + '" target="_blank"><h2>' + input[i].title + '</h2></a><a href="' + input[i].link + '" target="_blank"><div class="wrapper"><img src="' + input[i].imglink + '"></div></a></div>');
 	}
 	footer();
 }
