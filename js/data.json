@@ -115,12 +115,12 @@
     "link": "https://www.nytimes.com/interactive/2016/09/03/sports/tennis/us-open-nick-kyrgios-explosive-forehand.html",
     "imglink": "https://static01.nyt.com/images/2016/09/04/sports/tennis/us-open-tennis-nick-kyrgios-forehand-1472932718285/us-open-tennis-nick-kyrgios-forehand-1472932718285-articleLarge.jpg"
   },
-  {
-    "title": "Where Women Won More Medals",
-    "link": "https://www.nytimes.com/interactive/2016/08/24/sports/olympics/countries-where-women-won-more-medals-than-men-in-rio.html",
-    "imglink": "https://static01.nyt.com/images/2016/08/24/sports/olympics/women-olympics-1472066017101/women-olympics-1472066017101-articleLarge-v4.jpg",
-    "description": ""
-  },
+  // {
+  //   "title": "Where Women Won More Medals",
+  //   "link": "https://www.nytimes.com/interactive/2016/08/24/sports/olympics/countries-where-women-won-more-medals-than-men-in-rio.html",
+  //   "imglink": "https://static01.nyt.com/images/2016/08/24/sports/olympics/women-olympics-1472066017101/women-olympics-1472066017101-articleLarge-v4.jpg",
+  //   "description": ""
+  // },
   {
     "title": "Decisive Moments at the Rio",
     "link": "https://www.nytimes.com/interactive/2016/08/20/sports/olympics/decisive-moments-rio-olympics-composite-pictures.html",
