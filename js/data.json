@@ -1,5 +1,30 @@
 [
   {
+    "title": "France Election Results",
+    "link": "https://www.nytimes.com/interactive/2017/04/23/world/europe/french-election-results-maps.html",
+    "imglink": "https://static01.nyt.com/images/2017/04/24/world/europe/french-election-results-maps-1493005526000/french-election-results-maps-1493005526000-articleLarge-v2.png"
+  },
+  {
+    "title": "Legal Challenges to Arkansas Executions",
+    "link": "https://www.nytimes.com/interactive/2017/04/21/us/arkansas-executions-legal-challenges.html",
+    "imglink": "https://static01.nyt.com/images/2017/04/21/us/arkansas-executions-legal-challenges-1493094952616/arkansas-executions-legal-challenges-1493094952616-articleLarge.png"
+  },
+  {
+    "title": "Arkansas Executions",
+    "link": "https://www.nytimes.com/interactive/2017/04/13/us/arkansas-executions.html",
+    "imglink": "https://static01.nyt.com/images/2017/04/13/us/arkansas-executions-1492108797105/arkansas-executions-1492108797105-articleLarge.png"
+  },
+  {
+    "title": "Trump Golfing and Getaways",
+    "link": "https://www.nytimes.com/interactive/2017/04/13/us/arkansas-executions.html",
+    "imglink": "https://static01.nyt.com/images/2017/04/10/us/politics/trump-golf-getaways-1491848434899/trump-golf-getaways-1491848434899-articleLarge.png"
+  },
+  {
+    "title": "American Military Attack on Syria",
+    "link": "https://www.nytimes.com/interactive/2017/04/07/world/middleeast/us-syria-missile-attack-airbase.html",
+    "imglink": "https://static01.nyt.com/images/2017/04/07/world/middleeast/us-syria-missile-attack-airbase-1491538617758/us-syria-missile-attack-airbase-1491538617758-articleLarge.png"
+  },
+  {
     "title": "Westminster Bridge Attack",
     "link": "https://www.nytimes.com/interactive/2017/03/22/world/europe/westminster-bridge-london-attack-map.html",
     "imglink": "img/thumbnail/westminster.jpg"
