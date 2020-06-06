@@ -86,9 +86,10 @@ body {
 	font-family: 'Raleway', sans-serif;
   font-weight: 500;
   border-bottom: 2px #d3d3d3 solid;
-  margin: 0 0 10px 0;
+  margin: 5px 0 10px 0;
+  padding-bottom: 5px;
   font-size: 17px;
-  line-height: 25px;
+  line-height: 20px;
   color: #666;
 }
 
