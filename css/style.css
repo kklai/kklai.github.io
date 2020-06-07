@@ -24,7 +24,7 @@ body {
 
 .hero-unit h1 {
 	font-family: 'Raleway', sans-serif;
-	font-size: 30px;
+	font-size: 35px;
 	font-weight: 100;
 	color: #333;
 	text-align: center;
@@ -90,7 +90,7 @@ body {
   padding-bottom: 5px;
   font-size: 17px;
   line-height: 20px;
-  color: #666;
+  color: #333;
 }
 
 .span4 h2 span {
