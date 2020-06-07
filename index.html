@@ -23,6 +23,8 @@
         var months = ["Jan.", "Feb.", "March", "April", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."];
         function fillPage(input) {
 
+          input = input.filter(d => d.did);
+
           for (var i = 0; i < input.length; i++) {
             if (input[i].link.indexOf("https://www.nytimes.com/interactive/") > -1 && !input[i].date) {
               date = input[i].link.split("https://www.nytimes.com/interactive/")[1].split("/");
@@ -30,8 +32,25 @@
             } else {
               date = input[i].date;
             }
+
+            var did = input[i].did ? input[i].did : "";
+
             row = Math.floor(i/3) + 1;
-            $('#work .row:nth-child(' + row + ')').append('<div class="span4"><p class="date">' + date + '</p> <a href="' + input[i].link + '" target="_blank"><h2>' + input[i].title + '</h2></a><a href="' + input[i].link + '" target="_blank"><div class="wrapper"><img src="' + input[i].imglink + '"></div></a></div>');
+
+            var str = '<div class="span4" id="' + input[i].link.split("/")[input[i].link.split("/").length - 1].replace(".html", "") + '"><p class="date">' + date + '</p> <a href="' + input[i].link + '" target="_blank"><h2>' + input[i].title + '</h2>';
+
+            if (input[i].vidlink) {
+              str += '<div class="wrapper vid-wrapper"><video autoplay loop playsinline muted src="img/video/' + input[i].vidlink + '"></div></a>';
+            } else {
+              str += '<div class="wrapper"><img class="g-desktop" src="img/thumbnail/' + input[i].imglink + '.jpg"><img class="g-mobile" src="img/thumbnail/' + input[i].imglink + '-m.jpg"></div></a>';
+            }
+
+
+            str += '<p class="body-text"><span class="g-small">WHAT I DID</span>' + input[i].did + "</p>"
+            str += '</div>';
+
+
+            $('#work .row:nth-child(' + row + ')').append(str);
           }
           footer();
         }
@@ -44,16 +63,18 @@
           {
             "title": "How the American Air Campaign Against ISIS Grew",
             "link": "https://www.nytimes.com/interactive/2014/12/31/world/middleeast/isis-airstrikes-map.html",
-            "imglink": "https://static01.nyt.com/images/2014/12/31/world/middleeast/isis-airstrikes-map-1420042808061/isis-airstrikes-map-1420042808061-videoLarge.png",
+            "imglink": "isis",
             "pub": "NYT",
-            "description": "The American-led campaign against ISIS had been going on for a year when this published. This is an account of the areas that were targeted most and when and where the strikes intensified. The data was collected from United States Central Command press releases."
+            "description": "The American-led campaign against ISIS had been going on for a year when this published. This is an account of the areas that were targeted most and when and where the strikes intensified. The data was collected from United States Central Command press releases.",
+            "did": "Data collection and visualization, design and development"
           },
           {
             "title": "How China Became the Leading Financial Power in the World",
             "link": "https://www.nytimes.com/interactive/2015/07/24/business/international/the-world-according-to-china-investment-maps.html",
-            "imglink": "https://static01.nyt.com/images/2015/07/06/world/asia/the-world-according-to-china-investment-maps-1436222568352/the-world-according-to-china-investment-maps-1436222568352-videoLarge-v2.png",
+            "imglink": "china",
             "pub": "NYT",
-            "description": "An analysis of China's share of foreign investment in the world showed that China has displaced the U.S. and Europe as the leading financial power in the developing world."
+            "description": "An analysis of China's share of foreign investment in the world showed that China has displaced the U.S. and Europe as the leading financial power in the developing world.",
+            "did": "Data visualization, design and development"
           },
           {
             "title": "Photographs of a New York City Summer: The Wait",
@@ -70,54 +91,67 @@
           {
             "title": "A Trail of Terror in Nice, Block by Block",
             "link": "https://www.nytimes.com/interactive/2016/07/14/world/europe/trail-of-terror-france.html",
-            "imglink": "https://static01.nyt.com/images/2016/07/14/world/europe/france-attack-scroller-1468568262176/france-attack-scroller-1468568262176-articleLarge-v2.jpg"
+            "imglink": "nice",
+            "did": "Design and development"
           },
           {
             "title": "How Usain Bolt Came From Behind Again to Win Gold",
             "link": "https://www.nytimes.com/interactive/2016/08/15/sports/olympics/usain-bolt-mens-100-meters-final.html",
-            "imglink": "https://static01.nyt.com/images/2016/08/15/sports/olympics-usain-bolt-mens-100-meters-final-1471248154287/olympics-usain-bolt-mens-100-meters-final-1471248154287-articleLarge-v3.jpg",
-            "description": ""
+            "imglink": "bolt",
+            "description": "",
+            "did": "Design and development"
           },
           {
             "title": "Mapping the Conflicts Along the Dakota Access Pipeline",
             "link": "https://www.nytimes.com/interactive/2016/11/23/us/dakota-access-pipeline-protest-map.html",
-            "imglink": "img/thumbnail/pipeline.jpg"
+            "imglink": "dakota",
+            "did": "Mapping, writing and reporting"
           },
           {
             "title": "Election Map Shows Overwhelming Victory for Macron in France",
             "link": "https://www.nytimes.com/interactive/2017/05/07/world/europe/france-election-results-maps.html",
-            "imglink": "https://static01.nyt.com/images/2017/05/07/world/europe/france-president-election-1494024722464/france-president-election-1494024722464-videoLarge-v14.png"
+            "imglink": "france",
+            "did": "Data visualization"
           },
           {
             "title": "Who Are the New Tax Bill’s Biggest Losers",
             "link": "https://www.nytimes.com/interactive/2017/12/05/us/politics/tax-bill-salt.html",
-            "imglink": "https://static01.nyt.com/images/2017/12/01/us/politics/tax-bill-salt-1512186172455/tax-bill-salt-1512186172455-articleLarge.jpg"
+            "imglink": "tax",
+            "did": "Data visualization"
           },
           {
             "title": "Hurricane Michael: One Mile of Devastation in Florida",
             "link": "https://www.nytimes.com/interactive/2018/10/12/us/mexico-beach-fl-damage-map.html",
-            "imglink": "https://static01.nyt.com/images/2018/10/12/us/mexico-beach-fl-damage-map-promo-1539360525427/mexico-beach-fl-damage-map-promo-1539360525427-articleLarge.jpg"
+            "imglink": "michael",
+            "did": "Design and development"
           },
           {
             "title": "The Faces of Change in the Midterm Elections",
             "link": "https://www.nytimes.com/interactive/2018/10/31/us/politics/midterm-election-candidates-diversity.html",
-            "imglink": "https://static01.nyt.com/images/2018/10/30/us/midterm-election-candidates-promo-1540940269999/midterm-election-candidates-promo-1540940269999-articleLarge.jpg"
+            "imglink": "https://static01.nyt.com/images/2018/10/30/us/midterm-election-candidates-promo-1540940269999/midterm-election-candidates-promo-1540940269999-articleLarge.jpg",
+            "vidlink": "faces.mp4",
+            "did": "Data collection and analysis, photo editing, design and development"
           },
           {
             "title": "Tracking the Race Between Two Men Across Antarctica",
             "link": "https://www.nytimes.com/interactive/2018/12/18/sports/antarctica-race-tracker-map.html",
-            "imglink": "https://static01.nyt.com/images/2018/12/18/sports/antarctica-race-1545172439965/antarctica-race-1545172439965-articleLarge-v3.jpg"
+            "imglink": "https://static01.nyt.com/images/2018/12/18/sports/antarctica-race-1545172439965/antarctica-race-1545172439965-articleLarge-v3.jpg",
+            "vidlink": "antarctica-1.mp4",
+            "did": "Data collection and visualization, Design and development"
           },
           {
             "title": "What’s Next After the Camp Fire Destroyed Paradise",
             "link": "https://www.nytimes.com/interactive/2018/12/26/us/paradise-california-camp-fire.html",
-            "imglink": "https://static01.nyt.com/images/2018/12/27/us/paradise-california-camp-fire-1545869738448/paradise-california-camp-fire-1545869738448-threeByTwoSmallAt2X-v2.jpg"
+            "imglink": "https://static01.nyt.com/images/2018/12/27/us/paradise-california-camp-fire-1545869738448/paradise-california-camp-fire-1545869738448-threeByTwoSmallAt2X-v2.jpg",
+            "vidlink": "paradise.mp4",
+            "did": "Video editing, design and development"
           },
           {
             "title": "How States Have Changed Abortion Bans This Year",
             "date": "May 29, 2019",
             "link": "https://www.nytimes.com/interactive/2019/us/abortion-laws-states.html",
-            "imglink": "https://static01.nyt.com/images/2019/05/15/us/abortion-ban-promo-1557933612354/abortion-ban-promo-1557933612354-threeByTwoSmallAt2X-v12.png"
+            "imglink": "abortion",
+            "did": "Data visualization, writing and reporting"
           },
           {
             "title": "The New Playbook of Hong Kong Protesters",
@@ -128,48 +162,63 @@
             "title": "Reconstruct of the 721 Yuen Long attack in Hong Kong",
             "date": "July 29, 2019",
             "link": "https://www.nytimes.com/video/world/asia/100000006624535/hong-kong-protest-police-triad-investigation.html",
-            "imglink": "https://static01.nyt.com/images/2019/07/31/world/asia/31video/HONGKONG-EXTRADITION_-threeByTwoSmallAt2X.jpg"
+            "imglink": "https://static01.nyt.com/images/2019/07/31/world/asia/31video/HONGKONG-EXTRADITION_-threeByTwoSmallAt2X.jpg",
+            "vidlink": "yl_721.mp4",
+            "did": "Reporting, graphics"
           },
           {
             "title": "Detailed Maps of the 2020 Democratic Campaigns",
             "link": "https://www.nytimes.com/interactive/2019/08/02/us/politics/2020-democratic-fundraising.html",
-            "imglink": "https://static01.nyt.com/images/2019/08/08/us/2020-democratic-fundraising-promo-1564702829775/2020-democratic-fundraising-promo-1564702829775-threeByTwoSmallAt2X.jpg"
+            "imglink": "dem-map",
+            "did": "Design and development"
           },
           {
             "title": "Was the Hong Kong Police Use of Tear Gas Appropriate?",
             "link": "https://www.nytimes.com/interactive/2019/08/18/world/asia/hong-kong-tear-gas.html",
-            "imglink": "https://static01.nyt.com/images/2019/08/16/world/asia/hong-kong-tear-gas-1566076194304/hong-kong-tear-gas-1566076194304-threeByTwoSmallAt2X.jpg"
+            "imglink": "https://static01.nyt.com/images/2019/08/16/world/asia/hong-kong-tear-gas-1566076194304/hong-kong-tear-gas-1566076194304-threeByTwoSmallAt2X.jpg",
+            "vidlink": "tear-gas.mp4",
+            "did": "Video editing, design and development, writing and reporting"
           },
           {
             "title": "Hurricane Dorian and One Community in the Bahamas",
             "link": "https://www.nytimes.com/interactive/2019/09/25/world/americas/hurricane-dorian-abaco-island-bahamas.html",
-            "imglink": "https://static01.nyt.com/images/2019/09/24/world/americas/hurricane-dorian-abaco-island-bahamas-1570782838912/hurricane-dorian-abaco-island-bahamas-1570782838912-threeByTwoSmallAt2X.jpg"
+            "imglink": "https://static01.nyt.com/images/2019/09/24/world/americas/hurricane-dorian-abaco-island-bahamas-1570782838912/hurricane-dorian-abaco-island-bahamas-1570782838912-threeByTwoSmallAt2X.jpg",
+            "vidlink": "bahamas-1.mp4",
+            "did": "Drone videography, design and development, writing and reporting"
           },
           {
             "title": "Timeline: Six Months of Hong Kong Protests",
             "date": "Nov. 18, 2019",
             "link": "https://www.nytimes.com/interactive/2019/world/asia/hong-kong-protests-arc.html",
-            "imglink": "https://static01.nyt.com/images/2019/10/01/us/2019-09-hk-protest-timeline-promo-1569935056934/2019-09-hk-protest-timeline-promo-1569935056934-threeByTwoSmallAt2X-v2.png"
+            "imglink": "hk-timeline",
+            "did": "Data collection, charting, mapping, video editing, design and development, writing and reporting"
           },
           {
             "title": "Watching the California Fires Burn in Real Time",
             "link": "https://www.nytimes.com/interactive/2019/11/01/us/california-kincade-fire.html",
-            "imglink": "https://static01.nyt.com/images/2019/01/11/us/firecameras-promo-image/firecameras-promo-image-threeByTwoSmallAt2X.jpg"
+            "imglink": "https://static01.nyt.com/images/2019/01/11/us/firecameras-promo-image/firecameras-promo-image-threeByTwoSmallAt2X.jpg",
+            "vidlink": "kincade.mp4",
+            "did": "Video editing, mapping, writing and reporting"
           },
           {
             "title": "How Hong Kong Universities Became Battlegrounds",
             "link": "https://www.nytimes.com/interactive/2019/11/18/world/asia/hong-kong-protest-universities.html",
-            "imglink": "https://static01.nyt.com/images/2019/11/17/world/asia/hk-protest-cuhk-1573977361705/hk-protest-cuhk-1573977361705-threeByTwoSmallAt2X.jpg"
+            "imglink": "https://static01.nyt.com/images/2019/11/17/world/asia/hk-protest-cuhk-1573977361705/hk-protest-cuhk-1573977361705-threeByTwoSmallAt2X.jpg",
+            "vidlink": "polyu.mp4",
+            "did": "Video editing, mapping, design and development, writing and reporting"
           },
           {
             "title": "Hong Kong's District Council Election Results Mapped",
             "link": "https://www.nytimes.com/interactive/2019/11/24/world/asia/hong-kong-election-results.html",
-            "imglink": "https://static01.nyt.com/images/2019/11/24/us/hong-kong-election-map-promo-1574645538143/hong-kong-election-map-promo-1574645538143-threeByTwoSmallAt2X-v7.png"
+            "imglink": "hk-elex",
+            "did": "Data collection, mapping, writing and reporting"
           },
           {
             "title": "Hong Kong's Vast Citizens’ Network Against the Police",
             "link": "https://www.nytimes.com/interactive/2019/12/22/world/asia/hong-kong-protests-arrests-telegram.html",
-            "imglink": "https://static01.nyt.com/images/2019/12/21/us/hong-kong-protests-arrests-telegram-promo-1576975758680/hong-kong-protests-arrests-telegram-promo-1576975758680-threeByTwoSmallAt2X-v3.jpg"
+            "imglink": "hk-tg-map",
+            "vidlink": "telegram.mp4",
+            "did": "Data scraping, mapping, design and development, writing and reporting"
           },
           {
             "title": "Are Countries Flattening the Curve for the Coronavirus?",
@@ -179,7 +228,8 @@
           {
             "title": "Coronavirus Spikes in Hong Kong, Singapore and Taiwan",
             "link": "https://www.nytimes.com/interactive/2020/04/09/world/asia/coronavirus-hong-kong-singapore-taiwan.html",
-            "imglink": "https://static01.nyt.com/images/2020/04/09/us/coronavirus-hong-kong-singapore-taiwan-promo-1586459035985/coronavirus-hong-kong-singapore-taiwan-promo-1586459035985-threeByTwoSmallAt2X-v8.png"
+            "imglink": "hk-coronavirus",
+            "did": "Data scraping and visualization, writing and reporting"
           }
         ]
         
@@ -190,17 +240,18 @@
     </script>
 
     <!-- styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- <link href="css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
         padding-bottom: 40px;
       }
     </style>
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet"> -->
     <!-- fonts -->
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -225,8 +276,6 @@
         <ul class="social">
           <li><a href="mailto:kkrebeccalai@gmail.com" target="_blank"><i class="icon-envelope"></i></a></li>
           <li><a href="http://twitter.com/kkrebeccalai" target="_blank"><i class="icon-twitter-sign"></i></a></li>
-          <li><a href="http://www.linkedin.com/pub/kk-rebecca-lai/47/a82/a52" target="_blank"><i class="icon-linkedin-sign"></i></a></li>
-          <li><a href="http://www.github.com/kklai" target="_blank"><i class="icon-github-sign"></i></a></li>
         </ul>
       </div>
 
