@@ -1,6 +1,6 @@
 console.clear();
 
-d3.loadData("public/_assets/data.json", function(err, res){
+d3.loadData("http://kklai.github.io/a/standnews/data.json", function(err, res){
 
 	var data = res[0];
 
