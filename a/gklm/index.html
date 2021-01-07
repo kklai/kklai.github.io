@@ -198,10 +198,14 @@
 
 		         		answer_marker.setMap(gmap);
 
-		         		gmap.setOptions({
-		         		        center: hkg,
-		         		        zoom: 10
-		         		    });
+		         		var markers = [clicked_point, randomPt];//some array
+		         		console.log(markers)
+		         		var bounds = new google.maps.LatLngBounds();
+		         		for (var i = 0; i < markers.length; i++) {
+		         		 bounds.extend(markers[i]);
+		         		}
+
+		         		gmap.fitBounds(bounds);
 
 
 		         		var distance = haversine_distance(answer_marker, clicked_marker);
