@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>估佢老母</title>
+	<style type="text/css">
+
+		html, body {
+			margin: 0;
+		}
+
+		body {
+			overflow: hidden;
+			height: 100vh;
+		}
+
+		h1 {
+			text-align: center;
+		}
+
+		#g-streetview, #g-mapview {
+			width: calc(50% - 4.5px);
+			height: calc(100vh - 160px);
+			display: inline-block;
+			background: #ececec;
+		}
+
+		#g-streetview {
+			margin-right: 5px;
+		}
+
+		#g-mapview {
+			
+		}
+
+		.g-inner {
+			background: #ffcc00;
+			display: inline;
+			padding: 6px 10px;
+			border: 3px solid #000;
+			cursor: pointer;
+			user-select: none;
+		}
+
+		.g-inner:hover {
+			background: #ffcc0078;
+		}
+
+		.g-header {
+			text-align: center;
+		}
+
+		#distance {
+			height: 50px;
+		}
+
+
+	</style>
+</head>
+<body>
+
+	<div class="g-header">
+		<h1 id="submit"><div class="g-inner">估佢老味！</div></h1>
+		<div id="distance"></div>
+	</div>
+
+	<div id="g-streetview"></div>
+	<div id="g-mapview"></div>
+
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+	<script src="https://interactive.thestandnews.com/scripts/d3_.js"></script>
+	<script
+	  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQVetJTWoOj-AF5Mr7GojZ3tMwdPQgGUw&callback=initMap&libraries=&v=weekly"
+	  defer
+	></script>
+	<script src="https://interactive.thestandnews.com/scripts/d3_.js"></script>
+	<script type="text/javascript">
+		
+		let gmap, smap;
+		var clicked_marker;
+		var clicked_point;
+		var answer_marker;
+
+		var game_state = "not_clicked";
+
+		var submit = document.getElementById("submit");
+
+		const hkg = { lat: 22.378677965569334, lng: 114.16596428959525 };
+
+		function haversine_distance(mk1, mk2) {
+		      var R = 3958.8; // Radius of the Earth in miles
+		      var rlat1 = mk1.position.lat() * (Math.PI/180); // Convert degrees to radians
+		      var rlat2 = mk2.position.lat() * (Math.PI/180); // Convert degrees to radians
+		      var difflat = rlat2-rlat1; // Radian difference (latitudes)
+		      var difflon = (mk2.position.lng()-mk1.position.lng()) * (Math.PI/180); // Radian difference (longitudes)
+
+		      var d = 2 * R * Math.asin(Math.sqrt(Math.sin(difflat/2)*Math.sin(difflat/2)+Math.cos(rlat1)*Math.cos(rlat2)*Math.sin(difflon/2)*Math.sin(difflon/2)));
+		      return d;
+		    }
+
+		function initMap() {
+
+		  smap = new google.maps.Map(document.getElementById("g-streetview"), {
+		    center: hkg,
+		    zoom: 14,
+		  });
+
+		  var bb = {
+		  	lat_min: 22.1193278,
+		  	lat_max: 22.4393278,
+		  	lng_min: 114.0028131,
+		  	lng_max: 114.3228131
+		  }
+
+		  var randomPt = {
+		  	lat: bb.lat_min + (Math.random() * (bb.lat_max - bb.lat_min)), 
+		  	lng: bb.lng_min + (Math.random() * (bb.lng_max - bb.lng_min))
+		  }
+
+		  var streetViewService = new google.maps.StreetViewService();
+		  streetViewService.getPanoramaByLocation(randomPt, 10000, function(data, status)
+		  {
+		      if (status == google.maps.StreetViewStatus.OK)
+		      {
+		          var nearStreetViewLocation = data.location.latLng;
+
+		          var pt = {lat: nearStreetViewLocation.lat(), lng: nearStreetViewLocation.lng()}
+
+		          const panorama = new google.maps.StreetViewPanorama(
+		              document.getElementById("g-streetview"),
+		              {
+		                position: pt,
+		                pov: {
+		                  // heading: 34,
+		                  // pitch: 10,
+		                },
+		                addressControl: false,
+		                fullscreenControl: false,
+		                panControl: false
+		              }
+		            );
+
+		          smap.setStreetView(panorama);
+
+		          gmap = new google.maps.Map(document.getElementById("g-mapview"), {
+		            center: hkg,
+		            zoom: 10,
+		            minZoom: 10,
+		            maxZoom: 18,
+		            mapTypeControl: false,
+		            fullscreenControl: false,
+		            streetViewControl: false
+		          });
+
+		          gmap.addListener("click", (mapsMouseEvent) => {
+
+		          	game_state = "clicked";
+		             
+		            if (clicked_marker) {
+		            	clicked_marker.setMap(null);
+		            }
+
+		            clicked_point = mapsMouseEvent.latLng;
+
+		          	clicked_marker = new google.maps.Marker({
+		          	    position: mapsMouseEvent.latLng
+		          	});
+
+		          	clicked_marker.setMap(gmap);
+		         });
+
+		         submit.onclick = function(){
+
+		         	if (game_state == "not_clicked") {
+
+		         		alert("估咗先㩒！");
+
+		         	} else if (game_state == "clicked") {
+		         		var lineCoordinates = [
+		         		  randomPt,
+		         		  clicked_point
+		         		];
+
+		         		var linePath = new google.maps.Polyline({
+		         		  path: lineCoordinates,
+		         		  geodesic: true,
+		         		  strokeColor: '#ff0000'
+		         		});
+
+		         		linePath.setMap(gmap);
+
+		         		answer_marker = new google.maps.Marker({
+		         		    position: randomPt,
+		         		    icon: {
+		         		    	url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+		         		    }
+		         		});
+
+		         		answer_marker.setMap(gmap);
+
+		         		gmap.setOptions({
+		         		        center: hkg,
+		         		        zoom: 10
+		         		    });
+
+
+		         		var distance = haversine_distance(answer_marker, clicked_marker);
+		         		d3.select("#distance").html("距離：" + (distance*1.609344).toFixed(2) + " km");
+
+
+		         		d3.select("#submit .g-inner").html("再估！");
+
+		         		game_state = "restart";
+
+		         	} else {
+
+		         		game_state = "not_clicked"
+		         		d3.select("#submit .g-inner").html("估佢老味！");
+		         		d3.select("#distance").html("");
+		         		initMap();
+
+		         	}
+		         
+
+		         }
+		      }
+		  }); 
+
+		  
+
+
+		  // var testPoint = new GLatLng(40.7140, -74.0062);   // Broadway, New York
+    //      var svClient = new GStreetviewClient();
+
+    //      svClient.getNearestPanoramaLatLng(testPoint, function (nearest) {
+    //         if ((nearest !== null) && (testPoint.distanceFrom(nearest) <= 100)) {
+    //            alert('Street View Available');             // Within 100 meters
+    //         }
+    //         else {
+    //            alert('Street View Noet Available');        // Not within 100 meters
+    //         }
+    //      });
+		  
+		}
+
+
+	</script>
+
+</body>
+</html>
+
