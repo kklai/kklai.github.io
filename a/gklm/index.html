@@ -53,6 +53,10 @@
 			height: 50px;
 		}
 
+		#g-placeholder {
+			width: 600px;
+		}
+
 
 	</style>
 </head>
@@ -63,17 +67,62 @@
 		<div id="distance"></div>
 	</div>
 
+	<div id="g-placeholder"></div>
+
 	<div id="g-streetview"></div>
 	<div id="g-mapview"></div>
 
 	<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 	<script src="https://interactive.thestandnews.com/scripts/d3_.js"></script>
-	<script
-	  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQVetJTWoOj-AF5Mr7GojZ3tMwdPQgGUw&callback=initMap&libraries=&v=weekly"
-	  defer
-	></script>
+	<script src="https://interactive.thestandnews.com/scripts/topojson.min.js"></script>
 	<script src="https://interactive.thestandnews.com/scripts/d3_.js"></script>
+	<script src="https://interactive.thestandnews.com/scripts/hkg.js"></script>
 	<script type="text/javascript">
+
+		var initCounter = 0;
+		var randomPt;
+		var hkg_shape = topojson.feature(hkg, hkg.objects["hkg-dissolved"]);
+		var bb = {
+			lat_min: 22.1193278,
+			lat_max: 22.4393278,
+			lng_min: 114.0028131,
+			lng_max: 114.3228131
+		}
+
+		function generatePoint() {
+
+			var passed = false;
+
+			while (!passed) {
+				getPt();
+			}
+
+			function getPt() {
+				randomPt = {
+					lat: bb.lat_min + (Math.random() * (bb.lat_max - bb.lat_min)), 
+					lng: bb.lng_min + (Math.random() * (bb.lng_max - bb.lng_min))
+				}
+
+				hkg_shape.features.forEach(function(d){
+					if (d3.geoContains(d, [randomPt.lng, randomPt.lat])) {
+						passed = true;
+					}
+				})
+			}
+		}
+
+		function checkPoint(pt) {
+			var passed = false;
+			hkg_shape.features.forEach(function(d){
+				if (d3.geoContains(d, pt)) {
+					passed = true;
+				}
+			})
+
+			return passed;
+		}
+		
+		generatePoint();
 		
 		let gmap, smap;
 		var clicked_marker;
@@ -84,7 +133,7 @@
 
 		var submit = document.getElementById("submit");
 
-		const hkg = { lat: 22.378677965569334, lng: 114.16596428959525 };
+		const hkg_center = { lat: 22.378677965569334, lng: 114.16596428959525 };
 
 		function haversine_distance(mk1, mk2) {
 		      var R = 3958.8; // Radius of the Earth in miles
@@ -99,10 +148,9 @@
 
 		function initMap() {
 
-		  smap = new google.maps.Map(document.getElementById("g-streetview"), {
-		    center: hkg,
-		    zoom: 14,
-		  });
+			initCounter += 1;
+
+			console.log(initCounter)
 
 		  var bb = {
 		  	lat_min: 22.1193278,
@@ -117,22 +165,24 @@
 		  }
 
 		  var streetViewService = new google.maps.StreetViewService();
-		  streetViewService.getPanoramaByLocation(randomPt, 10000, function(data, status)
-		  {
-		      if (status == google.maps.StreetViewStatus.OK)
-		      {
+		  streetViewService.getPanoramaByLocation(randomPt, 5000, function(data, status) {
+		      if (status == google.maps.StreetViewStatus.OK) {
 		          var nearStreetViewLocation = data.location.latLng;
-
 		          var pt = {lat: nearStreetViewLocation.lat(), lng: nearStreetViewLocation.lng()}
+
+		          if (!checkPoint([pt.lng, pt.lat])) {
+		          	initMap();
+		          }
+
+		          smap = new google.maps.Map(document.getElementById("g-streetview"), {
+		            center: hkg_center,
+		            zoom: 14,
+		          });
 
 		          const panorama = new google.maps.StreetViewPanorama(
 		              document.getElementById("g-streetview"),
 		              {
 		                position: pt,
-		                pov: {
-		                  // heading: 34,
-		                  // pitch: 10,
-		                },
 		                addressControl: false,
 		                fullscreenControl: false,
 		                panControl: false
@@ -142,7 +192,7 @@
 		          smap.setStreetView(panorama);
 
 		          gmap = new google.maps.Map(document.getElementById("g-mapview"), {
-		            center: hkg,
+		            center: hkg_center,
 		            zoom: 10,
 		            minZoom: 10,
 		            maxZoom: 18,
@@ -199,14 +249,13 @@
 		         		answer_marker.setMap(gmap);
 
 		         		var markers = [clicked_point, randomPt];//some array
-		         		console.log(markers)
+
 		         		var bounds = new google.maps.LatLngBounds();
 		         		for (var i = 0; i < markers.length; i++) {
 		         		 bounds.extend(markers[i]);
 		         		}
 
 		         		gmap.fitBounds(bounds);
-
 
 		         		var distance = haversine_distance(answer_marker, clicked_marker);
 		         		d3.select("#distance").html("距離：" + (distance*1.609344).toFixed(2) + " km");
@@ -224,31 +273,18 @@
 		         		initMap();
 
 		         	}
-		         
-
 		         }
+		      } else {
+		      	initMap();
 		      }
-		  }); 
-
-		  
-
-
-		  // var testPoint = new GLatLng(40.7140, -74.0062);   // Broadway, New York
-    //      var svClient = new GStreetviewClient();
-
-    //      svClient.getNearestPanoramaLatLng(testPoint, function (nearest) {
-    //         if ((nearest !== null) && (testPoint.distanceFrom(nearest) <= 100)) {
-    //            alert('Street View Available');             // Within 100 meters
-    //         }
-    //         else {
-    //            alert('Street View Noet Available');        // Not within 100 meters
-    //         }
-    //      });
+		  });
 		  
 		}
 
 
 	</script>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQVetJTWoOj-AF5Mr7GojZ3tMwdPQgGUw&callback=initMap&libraries=&v=weekly" defer></script>
 
 </body>
 </html>
