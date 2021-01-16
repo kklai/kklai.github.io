@@ -122,7 +122,6 @@
 			return passed;
 		}
 		
-		generatePoint();
 		
 		let gmap, smap;
 		var clicked_marker;
@@ -148,6 +147,8 @@
 
 		function initMap() {
 
+			generatePoint();
+
 			initCounter += 1;
 
 			console.log(initCounter)
@@ -165,7 +166,7 @@
 		  }
 
 		  var streetViewService = new google.maps.StreetViewService();
-		  streetViewService.getPanoramaByLocation(randomPt, 5000, function(data, status) {
+		  streetViewService.getPanoramaByLocation(randomPt, 100, function(data, status) {
 		      if (status == google.maps.StreetViewStatus.OK) {
 		          var nearStreetViewLocation = data.location.latLng;
 		          var pt = {lat: nearStreetViewLocation.lat(), lng: nearStreetViewLocation.lng()}
@@ -185,7 +186,8 @@
 		                position: pt,
 		                addressControl: false,
 		                fullscreenControl: false,
-		                panControl: false
+		                panControl: false,
+		                showRoadLabels: false
 		              }
 		            );
 
