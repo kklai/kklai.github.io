@@ -3,10 +3,27 @@
 <head>
 	<title></title>
 	<style type="text/css">
+		html, body {
+			margin: 0;
+		}
+
+
+		body {
+			overflow: hidden;
+			width: 100vw;
+			height: 100vh;
+			position: relative;
+		}
+
 		.g-placeholder {
 			display: block;
 			width: 100vw;
 			height: 100vh;
+			position: fixed;
+			top: 0;
+			left: 0;
+			overflow: hidden;
+
 		}
 		img	{
 			position: absolute;
@@ -15,7 +32,7 @@
 		}
 	</style>
 </head>
-<body>
+<body id="touchme">
 	<div class="g-placeholder"></div>
 
 	<script src="https://interactive.thestandnews.com/scripts/d3_.js"></script>
@@ -27,6 +44,24 @@
 		 		.attr("src", "a_3HdrB_1200x0.png")
 		 		.style("top", (event.clientY - 150) + "px")
 		 		.style("left", (event.clientX - 200) + "px")
+
+		 	i.transition().duration(2000).style("transform", "scale(0.0001)")
+
+		 	setTimeout(function(){
+		 		i.remove();
+		 	}, 2000)
+		})
+
+		document.getElementById("touchme").addEventListener("touchmove", function(e) {
+			var evt = (typeof e.originalEvent === 'undefined') ? e : e.originalEvent;
+			var touch = evt.touches[0] || evt.changedTouches[0];
+
+			var br = document.getElementById("touchme").getBoundingClientRect();
+
+		 	var i = d3.select("body").append('img')
+		 		.attr("src", "a_3HdrB_1200x0.png")
+		 		.style("top", (touch.pageY - 150) + "px")
+		 		.style("left", (touch.pageX - 200) + "px")
 
 		 	i.transition().duration(2000).style("transform", "scale(0.0001)")
 
