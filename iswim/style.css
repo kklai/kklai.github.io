@@ -243,6 +243,16 @@ footer {
 	padding: 10px 10px;
 }
 
+@media screen and (max-width:  600px) {
+	.g-login-page .g-hero, .g-document-page .g-hero {
+		text-align: left;
+	}
+
+	.g-login-page .g-hero h1, .g-document-page .g-hero h1 {
+		margin-left: 30px;
+	}
+}
+
 .g-login-page h1 img, .g-document-page h1 img {
 	width:  50px;
 }
