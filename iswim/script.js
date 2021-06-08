@@ -10,7 +10,7 @@ if (!localStorage.iswimloggedin) {
 
 if (localStorage.iswimloggedin == "true") {
 	d3.select(".g-login").attr("data-state", "loggedin")
-	d3.select(".g-login-inner").text("Hi, iSWIM")
+	d3.select(".g-login-inner").text("Hi, Sun Lai")
 
 } else {
 
@@ -40,7 +40,7 @@ d3.selectAll(".g-button").on("click", function(){
 		var u = d3.select("input#name").property("value")
 		var p = d3.select("input#pw").property("value")
 
-		if (u == "iswim" && p == "12345678") {
+		if (u == "sunlai" && p == "12345678") {
 			localStorage.iswimloggedin = true;
 			location.href = 'document.html';
 		} else {
