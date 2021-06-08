@@ -61,8 +61,8 @@ d3.selectAll(".g-button").on("click", function(){
 		// if (action == "request") {
 			popup.classed("g-active", true);
 			var popupinner = d3.select(".g-popup-inner-cont").html("");
-
-			if (action == "request") {
+			console.log(action)
+			if (action == "data") {
 
 				popupinner.append("div.g-bold").html("Data request processed <div class='g-check'>✅</div>")
 				popupinner.append("div.g-text").html("An email has been sent to you with the data attached.")
@@ -87,3 +87,17 @@ d3.selectAll(".g-button").on("click", function(){
 
 
 })
+
+function sendMail() {
+
+
+	Email.send({
+	    SecureToken : "746b9243-99da-4894-a342-ed3c62e6da59",
+	    To : 'kkrebeccalai@gmail.com',
+	    From : "sunlai@trm.com.hk",
+	    Subject : "Data request for 154170-RAI XXXX XXXX-20201210-LETTER-FROM LD",
+	    Body : "This is the data for 154170-RAI XXXX XXXX-20201210-LETTER-FROM LD"
+	}).then(
+	  message => alert(message)
+	);
+}
