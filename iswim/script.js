@@ -3,7 +3,10 @@ var popup = d3.select(".g-popup-box");
 d3.select(".g-popup-box-x").on("click", function(){
 	popup.classed("g-active", false);
 })
-console.log(localStorage.iswimloggedin)
+
+if (!localStorage.iswimloggedin) {
+	localStorage.iswimloggedin = false	
+}
 
 if (localStorage.iswimloggedin == "true") {
 	d3.select(".g-login").attr("data-state", "loggedin")
