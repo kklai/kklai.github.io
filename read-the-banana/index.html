@@ -95,7 +95,7 @@
 	<h1>Read the banana, Britta</h1>
 
 	<div class="g-input">
-		<input id="hi" type="text" name="hi">
+		<input id="hi" type="text" name="hi" value="write your own message">
 		<input type="submit" id="submit" value ="Write">
 		<input type="submit" id="save_image_locally" value="Download">
 	</div>
@@ -157,6 +157,9 @@
 							if(loaded == fontURLs.length){
 								$('svg').prepend(`<style>${css}</style>`);
 		            $('#isLoaded').append('font is loaded')
+
+		            			run();
+
 							}
 						};
 						reader.readAsDataURL(request.response);
@@ -168,13 +171,12 @@
 
 		loadFont();
 
+
 		var input;
 
-		d3.select("#submit").on("click", function(){
+		function run() {
 			input = d3.select('#hi').node().value;
-
-
-	
+			
 			var svg = d3.select("#g-svg")
 
 			var calctext = svg.select("#for-calculating").text(input).style("font-size", "160px");
@@ -208,7 +210,10 @@
 			    .then(canvas => {
 			        $("#rendered-img").append(canvas)
 			    })
-		})
+		}
+
+
+		d3.select("#submit").on("click", run);
 		
 		function convertToSlug(Text)
 		{
