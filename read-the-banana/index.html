@@ -2,13 +2,16 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>Read the banana, Britta</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Kalam&display=swap" rel="stylesheet">
 	<style type="text/css">
 		
+		html,body {
+			margin:  0;
+		}
 
 		img, .g-input {
 			display: block;
@@ -33,6 +36,9 @@
 			width:  100%;
 			height:  100%;
 			z-index: 10;
+			pointer-events: none;
+			user-select: none;
+			overflow: hidden;
 		}	
 
 		.g-svg-inner {
@@ -61,6 +67,7 @@
 		#capture {
 			max-width: 500px;
 			margin:  0 auto;
+			position: relative;
 		}
 
 		h1 {
@@ -70,6 +77,15 @@
 		#for-calculating {
 			pointer-events: none;
 			opacity: 0;
+		}
+
+		#rendered-img {
+			position: absolute;
+			top:  0;
+			left: 0;
+			width:  100%;
+			height: 100%;
+			z-index: 11;
 		}
 
 	</style>
@@ -86,18 +102,19 @@
 
 	<div class="g-img-cont">
 		<div id="capture">
-		<img src="IMG_0461-3.jpg">
-		<div class="g-svg-cont">
-			<div class="g-svg-inner">
-				<svg id="g-svg" x="0px" y="0px" viewBox="0 0 3024 3024">
-					<defs>
-						<path id="curve" d="M320.667,872.913c0,0,229.779,415.355,648.624,658.203 s986.728,301.262,1306.577,260.7"/>
-					</defs>
-					<g id="g-text"></g>
-					<text id="for-calculating"></text>
-				</svg>
+			<img src="IMG_0461-3.jpg">
+			<div class="g-svg-cont">
+				<div class="g-svg-inner">
+					<svg id="g-svg" x="0px" y="0px" viewBox="0 0 3024 3024">
+						<defs>
+							<path id="curve" d="M320.667,872.913c0,0,229.779,415.355,648.624,658.203 s986.728,301.262,1306.577,260.7"/>
+						</defs>
+						<g id="g-text"></g>
+						<text id="for-calculating"></text>
+					</svg>
+				</div>
 			</div>
-		</div>
+			<div id="rendered-img"></div>
 		</div>
 	</div>
 
@@ -183,6 +200,14 @@
 			svg.append("use")
 			    .attr("id", "curve-line")
 			    .attr("xlink:href", "#curve");
+
+
+			$("#rendered-img").html("");
+			const captureElement = document.querySelector('#capture')
+			html2canvas(captureElement)
+			    .then(canvas => {
+			        $("#rendered-img").append(canvas)
+			    })
 		})
 		
 		function convertToSlug(Text)
