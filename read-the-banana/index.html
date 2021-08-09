@@ -87,6 +87,15 @@
 			height: 100%;
 			z-index: 11;
 		}
+		
+		#og-img {
+			position: absolute;
+			top:  0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 30;
+		}
 
 	</style>
 </head>
@@ -102,7 +111,8 @@
 
 	<div class="g-img-cont">
 		<div id="capture">
-			<img src="IMG_0461-3.jpg">
+			<img id="blank-banana" src="IMG_0461-3.jpg">
+			<img id="og-img" src="IMG_0461-2.jpg">
 			<div class="g-svg-cont">
 				<div class="g-svg-inner">
 					<svg id="g-svg" x="0px" y="0px" viewBox="0 0 3024 3024">
@@ -156,10 +166,7 @@
 							//check all fonts are replaced.
 							if(loaded == fontURLs.length){
 								$('svg').prepend(`<style>${css}</style>`);
-		            $('#isLoaded').append('font is loaded')
-
-		            			run();
-
+		            			$('#isLoaded').append('font is loaded')
 							}
 						};
 						reader.readAsDataURL(request.response);
@@ -175,6 +182,9 @@
 		var input;
 
 		function run() {
+
+			$("#og-img").hide();
+
 			input = d3.select('#hi').node().value;
 			
 			var svg = d3.select("#g-svg")
