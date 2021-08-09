@@ -193,7 +193,7 @@
 			var textw = calctext.node().getComputedTextLength();
 			var pathw = svg.select("#curve").node().getTotalLength()
 			
-			while (textw > pathw) {
+			while ((textw-20) > pathw) {
 			 	calctext.style("font-size", calctext.style("font-size").replace("px", "")-1 + "px");
 			 	textw = calctext.node().getComputedTextLength();
 			 	pathw = svg.select("#curve").node().getTotalLength();
