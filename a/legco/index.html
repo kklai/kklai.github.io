@@ -393,7 +393,7 @@ function forcechart() {
 	// const nodes = root.descendants();
 
 	var str = width > 600 ? -4 : 2.8;
-	var r = width > 600 ? 3 : 2.5;
+	var r = width > 600 ? 5 : 2.5;
 
 	var simulation = d3.forceSimulation()
 	    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(0).strength(0))
