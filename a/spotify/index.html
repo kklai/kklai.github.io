@@ -1,0 +1,534 @@
+<meta charset="utf-8">
+<div class='g-meta' style='display: none;'>註：Spotify 的公開資料只包括每日頭 200 首播放率最高的歌曲</div><style>
+.g-body {
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  font-family: PingFang HK, Noto Sans TC, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  color: #444;
+}
+.g-kicker {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.g-kicker .g-inner {
+  display: inline;
+  padding: 0 2px 5px 2px;
+  border-bottom: 1px solid #d3d3d3;
+}
+.g-header .g-headline {
+  font-family: PingFang HK, Noto Sans TC, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-weight: 700;
+  margin: 0 auto 25px auto;
+  font-size: 32px;
+  line-height: 1.8;
+  max-width: 720px;
+}
+.g-subhed {
+  font-family: PingFang HK, Noto Sans TC, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-weight: 700;
+  margin: 60px auto 25px auto;
+  font-size: 24px;
+  max-width: 600px;
+}
+.g-text {
+  font-family: PingFang HK, Noto Sans TC, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  max-width: 600px;
+  margin: 16px auto;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #444;
+}
+.g-bold {
+  font-weight: 700;
+}
+.g-graphic {
+  margin: 25px auto;
+}
+.g-graphic-text {
+  font-family: PingFang HK, Noto Sans TC, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+}
+.g-image {
+  margin: 35px auto;
+}
+.g-image img {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+.g-image .g-credit {
+  margin-top: 10px;
+  font-size: 13px;
+  text-align: center;
+  color: #999;
+  display: block;
+}
+.g-refer {
+  border: 1px solid #ececec;
+  border-radius: 5px;
+  background: rgba(253, 232, 0, 0.05);
+  padding: 10px 20px;
+  max-width: 460px;
+  margin: 35px auto;
+}
+.g-refer .g-text {
+  font-size: 12px;
+  margin: 0;
+  line-height: 1.5;
+}
+.g-refer .g-text:first-child {
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+.g-refer .g-bullet:before {
+  content: "•";
+  position: absolute;
+  margin-left: -10px;
+}
+.g-break {
+  margin: 50px auto;
+  text-align: center;
+}
+.g-break em {
+  margin-right: 40px;
+  text-align: center;
+}
+.g-break em:last-child {
+  margin-right: 0;
+}
+.cover-image-wrapper.mobile,
+.author-wrapper {
+  display: none !important;
+}
+.g-promo {
+  max-width: 600px;
+  margin: 25px auto;
+  padding: 25px 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.g-promo a {
+  color: #444;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.g-promo a:hover {
+  opacity: 0.6;
+}
+.g-promo .g-promo-asset-cont,
+.g-promo .g-promo-text-cont {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+}
+@media screen and (min-width: 600px) {
+  .g-promo .g-promo-asset-cont {
+    width: calc(68% - 10px);
+  }
+}
+@media screen and (min-width: 600px) {
+  .g-promo .g-promo-text-cont {
+    width: calc(32% - 10px);
+  }
+}
+.g-promo .g-promo-text-cont {
+  margin-right: 10px;
+}
+.g-promo .g-promo-tag {
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.g-promo .g-promo-hed {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+@media screen and (min-width: 460px) {
+  .g-promo .g-promo-hed {
+    max-width: none;
+  }
+}
+.g-promo .g-promo-text {
+  margin-bottom: 10px;
+  font-size: 15px;
+  padding: 0 16px;
+}
+@media screen and (min-width: 460px) {
+  .g-promo .g-promo-text {
+    padding: 0;
+  }
+}
+.g-promo .g-youtube-cont {
+  width: 100%;
+  padding-bottom: 56%;
+  position: relative;
+}
+.g-promo .g-youtube-cont iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.g-promo .g-img-cont img {
+  width: 100%;
+}
+.g-promo .g-mobile-hed {
+  display: inline;
+}
+@media screen and (min-width: 460px) {
+  .g-promo .g-mobile-hed {
+    display: none;
+  }
+}
+.g-promo .g-desktop-hed {
+  display: none;
+}
+@media screen and (min-width: 460px) {
+  .g-promo .g-desktop-hed {
+    display: block;
+  }
+}
+.g-note {
+  font-size: 13px;
+  text-align: center;
+  color: #999;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #333;
+}
+.g-text {
+  color: #fafafa;
+}
+.g-graphic {
+  margin: 100px auto;
+}
+.g-chart {
+  max-width: 1050px;
+  margin: 0 auto;
+}
+.g-chart svg {
+  overflow: visible;
+  margin: 25px auto;
+}
+.g-chart path {
+  fill: none;
+}
+.g-chart .g-area {
+  fill: rgba(0, 255, 0, 0.2);
+}
+.g-chart .g-line {
+  stroke: #00ff00;
+}
+.g-chart .g-line.g-fade {
+  stroke: #666;
+}
+.g-chart .g-line.tooltipped,
+.g-chart .g-line.g-highlight {
+  stroke: #fff;
+  stroke-width: 2;
+  stroke: #00ff00;
+}
+.g-chart .g-dot {
+  stroke: #00ff00;
+  fill: #333;
+}
+.g-chart text {
+  fill: #fafafa;
+  font-size: 14px;
+}
+.g-chart .g-small {
+  font-size: 12px;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.8;
+}
+.g-chart .g-small tspan:first-child {
+  font-weight: 700;
+}
+.g-chart .axis path.domain {
+  display: none;
+}
+.g-chart .axis text {
+  fill: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+}
+.g-chart .axis line {
+  stroke: rgba(255, 255, 255, 0.2);
+}
+.g-graphic-hed {
+  text-align: center;
+  color: #fafafa;
+}
+.tooltip {
+  top: -1000px;
+  position: fixed;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid lightgray;
+  pointer-events: none;
+  font-family: PingFang HK, Noto Sans TC, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 16px;
+  line-height: 1.3;
+}
+.tooltip-hidden {
+  opacity: 0;
+  transition: all 0.3s;
+  transition-delay: 0.1s;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><div class="g-body"><div class="g-graphic"><div class="g-graphic-hed">2021 年廣東歌在 Spotify 播放率的百分比</div><div class="g-chart g-chart-hk"></div></div><div class="g-graphic"><div class="g-graphic-hed">2021 年廣東歌每日播放率 – 歌曲</div><div class="g-chart g-chart-song"></div></div><div class="g-graphic"><div class="g-graphic-hed">2021 年廣東歌每日播放率 – 歌手</div><div class="g-chart g-chart-artist"></div></div><div class="g-text">註：Spotify 的公開資料只包括每日頭 200 首播放率最高的歌曲</div></div><script src="https://interactive.thestandnews.com/scripts/d3_.js"></script><script src="processed.js"></script>
+<script>
+// window.stopit = d3.timer(function(){
+// 	d3.selectAll(".article-content-wrap:not(:first-child)").remove();
+// 	d3.selectAll(".likecoin-embed:nth-child(n+3)").remove();
+// 	d3.selectAll(".related-articles:nth-child(n+4)").remove();
+// })
+
+
+// var containerWidthChanged = false;
+// var ow = innerWidth;
+
+// window.addEventListener("resize", function(){
+// 	if (innerWidth != ow) {
+// 	    containerWidthChanged = true;
+// 	    ow = innerWidth;
+// 	    redraw();
+// 	  }
+// });
+
+var artists = [...new Set(rows.hk.map(d => d[1]))]
+// var artists = [rows.hk[0][1]]
+rows.by_artists = [];
+artists.forEach(function(artist){
+	var songs = rows.hk.filter(d => d[1] == artist);
+	var out = ['', artist, []];
+	rows.dates.forEach(function(date,datei){
+		out[2].push(d3.sum(songs.map(d => +d[2][datei])))
+	})
+	rows.by_artists.push(out)
+})
+
+var acc = ["hk", "by_artists"]
+acc.forEach(function(a){
+	rows[a].forEach(function(dat){
+		var n = 0;
+		var out = [];
+		dat[2].forEach(function(d){
+			n += +d;
+			if (d == '') {
+				out.push(d)
+			} else {
+				out.push(n)
+			}
+		})
+		dat.push(out);
+	})
+})
+
+
+
+d3.select('body').selectAppend('div.tooltip')
+var dateticks = rows.dates.filter(d => d.split("/")[2] == 1)
+var dateids = [];
+dateticks.forEach(function(d){
+	dateids.push(rows.dates.indexOf(d))
+})
+var margin = {top: 10, right: 10, bottom: 30, left: 30};
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function sluggify(x) {
+	return x.trim().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").split(' ').join('').toLowerCase().replace('[','').replace(']');
+}
+
+function drawPctChart() {
+
+	var sel = d3.select(".g-chart-hk");
+	var id = sel.attr("data-id");
+	var width = sel.node().getBoundingClientRect().width;
+	var height = innerWidth < 460 ? width : 350;
+
+	var svg = sel.append("svg").attr("width", width).attr("height", height);
+	svg = svg.append("g").translate([margin.left, margin.top]);
+
+	width -= margin.left + margin.right;
+	height -= margin.top + margin.bottom;
+
+	var x = d3.scaleLinear().domain([0,rows.dates.length]).range([0,width]);
+	var min = d3.min(rows.pct, row => d3.min(row, d => d));
+	var max = d3.max(rows.pct, row => d3.max(row, d => d));
+	var y = d3.scaleLinear().domain([min,max]).range([height,0]);
+	var y = d3.scaleLinear().domain([0,1]).range([height,0]);
+
+	var yaxis = d3.axisLeft(y).tickSize(width).tickValues([0.2,0.4,0.6,0.8,1]).tickFormat(d => d*100 + "%");
+	var xaxis = d3.axisBottom(x).tickValues(dateids).tickFormat((d,i) => (i+1) + "月")
+	// .tickFormat(d => d + "月");
+
+	var list = [0,1,2];
+
+	list.forEach(function(l,li){
+
+		var area = d3.area()
+		.curve(d3.curveCardinal)
+	    .x((d,i) => x(i))
+	    .y0(height)
+	    .y1(d => y(d[l]/d[0]));
+
+		var line = d3.line()
+			.curve(d3.curveCardinal)
+		    .x((d,i) => x(i))
+		    .y(d => y(d[l]/d[0]));
+
+		svg.append("path.g-area")
+			.datum(rows.pct)
+			.attr("d", area)
+
+		svg.append("path.g-line")
+			.datum(rows.pct)
+			.attr("d", line)
+
+	})
+
+	var labels = ["廣東歌", "Mirror"];
+	labels.forEach(function(d,i){
+		svg.append("text.g-label")
+			.translate(i == 0 ? [width*0.4,height*0.7] : [width*0.7,height*0.92])
+			.text(d)
+	})
+
+
+	svg.append("g.y.axis").translate([width,0]).call(yaxis)
+	
+	var xaxis = svg.append("g.x.axis").translate([0,height]).call(xaxis)
+	xaxis.selectAll("text")
+		.attr("transform", "translate(-10,10) rotate(-50)")
+
+}
+
+
+drawPctChart();
+
+
+
+
+function drawAllChart() {
+
+	var selectors = [".g-chart-song", '.g-chart-artist'];
+	var types = ["單日", "累計"];
+
+	selectors.forEach(function(selector, seli){
+
+		var sel = d3.select(selector).html("");
+
+		types.forEach(function(type, typei){
+			console.log(typei)
+
+			var width = sel.node().getBoundingClientRect().width;
+			var height = 400;
+			var svg = sel.append("svg").attr("width", width).attr("height", height);
+
+			svg = svg.append("g").translate([margin.left, margin.top]);
+
+			svg.append("text").text(type)
+
+			width -= margin.left + margin.right;
+			height -= margin.top + margin.bottom;
+
+			var x = d3.scaleLinear().domain([0,rows.dates.length]).range([0,width]);
+
+			var datause = seli == 0 ? rows.hk : rows.by_artists;
+			var nuse = typei == 0 ? 2 : 3;
+
+
+			var max = d3.max(datause, row => d3.max(row[nuse].filter(d => !isNaN(+d)), d => +d));
+			var y = d3.scaleLinear().domain([0,max]).range([height,0]);
+			var tickvals = seli == 0 ? [20000, 40000, 60000] : [100000, 200000]
+			var yaxis = d3.axisLeft(y).tickSize(width).tickValues(tickvals).tickFormat(d => d/1000 + "k");
+			var xaxis = d3.axisBottom(x).tickValues(dateids).tickFormat((d,i) => (i+1) + "月");
+
+			var line = d3.line()
+				// .curve(d3.curveCardi)
+				.defined(d => d)
+				.x((d,i) => x(i))
+				.y(d => y(d));
+
+			svg.append("g").appendMany("path", datause)
+				.attr("class", d => "g-line g-a-" + sluggify(d[1]) + " g-" + sluggify(d[0]))
+				.attr("d", d => line(d[nuse]))
+				.call(d3.attachTooltip)
+				.on('mouseover', function(d){
+					d3.select('.tooltip').html(seli == 0 ? "<b>" + d[0] + "</b><br>" + d[1] : d[1]) 
+					svg.selectAll(".g-line").classed("g-fade", true)
+
+					if (seli == 0) {
+						svg.select(".g-" + sluggify(d[0])).raise();
+					} else {
+						svg.select(".g-a-" + sluggify(d[1])).raise();
+					}
+				})
+				.on('mouseout', function(d){
+					if (seli == 0) {
+						svg.selectAll(".g-line").classed("g-fade", false)
+					}
+				})
+
+			svg.append("g.y.axis").translate([width,0]).call(yaxis);
+
+			var xaxis = svg.append("g.x.axis").translate([0,height]).call(xaxis)
+			xaxis.selectAll("text")
+				.attr("transform", "translate(-10,10) rotate(-50)")
+
+
+			if (typei == 0) {
+				if (seli == 0) {
+
+					var labels = ["小諧星", "難道喜歡處女座", "一人之境 in C major", "Dear My Friend,", "My Apple Pie", "記憶棉"];
+					var left = ["小諧星", "My Apple Pie", "記憶棉"]
+					var top = ["Dear My Friend,"]
+					labels.forEach(function(song){
+						var row = rows.hk.filter(d => d[0] == song)[0];
+						var max = d3.max(row[2], d => +d)
+						var maxid = row[2].indexOf(String(max));
+						var g = svg.append("g").translate([x(maxid), y(max)])
+						g.append("circle.g-dot").attr("r", 4)
+						g.append("text.g-small")
+							.attr("text-anchor", left.indexOf(song) > -1 ? "end" : "start")
+							.translate(song == "記憶棉" ? [5,-36] :top.indexOf(song) > -1 ? [-12,-35] : left.indexOf(song) > -1 ? [-12,-20] : [10,-20])
+							.tspans([row[0], row[1].replace("Terence Lam", "林家謙"), Math.round(max/1000) + "k"],13)
+					})
+
+				} else {
+
+					svg.selectAll(".g-line").classed("g-fade", true);
+
+					var picks = ["Eason Chan", "Terence Lam"];
+					var names = ["陳奕迅", "林家謙"];
+
+					picks.forEach(function(pick,i){
+						var line = svg.select(".g-a-" + sluggify(pick))
+						line.classed("g-highlight", true);
+						line.raise();
+
+						svg.append("text.g-bold").text(names[i]).translate(i == 0 ? [width*0.3,y(35000)] : [width*0.37,y(150000)])
+					})
+
+				}
+			}
+
+
+
+		})
+
+
+
+	})
+}
+
+
+drawAllChart();
+
+
+</script>
