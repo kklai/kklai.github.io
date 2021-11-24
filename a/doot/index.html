@@ -199,7 +199,7 @@ body {
 }
 .g-body {
   position: fixed;
-  top: 0;
+  top: 28px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -207,8 +207,12 @@ body {
 }
 @media screen and (max-width: 600px) {
   .g-body {
-    top: 0;
+    top: 33px;
   }
+}
+.g-body video {
+  user-select: none;
+  pointer-events: none;
 }
 .g-body .g-gameover,
 .g-body .g-start-button {
@@ -342,6 +346,22 @@ body {
   height: 100%;
   z-index: 10;
 }
+.g-body .g-buttons img {
+  width: 100%;
+  padding-top: 0;
+}
+.g-body .g-buttons .g-img-cont {
+  border: 1px solid #fff;
+  border-radius: 100%;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 0.6;
+  width: 90%;
+  left: 5%;
+  padding-top: 0;
+  position: absolute;
+  bottom: 20px;
+}
 .g-body .g-buttons .g-button {
   position: absolute;
   width: 33%;
@@ -367,7 +387,7 @@ body {
   display: none;
 }
 </style>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"><div class="g-body"><div class="g-body-inner"><div class="g-score"><div class="g-s"><img src="https://interactive.thestandnews.com/2021/11/leavehome/score.png?xdfcghv"><div class="g-n">0</div></div></div><div class="g-door"><img src="https://interactive.thestandnews.com/2021/11/leavehome/door.jpg"></div><div class="g-main"></div><div class="g-man"><img src="https://interactive.thestandnews.com/2021/11/leavehome/man.jpg"></div><div class="g-overlay-svg"></div><div class="g-gameover"><img src="https://interactive.thestandnews.com/2021/11/leavehome/gameover.png"><img class="g-replay" src="https://interactive.thestandnews.com/2021/11/leavehome/replay.png"></div><div class="g-start-button g-active"><img src="https://interactive.thestandnews.com/2021/11/leavehome/start.png"><div class="g-instructions"><div class="g-i-each g-i-0"><div class="g-img-cont"><img src="https://interactive.thestandnews.com/2021/11/leavehome/left.png"></div></div><div class="g-i-each g-i-1"><div class="g-img-cont"><img src="https://interactive.thestandnews.com/2021/11/leavehome/shoot.png"></div></div><div class="g-i-each g-i-2"><div class="g-img-cont"><img src="https://interactive.thestandnews.com/2021/11/leavehome/right.png"></div></div></div></div><video class="g-dootsound" src="https://interactive.thestandnews.com/2021/11/leavehome/doot_1.mp4"></video><div class="g-buttons"><div class="g-button g-left" data-id="left"></div><div class="g-button g-shoot" data-id="shoot"></div><div class="g-button g-right" data-id="right"></div></div></div></div><script src="https://interactive.thestandnews.com/scripts/d3_.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"><div class="g-body"><div class="g-body-inner"><div class="g-score"><div class="g-s"><img src="https://interactive.thestandnews.com/2021/11/leavehome/score.png?xdfcghv"><div class="g-n">0</div></div></div><div class="g-door"><img src="https://interactive.thestandnews.com/2021/11/leavehome/door.jpg"></div><div class="g-main"></div><div class="g-man"><img src="https://interactive.thestandnews.com/2021/11/leavehome/man.jpg"></div><div class="g-overlay-svg"></div><div class="g-gameover"><img src="https://interactive.thestandnews.com/2021/11/leavehome/gameover.png"><img src="https://interactive.thestandnews.com/2021/11/leavehome/replay.png"></div><div class="g-start-button g-active"><img src="https://interactive.thestandnews.com/2021/11/leavehome/start.png"></div><video playsinline class="g-dootsound" src="https://interactive.thestandnews.com/2021/11/leavehome/doot_1.mp4"></video><div class="g-buttons"><div class="g-button g-left" data-id="left"><div class="g-img-cont"><img src="https://interactive.thestandnews.com/2021/11/leavehome/left.png"></div></div><div class="g-button g-shoot" data-id="shoot"><div class="g-img-cont"><img src="https://interactive.thestandnews.com/2021/11/leavehome/shoot.png"></div></div><div class="g-button g-right" data-id="right"><div class="g-img-cont"><img src="https://interactive.thestandnews.com/2021/11/leavehome/right.png"></div></div></div></div></div><script src="https://interactive.thestandnews.com/scripts/d3_.js"></script>
 <script>
 // window.stopit = d3.timer(function(){
 // 	d3.selectAll(".article-content-wrap:not(:first-child)").remove();
@@ -412,7 +432,7 @@ var dootsound = d3.select(".g-dootsound").node();
 
 function shoot() {
 	var left = +man.style("left").replace("px", "") + 7;
-	var top = height - manheight; //man.node().getBoundingClientRect().top - topoffset - 5;
+	var top = man.node().getBoundingClientRect().top - topoffset - 5;
 	var shot = svg.append("rect.g-shot").attr("width", 2).attr("height", 10);
 	shot.translate([left,top])
 	shots.push(shot);
@@ -450,7 +470,7 @@ function gameover() {
 	d3.select(".g-gameover").classed("g-active", true)
 	window.timer.stop();
 
-	d3.select(".g-replay").on("click", function(){
+	d3.select(".g-gameover").on("click", function(){
 		d3.select(".g-gameover").classed("g-active", false);
 		start();
 	})
@@ -474,6 +494,9 @@ function start() {
 	var increasecounter = 0;
 	var score = 0;
 	scoreel.html("0")
+
+	d3.selectAll(".g-img-cont").style("opacity", 0.1)
+
 	window.timer = d3.timer(function(){
 
 		d3.selectAll(".g-shot").each(function(){
