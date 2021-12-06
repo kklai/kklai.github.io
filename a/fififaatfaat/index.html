@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title></title>
+
+	<style type="text/css">
+		
+		html,
+		body {
+		  background: #333;
+		  color: #fff;
+		  height: 100%;
+		  margin: 0;
+		  min-height: 100%;
+		  overflow: hidden;
+		  position: relative;
+		}
+		.marquee {
+		  display: block;
+		  left: 0;
+		  position: absolute;
+		  top: 0;
+		  /*border:  1px solid magenta;*/
+		}
+
+		.marquee img {
+			width:  200px;
+		}
+
+		.g-background-cont {
+			position: relative;
+		}
+
+		.g-background {
+			width:  100%;
+			height:  100%;
+			background-image: url(歐樣a.png);
+			background-size: auto 150%;
+			background-position: 50% 100%;
+
+		}
+
+		.g-background div {
+			background-size: 100% !important;
+		}
+
+		.g-marquee-cont {
+			width:  100%;
+			height:  100%;
+			/*width:  80%;*/
+			/*border:  1px solid green;*/
+			/*height:  100vh;*/
+			border-radius: 50px;
+			overflow: hidden;
+			position: relative;
+			
+		}
+
+		.g-tv-frame {
+			background-image:  url(tv.png);
+			background-size: 100%;
+			background-repeat: no-repeat;
+			position: relative;
+			width:  100%;
+			height:  100%;
+			position: absolute;
+			top:  0;
+			left: 0;
+			z-index: 10;
+			pointer-events: none;
+		}
+
+		.g-marquee-frame {
+			position: absolute;
+			top:  0;
+			left: 0;
+			width:  100%;
+			height:  100%;
+			z-index:  10;
+			/*border:  1px solid magenta;*/
+			pointer-events: none;
+
+		}
+
+		.g-button {
+			position: absolute;
+			bottom:  50px;
+			right:  50px;
+			width:  50px;
+			height:  50px;
+			border:  1px solid #fff;
+			line-height: 1.2;
+			border-radius: 100%;
+			text-align: center;
+			color: #fff;
+			z-index: 10;
+			font-size: 38px;
+			user-select: none;
+			cursor: pointer;
+		}
+
+		.g-button:hover {
+			background-color: #333;
+		}
+
+
+	</style>
+</head>
+<body>
+	<div class="g-marquee-cont">
+		<div class="g-background-cont">
+			<div class="g-background" id="img"></div>
+		</div>
+		<div class="g-marquee-frame">
+			<div class="marquee">
+				<img src="歐樣.png">
+			</div>
+		</div>
+		<div class="g-tv-frame"></div>
+
+		<div class="g-button">></div>
+	</div>
+
+	<script src="jquery.min.js"></script>
+	<script type="text/javascript">
+
+		(function ($, window, undefined) {
+			$.fn.marqueeify = function (options) {
+				var settings = $.extend({
+					horizontal: true,
+					vertical: true,
+					speed: 100, // In pixels per second
+					container: $(this).parent(),
+					bumpEdge: function () {}
+				}, options);
+
+				var sizes = {
+					"Untitled-23-04.png": {w: 508, h: 286},
+					"歐樣.png": {w: 375, h: 298}
+				}
+
+
+				return this.each(function () {
+					var containerWidth, containerHeight, elWidth, elHeight, move, getSizes,
+						$el = $(this);
+
+					var name = $(this).children("img").attr("src");
+					console.log()
+
+					getSizes = function () {
+						containerWidth = settings.container.outerWidth();
+						containerHeight = settings.container.outerHeight();
+						elWidth = $el.outerWidth();
+						elHeight = $el.outerHeight();
+					};
+
+				
+					move = {
+						right: function () {
+							$el.animate({left: (containerWidth - elWidth)}, {duration: ((containerWidth/settings.speed) * 1000), queue: false, easing: "linear", complete: function () {
+								settings.bumpEdge();
+								move.left();
+							}});
+						},
+						left: function () {
+							$el.animate({left: 0}, {duration: ((containerWidth/settings.speed) * 1000), queue: false, easing: "linear", complete: function () {
+								settings.bumpEdge();
+								move.right();
+							}});
+						},
+						down: function () {
+							$el.animate({top: (containerHeight - elHeight)}, {duration: ((containerHeight/settings.speed) * 1000), queue: false, easing: "linear", complete: function () {
+								settings.bumpEdge();
+								move.up();
+							}});
+						},
+						up: function () {
+							$el.animate({top: 0}, {duration: ((containerHeight/settings.speed) * 1000), queue: false, easing: "linear", complete: function () {
+								settings.bumpEdge();
+								move.down();
+							}});
+						}
+					};
+
+					getSizes();
+
+					if (settings.horizontal) {
+						move.right();
+					}
+					if (settings.vertical) {
+						move.down();
+					}
+
+		      // Make that shit responsive!
+		      $(window).resize( function() {
+		        getSizes();
+		      });
+				});
+			};
+		})(jQuery, window);
+
+
+		var renderedW = innerWidth;
+		var renderedH = innerWidth*1080/1920
+		var framewidth = renderedW*(1300/1920)
+		var frameheight = renderedH*(962/1080)
+
+		$(document).ready( function() {
+			$(".g-marquee-cont").css("height", renderedH + "px")
+			$(".g-marquee-cont").css("margin-top", (innerHeight/2 - renderedH/2) + "px")
+
+			$(".g-marquee-frame").css("width", renderedW*(1300/1920) + "px");
+			$(".g-marquee-frame").css("top", innerHeight*(30/1080) + "px");
+			$(".g-marquee-frame").css("left", innerWidth*(308.8496/1920) + "px");
+			$(".g-marquee-frame").css("height", renderedH*(962/1080) + "px");
+
+			$(".g-background-cont").css("width", innerWidth + "px");
+			$(".g-background-cont").css("top", innerHeight*(30/1080) + "px");
+			// $(".g-background-cont").css("left", innerWidth*(308.8496/1920) + "px");
+			$(".g-background-cont").css("height", renderedH*(962/1080) + "px");
+
+			// $(".g-inner-2").css("margin-top", (innerHeight/2 -  $(".g-inner-2").width()/2) + "px")
+
+			$('.marquee').marqueeify({
+				speed: 300
+			});
+		});
+
+
+		(function() {
+		  
+		var set = function(x, opts) {
+		    var _pt = [{
+		      x: 0,
+		      y: 0
+		    }, {
+		      x: 0,
+		      y: 0
+		    }, {
+		      x: 0,
+		      y: 0
+		    }];
+		    var rnd1 = [Math.random() + 1, Math.random() + 1, Math.random() + 1];
+		    var rnd2 = [0, 0, 0];
+		    var cnt = 0;
+		    var arr = [];
+		    var loop = null;
+		    var t = null;
+		    var _h = opts._h;
+		    var _w = opts._w;
+		    var img = opts.img;
+		    var mshov = false;
+
+		    x.css({
+		      position: "relative"
+		    });
+
+		    for (var i = 0; i < _h; i++) {
+		      var pos = -i + "px";
+		      x.append("<div></div>");
+		      x.find("div").eq(i).css({
+		        backgroundImage: "url(" + img + ")",
+		        backgroundPosition: "0px " + pos,
+		        height: "1px",
+		        width: _w + "px",
+		        position: "absolute",
+		        top: i + "px"
+		      });
+		      arr.push(x.find("div").eq(i));
+		    }
+
+		    if (opts.auto) {
+		      t = setInterval(function() {
+		        if (mshov) return;
+		        go();
+
+		        setTimeout(pause, opts.delay / 2 * Math.random());
+		      }, opts.delay);
+		    }
+
+		    x.mouseover(go);
+		    x.mouseout(pause);
+
+		    function go() {
+		      mshov = true;
+		      clearInterval(loop);
+		      loop = setInterval(run, 30);
+		    }
+
+		    function pause() {
+		      mshov = false;
+		      clearInterval(loop);
+		      loop = null;
+
+		      for (var i = 0; i < _h; i++) {
+		        arr[i].css({
+		          left: 0
+		        });
+		      }
+		    }
+
+		    function run() {
+		      var i;
+		      for (i = 0; i < 3; i++) {
+		        if (rnd1[i] >= 1) {
+		          --rnd1[i];
+		          rnd2[i] = Math.random() / 4 + 0.03;
+		        }
+		        rnd1[i] += rnd2[i];
+		        cnt += (38 - cnt) * 0.25;
+		        _pt[i].x = Math.ceil(Math.sin(rnd1[i] * Math.PI * 2) * rnd2[i] * cnt * 2);
+		        _pt[i].y = 0;
+		      }
+		      var num = (Math.abs(_pt[0].x) + Math.abs(_pt[1].x) + Math.abs(_pt[2].x) + 8) / 4;
+
+		      i = _h;
+		      while (i -= 1) {
+		        var _off = Math.sin(i / _h * Math.PI * (Math.random() / 8 + 1)) * 0.1 * num * num;
+		        arr[i].css({
+		          left: _off + "px "
+		        });
+		      }
+		    }
+		  };
+
+		  jQuery.fn.noisy = function(opts) {
+		    this.each(function() {
+		      opts = jQuery.extend({}, jQuery.fn.noisy.defs, opts);
+		      set(jQuery(this), opts);
+		    });
+		  };
+
+		  jQuery.fn.noisy.defs = {
+		    _h: 0,
+		    _w: 0,
+		    img: "",
+		    auto: true,
+		    delay: 2000
+		  };
+
+		})();
+
+		/*to see this same image but with its full background use 
+		https://s3-us-west-2.amazonaws.com/s.cdpn.io/131045/noise.jpe | I removed the black image bordering.
+		Or add any other image of your choice - just be sure to edit the width/height params below. It *should* work with any image.
+		*/
+		$(function() {
+		  $("#img").noisy({
+		    _w: innerWidth,
+		    _h: innerHeight,
+		    img: "歐樣a.png"
+		  });
+		});
+
+		var images = ["2016-12-26-PHOTO-00000400.jpg", "歐樣a.png"];
+		var texts = ["Untitled-23-04.png", "歐樣.png"]
+		var imcount = 0;
+
+		function run() {
+			$("#img").noisy({
+			  _w: innerWidth,
+			  _h: innerHeight,
+			  img: images[imcount]
+			});
+
+			$('.marquee').remove();
+			$(".g-marquee-frame").append("<div class='marquee'><img src='" + texts[imcount] + "' /></div>");
+			$('.marquee').marqueeify({
+				speed: 300,
+			});
+
+			if (imcount == images.length - 1) {
+				imcount = 0;
+			} else {
+				imcount += 1;
+			}
+
+		}
+
+		// run();
+		// run();
+
+		$(".g-button").on("click", function(){
+
+			run();
+		})
+
+
+
+
+	</script>
+
+</body>
+</html>
