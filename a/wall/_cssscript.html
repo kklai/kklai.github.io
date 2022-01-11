@@ -1,0 +1,517 @@
+<style>
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+}
+.g-lennonwall-cont {
+  position: relative;
+  font-family: droid sans, helvetica neue, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+}
+.g-lennonwall-cont .g-progress-bar {
+  height: 6px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #000;
+}
+.g-lennonwall-cont .g-progress-bar .g-progress-bar-inner {
+  background-color: #ffcc00;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: all 0.3s;
+}
+.g-lennonwall-cont .g-lennon-nav {
+  position: fixed;
+  top: 56px;
+  width: 100vw;
+  z-index: 11;
+  text-align: center;
+  padding: 10px;
+  color: #fff;
+}
+.g-lennonwall-cont .g-lennon-nav .g-nav-each {
+  padding: 2px 5px 2px 6px;
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 2px;
+  display: inline-block;
+  font-family: droid sans, helvetica neue, Helvetica, Arial, sans-serif;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.5);
+}
+.g-lennonwall-cont .g-lennon-nav .g-nav-each.g-nav-active {
+  border-bottom: 1px dotted #ffcc00;
+  padding-bottom: 1px;
+  background: #000;
+  color: #fff;
+}
+.g-lennonwall-cont .g-lennon-nav .g-nav-each .g-nav-date {
+  font-size: 9px;
+  letter-spacing: 0;
+  line-height: 0.9;
+  margin-bottom: 4px;
+}
+.g-lennonwall-cont .g-meta-text {
+  position: fixed;
+  top: 150px;
+  left: 15px;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(0, 0, 0, 0.8);
+  padding: 15px 15px 15px 15px;
+  z-index: 10;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.g-lennonwall-cont .g-meta-text a,
+.g-lennonwall-cont .g-meta-text a:visited {
+  color: rgba(255, 255, 255, 0.9);
+}
+@media screen and (min-width: 600px) {
+  .g-lennonwall-cont .g-meta-text {
+    top: 200px;
+    padding: 20px 20px 30px 20px;
+  }
+}
+.g-lennonwall-cont .g-meta-text.g-active {
+  opacity: 1;
+  pointer-events: auto;
+  user-select: auto;
+}
+.g-lennonwall-cont .g-meta-text .g-browse-img {
+  width: 170px;
+}
+.g-lennonwall-cont .g-meta-text .g-name {
+  font-size: 34px;
+  line-height: 1.1;
+  letter-spacing: 3px;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+@media screen and (max-width: 600px) {
+  .g-lennonwall-cont .g-meta-text .g-name {
+    font-size: 21px;
+  }
+}
+.g-lennonwall-cont .g-meta-text .g-h1-img {
+  width: 200px;
+  margin-bottom: 10px;
+}
+@media screen and (min-width: 600px) {
+  .g-lennonwall-cont .g-meta-text .g-h1-img {
+    width: 300px;
+  }
+}
+.g-lennonwall-cont .g-meta-text .g-text {
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 210px;
+  line-height: 1.3;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+@media screen and (min-width: 600px) {
+  .g-lennonwall-cont .g-meta-text .g-text {
+    max-width: 300px;
+    font-size: 15px;
+  }
+}
+.g-lennonwall-cont .g-meta-text .g-text-credit {
+  font-size: 12px;
+  margin-top: -2px;
+}
+.g-lennonwall-cont .g-meta-text .g-kicker {
+  color: rgba(255, 255, 255, 0.6);
+  margin-left: 0;
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+.g-lennonwall-cont .g-meta-text .g-kicker .g-kicker-inner {
+  padding-bottom: 4px;
+  border-bottom: 1px solid #ffcc00;
+  display: inline;
+}
+.g-lennonwall-cont .g-meta-text .g-place-wrap {
+  background: #ffcc00;
+  padding: 3px 5px;
+  max-width: 77px;
+  margin-top: 10px;
+  display: none;
+}
+.g-lennonwall-cont .g-meta-text .g-place-wrap.g-active {
+  display: none;
+}
+.g-lennonwall-cont .g-meta-text .g-date {
+  font-weight: 100;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+  font-size: 11px;
+  margin-bottom: 0;
+  color: #000;
+}
+.g-lennonwall-cont .g-meta-text .g-place {
+  line-height: 1;
+  margin: 0 auto 3px auto;
+  color: #000;
+}
+.g-lennonwall-cont .g-meta-text .g-credit {
+  font-size: 13px;
+}
+.g-lennonwall-cont #map {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.g-lennonwall-cont .g-custom-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+@media screen and (min-width: 600px) {
+  .g-lennonwall-cont .g-custom-buttons {
+    bottom: 40px;
+    right: 40px;
+  }
+}
+.g-lennonwall-cont .g-custom-buttons .g-button {
+  background: rgba(0, 0, 0, 0.7);
+  user-select: none;
+  cursor: pointer;
+  display: block !important;
+  width: 40px;
+  padding: 3px;
+}
+.g-lennonwall-cont .g-custom-buttons .g-button img {
+  width: 100%;
+}
+.g-lennonwall-cont .g-custom-buttons .g-button:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+.g-lennonwall-cont .g-custom-buttons .g-button#zoom-in,
+.g-lennonwall-cont .g-custom-buttons .g-button#zoom-out {
+  border-bottom: 2px solid #777;
+}
+.g-lennonwall-cont .g-share-button-cont {
+  margin-top: 10px;
+  opacity: 0.8;
+  display: none;
+}
+.container.blog-container {
+  width: 100%;
+}
+.page-content {
+  padding: 0 !important;
+}
+.today-articles-outer-wrapper {
+  display: none !important;
+}
+.article-page .article-content-wrap {
+  padding-top: 0 !important;
+  margin-top: -5px;
+}
+.article-page .article-content-wrap .date,
+.article-page .article-content-wrap .article-name {
+  display: none !important;
+}
+@media screen and (max-width: 767px) {
+  .article-page .article-content-wrap .date,
+  .article-page .article-content-wrap .article-name {
+    display: none !important;
+  }
+}
+.header-wrap.container {
+  display: none !important;
+}
+.articles {
+  padding: 0 !important;
+}
+.col-xs-12 {
+  padding: 0;
+}
+.article-blog-page .related-articles {
+  width: 100%;
+}
+.floating-share-buttons-wrapper.shown {
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8), #000);
+}
+.social-wrap.hidden-print,
+.mobile-ad.article-top-ad.center {
+  display: none !important;
+}
+.ArticleDetail_article__title__YNzig,
+.ArticleDetail_toolbar--specialLayout__32ILm,
+.ArticleDetail_article__author--specialLayout__3Wnfe,
+.ArticleCoverMedia_coverPhoto__1mnR8,
+footer,
+.related-articles.clearfix,
+.desktop-ad.leaderboard,
+.floating-share-buttons-wrapper.shown,
+.likecoin-embed,
+.mobile-ad.article-ad.medium-rectangle,
+.cover-image-wrapper.mobile,
+.ArticleDetail_articleShareWidget__1M_8z,
+.ArticleDetailSpecialLayout_articleDetail__relatedArticlesContainer__1Rlzq,
+.HeaderSubNav_headerSubNav__3_UCL,
+.ArticleDetail_postCommentButtonContainer__PoXtv,
+.ArticleDetailSpecialLayout_articleDetail__relatedArticlesContainer__1Rlzq,
+.ArticleDetail_pageFlip__2JpX2,
+.ArticleDetail_bottomAd__1pMho {
+  display: none !important;
+}
+.ArticleDetail_article--specialLayout__Z5ois,
+.ArticleDetailSpecialLayout_contentContainer__3i4U- {
+  max-width: none;
+}
+.Header_nav__2eril {
+  transition: all 0s;
+}
+.Header_nav__logo__3LOrM:before {
+  background-image: var(--logo-mobile-small-background-image);
+  height: 32px;
+  width: 32px;
+  margin-left: 13px;
+  margin-top: 8px;
+}
+.Header_nav__2eril {
+  height: 48px;
+}
+.HeaderTitle_headerTitle__subTitleContainer__1SjtV {
+  margin: auto 55px auto auto;
+}
+</style>
+
+<script src="https://interactive.thestandnews.com/scripts/d3_.js"></script>
+
+undefined
+
+<script type='application/javascript'>
+{function onload() {
+window.stopit = d3.timer(function(){
+	d3.selectAll(".article-content-wrap:not(:first-child)").remove();
+	d3.selectAll(".likecoin-embed:nth-child(n+3)").remove();
+	d3.selectAll(".related-articles:nth-child(n+4)").remove();
+})
+
+d3.select(".Header_nav__2eril").classed("Header_nav--scrolled__3lP1G", true);
+
+d3.select(".HeaderTitle_headerTitle__subTitleContainer__1SjtV").classed("HeaderTitle_headerTitle__subTitleContainer--scrolled__ohbJJ", true)
+
+d3.select(".Header_nav__logo__3LOrM").classed("Header_nav__logo--scrolled__2aGdo", true)
+
+
+var hash = window.location.hash.replace("#","");
+var viewer;
+var ogbounds, oldbounds;
+var body = document.body;
+var curid = "taipo_a";
+var calcw;
+var imagePoint;
+var draggedbounds;
+var maxx;
+var draggedlw = false;
+var scrollend;
+
+if (hash != "" && (hash == "lamtin" || hash == "taipo") || hash == "smp") {
+    curid = hash;
+}
+
+reset(curid);
+
+function init(id, hack, to_a) {
+
+    d3.select("#map").html("");
+
+    id = id == "taipo" ? "taipo_a" : id;
+
+    viewer = OpenSeadragon({
+        id: 'map', 
+        prefixUrl: "" + id + '_files/',
+        tileSources: "" + id + '.dzi?page-load-timestamp',
+        // defaultZoomLevel: 25
+        homeFillsViewer: true,
+        maxZoomLevel: 100,
+        // panVertical: false,
+        constrainDuringPan: true,
+        visibilityRatio: 1,
+        // showNavigationControl: false,
+        zoomInButton:   "zoom-in",
+        zoomOutButton:  "zoom-out",
+        // panHorizontal: false,
+        // panVertical: false,
+        gestureSettingsMouse: {
+            scrollToZoom: false,
+            clickToZoom: false
+        }
+    });
+
+    viewer.addHandler('open', function() {
+      // Assuming you are interested in the first image in the viewer (or you only have one image)
+     oldbounds = viewer.viewport.getBounds(); 
+     ogbounds = new OpenSeadragon.Rect(0, 0, oldbounds.width, oldbounds.height); 
+     viewer.viewport.fitBounds(ogbounds, true);
+     maxx = 1-viewer.viewport.getConstrainedBounds().width;
+
+     if (to_a) {
+        ogbounds = new OpenSeadragon.Rect(maxx, 0, oldbounds.width, oldbounds.height); 
+        viewer.viewport.fitBounds(ogbounds, true);
+     }
+
+     runlwscroll(hack);
+    });
+
+    viewer.addHandler('canvas-drag-end', function(event){
+        oldbounds = viewer.viewport.getBounds();
+        draggedbounds = oldbounds;
+        
+        var w = curid == "taipo_a" ? oldbounds.x*100/2 : curid == "taipo_b" ? (oldbounds.x*100/2)+50 : oldbounds.x*100
+
+        if (curid == "taipo_a" && oldbounds.x.toFixed(2) == maxx.toFixed(2)) {
+            init("taipo_b", true)
+            curid = "taipo_b"
+
+        } else if (curid == "taipo_b" && oldbounds.x.toFixed(2) == 0.00) {
+
+            init("taipo_a", true, "to_a")
+            curid = "taipo_a"
+
+        } else {
+            d3.select(".g-progress-bar-inner").style("width", w + "%");    
+        }
+
+        if (oldbounds.x == 0) {
+            d3.selectAll(".g-meta-text").classed("g-active", true);   
+        } else {
+            d3.selectAll(".g-meta-text").classed("g-active", false);  
+        }
+
+        // runlwscroll(false)
+    });
+
+    // viewer.addHandler('canvas-click', function(event) {
+    //     // The canvas-click event gives us a position in web coordinates.
+    //     var webPoint = event.position;
+    //     // Convert that to viewport coordinates, the lingua franca of OpenSeadragon coordinates.
+    //     var viewportPoint = viewer.viewport.pointFromPixel(webPoint);
+    //     // Convert from viewport coordinates to image coordinates.
+    //     imagePoint = viewer.viewport.viewportToImageCoordinates(viewportPoint);
+    //     console.log(viewer.viewport.pixelFromPoint())
+    //     clickedx = viewer.viewport.getBounds().x;
+    // });
+}
+
+d3.selectAll(".g-nav-each").on("click", function(){
+    var el = d3.select(this);
+    var id = el.attr("data-id");
+    curid = id;
+    reset(id);
+    document.location.hash = id;
+})
+
+d3.select("#reset").on("click", function(){
+    viewer.viewport.fitBounds(ogbounds, true);
+})
+
+var switchpct = 0.5
+
+window.addEventListener('scroll', function(){
+    runlwscroll();
+});
+
+function checkScrollEnd() {
+  if ((window.scrollY || document.body.scrollTop || document.documentElement.scrollTop) < scrollend) {
+    window.requestAnimationFrame(checkScrollEnd);
+  }
+  else {
+    alert('end of scroll');
+  }
+}
+
+function runlwscroll(hack){
+
+    if (hack) {
+
+
+
+
+    } else {
+        var pct = window.pageYOffset/(calcw-innerHeight);
+        d3.select(".g-progress-bar-inner").style("width", pct*100 + "%");
+
+        var adj_pct = pct;
+        curid = curid == "taipo" ? "taipo_a" : curid;
+        if (curid == "taipo_a") {
+             adj_pct = pct*2;
+            if (adj_pct > 1) {
+                curid = "taipo_b";
+                init("taipo_b", true);
+            }
+        } 
+
+        if (curid == "taipo_b") {
+            adj_pct = (pct - 0.5)*2;
+
+            if (adj_pct < 0) {
+                curid = "taipo_a";
+                init("taipo_a", true, "to_a")
+            }
+        }
+        
+        if (pct < 0.001) {
+            d3.select(".g-meta-text").classed("g-active", true);
+        } else {
+            d3.select(".g-meta-text").classed("g-active", false);
+        }
+        
+
+        if (oldbounds && adj_pct < maxx) {
+            // Show the results.
+            ogbounds = new OpenSeadragon.Rect(adj_pct, 0, ogbounds.width, ogbounds.height); 
+            viewer.viewport.fitBounds(ogbounds, true);
+        }
+    }
+}
+
+function reset(id) {
+
+    var curinfo = info.filter(d => d.id == curid.split("_")[0])[0];
+    calcw = innerHeight*curinfo.m;
+    d3.select(".g-scrolly-cont").style("height", calcw + "px");
+
+    id = id.split("_")[0];
+    d3.selectAll(".g-nav-each").classed("g-nav-active", false);
+    d3.select(".g-nav-each-" + id.split("_")[0]).classed("g-nav-active", true);
+
+    d3.selectAll(".g-place-wrap").classed("g-active", false);
+    d3.select(".g-place-wrap-" + id.split("_")[0]).classed("g-active", true);
+
+    window.scrollTo(0,0);
+    init(id);
+}
+
+// d3.select("#map").on("click", function(){
+//     d3.select(".g-meta-text").classed("g-active", false)
+// })
+
+// d3.select("#map").on("touchend", function(){
+//     d3.select(".g-meta-text").classed("g-active", false)
+// })
+
+
+
+}window.addEventListener('load', onload);
+}
+</script>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.2.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.2" baseProfile="tiny" id="g-map-Artboard_1-overlays-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 x="0px" y="0px" viewBox="0 0 768 1024" overflow="visible" xml:space="preserve">
+<g>
+	<radialGradient id="step1_2_" cx="456.786" cy="432.0399" r="72.9598" gradientUnits="userSpaceOnUse">
+		<stop  offset="0" style="stop-color:#F94E4E"/>
+		<stop  offset="0.258" style="stop-color:#F94E4E"/>
+		<stop  offset="1" style="stop-color:#F94E4E;stop-opacity:0"/>
+	</radialGradient>
+	<circle id="step1_1_" fill="url(#step1_2_)" cx="456.786" cy="432.04" r="72.96"/>
+	<radialGradient id="chow-dot_2_" cx="548.0988" cy="331.5189" r="17.1352" gradientUnits="userSpaceOnUse">
+		<stop  offset="0.5371" style="stop-color:#F9A800"/>
+		<stop  offset="1" style="stop-color:#F9A800;stop-opacity:0"/>
+	</radialGradient>
+	<circle id="chow-dot_1_" fill="url(#chow-dot_2_)" cx="548.099" cy="331.519" r="17.135"/>
+	
+		<polyline id="fire1-1_1_" fill="none" stroke="#F94E4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+		306.983,5.187 631.583,366.809 456.438,429.857 454.371,423.63 614.013,367.602 532.772,273.272 	"/>
+	
+		<path id="fire1-2_1_" fill="none" stroke="#F94E4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+		M529.746,274.648c0,0-24.518,29.097-14.226,64.228"/>
+	<circle id="fire1-dot_1_" fill="#F94E4E" cx="306.983" cy="5.652" r="5.652"/>
+	
+		<path id="fire2-1_1_" fill="none" stroke="#F94E4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+		M434.501,5.652c0,0-127.831,111.844-229.708,240.31c-52.379,66.049-74.518,148.54-79.471,163.087
+		c-8.325,24.453-26.097,77.264-21.986,107.129c2.045,14.856,23.599,21.461,26.452,21.181
+		c43.406-10.322,133.153-41.964,133.153-41.964"/>
+	
+		<line id="fire2-2_1_" fill="none" stroke="#F94E4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="279.05" y1="490.065" x2="439.918" y2="429.363"/>
+	
+		<polyline id="fire2-3_1_" fill="none" stroke="#F94E4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+		460.431,421.642 510.609,403.779 505.193,388.353 	"/>
+	<circle id="fire2-dot_1_" fill="#F94E4E" cx="434.501" cy="5.652" r="5.652"/>
+	
+		<path id="eu1-1_1_" fill="none" stroke="#49B2C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+		M515.953,596.901l56.08,139.635l-234.417,85.879L234.733,536.803l-19.094-18.426c0,0-68.588,23.694-73.977,27.133
+		s-18.195,9.962-27.385,26.856c-0.089,0.16-11.829,20.033-25.715,22.855c-16.498,3.353-34.945-4.582-36.913-24.607
+		c-1.968-20.025,20.564-55.925,29.373-79.513c8.809-23.589,59.019-161.287,76.125-190.288
+		c47.31-80.204,121.249-153.785,137.708-173.235c30.873-36.483,67.803-62.596,67.803-62.596l150.909,171.6"/>
+	<circle id="eu1-dot_1_" fill="#49B2C4" cx="516.103" cy="597.185" r="5.652"/>
+	
+		<path id="eu1-2_1_" fill="none" stroke="#49B2C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+		M511.671,244.043c0,0-17.674,9.852-16.564,18.603c1.757,13.854,37.868,57.271,29.032,65.002
+		c-8.836,7.732-64.307,25.369-80.691,31.787"/>
+	
+		<line id="eu34_1_" fill="none" stroke="#49B2C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="458.503" y1="436.077" x2="435.933" y2="368.099"/>
+	<circle id="eu34-dot_1_" fill="#49B2C4" cx="458.503" cy="436.077" r="5.652"/>
+	<radialGradient id="tg2_2_" cx="460.6963" cy="408.2312" r="17.1352" gradientUnits="userSpaceOnUse">
+		<stop  offset="0.4649" style="stop-color:#49B2C4"/>
+		<stop  offset="1" style="stop-color:#49B2C4;stop-opacity:0"/>
+	</radialGradient>
+	<circle id="tg2_1_" fill="url(#tg2_2_)" cx="460.696" cy="408.231" r="17.135"/>
+	<radialGradient id="tg1_2_" cx="445.5942" cy="367.6815" r="17.1352" gradientUnits="userSpaceOnUse">
+		<stop  offset="0.4649" style="stop-color:#49B2C4"/>
+		<stop  offset="1" style="stop-color:#49B2C4;stop-opacity:0"/>
+	</radialGradient>
+	<circle id="tg1_1_" fill="url(#tg1_2_)" cx="445.594" cy="367.682" r="17.135"/>
+	
+		<path id="eu4_1_" fill="none" stroke="#49B2C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+		M434.886,365.485c0,0,21.885-16.962,41.843-9.176"/>
+	<circle id="eu4-dot_1_" fill="#49B2C4" cx="434.886" cy="365.2" r="5.652"/>
+	
+		<line id="am1-1_1_" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="113.186" y1="545.083" x2="262.926" y2="494.673"/>
+	
+		<path id="am1-2_1_" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+		M277.818,489.14c0,0,7.623-10.754-2.916-34.706c-10.539-23.952-10.539-23.952-10.539-23.952s-4.311-4.311-17.724,1.437
+		s-59.88,19.641-59.88,19.641s-22.036,2.395-9.581-31.617s65.628-97.245,65.628-97.245s43.114-62.275,46.467-64.67
+		c3.353-2.395,114.519-45.277,127.184-44.611"/>
+	
+		<path id="am1-3_1_" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+		M428.4,215.804c0,0,35.47,14.602,55.883,34.806c12.952,14.303,35.822,44.757,53.237,79.7"/>
+	<circle id="am1-dot_1_" fill="#FFFFFF" cx="113.191" cy="545.09" r="5.652"/>
+	<radialGradient id="fire2-block-1_2_" cx="264.4611" cy="494.6534" r="17.1352" gradientUnits="userSpaceOnUse">
+		<stop  offset="0.4649" style="stop-color:#F94E4E"/>
+		<stop  offset="1" style="stop-color:#F94E4E;stop-opacity:0"/>
+	</radialGradient>
+	<circle id="fire2-block-1_1_" fill="url(#fire2-block-1_2_)" cx="264.461" cy="494.653" r="17.135"/>
+	<radialGradient id="fire2-block-2_2_" cx="444.4305" cy="427.5" r="17.1352" gradientUnits="userSpaceOnUse">
+		<stop  offset="0.4649" style="stop-color:#F94E4E"/>
+		<stop  offset="1" style="stop-color:#F94E4E;stop-opacity:0"/>
+	</radialGradient>
+	<circle id="fire2-block-2_1_" fill="url(#fire2-block-2_2_)" cx="444.43" cy="427.5" r="17.135"/>
+	<radialGradient id="am1-block-2_2_" cx="265.6794" cy="493.5609" r="17.1352" gradientUnits="userSpaceOnUse">
+		<stop  offset="0.4649" style="stop-color:#FFFFFF"/>
+		<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/>
+	</radialGradient>
+	<circle id="am1-block-2_1_" fill="url(#am1-block-2_2_)" cx="265.679" cy="493.561" r="17.135"/>
+	<radialGradient id="am1-block-1_2_" cx="419.063" cy="214.2913" r="17.1352" gradientUnits="userSpaceOnUse">
+		<stop  offset="0.4649" style="stop-color:#FFFFFF"/>
+		<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/>
+	</radialGradient>
+	<circle id="am1-block-1_1_" fill="url(#am1-block-1_2_)" cx="419.063" cy="214.291" r="17.135"/>
+</g>
+<style>
+#g-map-Artboard_1-overlays-img rect, #g-map-Artboard_1-overlays-img circle, #g-map-Artboard_1-overlays-img path, #g-map-Artboard_1-overlays-img line, #g-map-Artboard_1-overlays-img polyline { vector-effect: non-scaling-stroke; }
+</style>
+</svg>
+

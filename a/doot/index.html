@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<style>
+<div class='g-meta' style='display: none;'>12 月 9 日起，進入食肆、戲院、美容院、GYM、主題公園、按摩院，全部強制使用「安心出行」。嘟嘟嘟嘟……Welcome to 嘟碼之城！</div><style>
 .g-body {
   margin: 0 auto;
   padding: 0;
@@ -203,6 +203,17 @@ body {
   width: 100%;
   height: 100%;
   padding-top: 20px;
+  top: 0;
+}
+@media screen and (max-width: 1199px) {
+  .g-body {
+    height: calc(100% - 60px);
+  }
+}
+@media screen and (max-width: 600px) {
+  .g-body {
+    top: 33px;
+  }
 }
 .g-body video {
   user-select: none;
@@ -281,15 +292,16 @@ body {
   color: #fff;
 }
 .g-body .g-score .g-s img {
-  width: 80px;
+  width: 66px;
   display: inline-block;
   vertical-align: middle;
+  margin-top: -1px;
 }
 .g-body .g-score .g-n {
   display: inline-block;
   vertical-align: middle;
   margin-left: 3px;
-  color: #ffd910;
+  color: #ffdb4b;
   font-weight: 700;
   font-size: 20px;
 }
@@ -310,13 +322,14 @@ body {
   width: 100%;
 }
 .g-body .g-door {
-  width: 100px;
-  margin: 0 auto;
+  width: 50px;
+  margin: 5px auto 10px auto;
   z-index: 4;
   background: #00ac4e;
+  height: 80px;
 }
 .g-body .g-man {
-  width: 60px;
+  width: 45px;
   position: absolute;
   bottom: 0;
 }
@@ -358,17 +371,17 @@ body {
 }
 .g-body .g-buttons .g-button {
   position: absolute;
-  width: 33%;
+  width: 25%;
   height: 100%;
 }
 .g-body .g-buttons .g-shoot {
-  left: 33%;
+  left: auto;
+  right: 10px;
 }
 .g-body .g-buttons .g-right {
-  left: 66%;
+  left: 25%;
 }
 #article_details_top_banner_desktop,
-.ArticleDetail_articleShareWidget__1M_8z,
 .ArticleDetail_article--specialLayout__Z5ois header,
 .ArticleTags_root__22wDE,
 .LikeCoinButton_likeCoinButton__11znt,
@@ -380,8 +393,19 @@ body {
 .ArticleDetail_postCommentButtonContainer__PoXtv {
   display: none;
 }
+@media screen and (max-width: 1199px) {
+  .ArticleDetail_articleShareWidget__1M_8z {
+    top: auto;
+    position: fixed;
+    width: 100%;
+    left: 0;
+  }
+}
+.ArticleDetail_articleShareWidget--specialLayout__FO5Oh {
+  padding-top: 100px;
+}
 </style>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"><div class="g-body"><div class="g-body-inner"><div class="g-score"><div class="g-s"><img src="https://interactive.thestandnews.com/2021/11/leavehome/score.png?xdfcghv"><div class="g-n">0</div></div></div><div class="g-door"><img src="https://interactive.thestandnews.com/2021/11/leavehome/door.jpg"></div><div class="g-main"></div><div class="g-man"><img src="https://interactive.thestandnews.com/2021/11/leavehome/man.jpg"></div><div class="g-overlay-svg"></div><div class="g-gameover"><img src="https://interactive.thestandnews.com/2021/11/leavehome/gameover.png"><img src="https://interactive.thestandnews.com/2021/11/leavehome/replay.png"></div><div class="g-start-button g-active"><img src="https://interactive.thestandnews.com/2021/11/leavehome/start.png"></div><video playsinline class="g-dootsound" src="https://interactive.thestandnews.com/2021/11/leavehome/doot_1.mp4"></video><div class="g-buttons"><div class="g-button g-left" data-id="left"><div class="g-img-cont"><img src="https://interactive.thestandnews.com/2021/11/leavehome/left.png"></div></div><div class="g-button g-shoot" data-id="shoot"><div class="g-img-cont"><img src="https://interactive.thestandnews.com/2021/11/leavehome/shoot.png"></div></div><div class="g-button g-right" data-id="right"><div class="g-img-cont"><img src="https://interactive.thestandnews.com/2021/11/leavehome/right.png"></div></div></div></div></div><script src="https://interactive.thestandnews.com/scripts/d3_.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"><div class="g-body"><div class="g-body-inner"><div class="g-score"><div class="g-s"><img src="score.png?fcygvuhbj"><div class="g-n">0</div></div></div><div class="g-door"><img src="door.png?ghvjb"></div><div class="g-main"></div><div class="g-man"><img src="man.png?ghvjb"></div><div class="g-overlay-svg"></div><div class="g-gameover"><img src="gameover.png?ghvjb"><img class="g-replay" src="replay.png?ghvjb"></div><div class="g-start-button g-active"><img src="start.png?ghvjb"></div><video playsinline class="g-dootsound" src="doot_1.mp4"></video><div class="g-buttons"><div class="g-button g-left" data-id="left"><div class="g-img-cont"><img src="left.png?ghvjb"></div></div><div class="g-button g-right" data-id="right"><div class="g-img-cont"><img src="right.png?ghvjb"></div></div><div class="g-button g-shoot" data-id="shoot"><div class="g-img-cont"><img src="shoot.png?ghvjb"></div></div></div></div></div><script src="d3_.js"></script>
 <script>
 // window.stopit = d3.timer(function(){
 // 	d3.selectAll(".article-content-wrap:not(:first-child)").remove();
@@ -405,12 +429,12 @@ body {
 var sel = d3.select(".g-main").html("");
 var door = d3.select(".g-door");
 var man = d3.select(".g-man");
-var manheight = 60*171/141;
+var manheight = 45*124/75;
 var width = d3.select(".g-body-inner").node().getBoundingClientRect().width;
 var height = d3.select(".g-body-inner").node().getBoundingClientRect().height;
 var svg = d3.select(".g-overlay-svg").html("").append("svg").attr("width", width).attr("height", height);
 width -= 20;
-var topoffset = door.node().getBoundingClientRect().width;
+var topoffset = 80;
 svg = svg.append("g").translate([10,0])
 var shots = [];
 var rowg = svg.append("g");
@@ -424,9 +448,12 @@ var score = 0;
 var scoreel = d3.select(".g-n");
 var dootsound = d3.select(".g-dootsound").node();
 
+d3.select(".g-gameover img").style("padding-top", (height/2 - 50) + "px");
+d3.select(".g-start-button img").style("padding-top", (height/2 - 50) + "px");
+
 function shoot() {
-	var left = +man.style("left").replace("px", "") + 7;
-	var top = man.node().getBoundingClientRect().top - topoffset - 5;
+	var left = +man.style("left").replace("px", "") - 3;
+	var top = height - manheight;
 	var shot = svg.append("rect.g-shot").attr("width", 2).attr("height", 10);
 	shot.translate([left,top])
 	shots.push(shot);
@@ -436,7 +463,7 @@ function moveman(dir) {
 	var step = 15;
 	var left = +man.style("left").replace("px", "");
 	if (dir == "right") {
-		if ((+left + 15 + 20) < width) {
+		if ((+left + 15) < width) {
 			left += 15;
 		}
 	} else {
@@ -452,7 +479,7 @@ function addRow() {
 	var g = rowg.append("g.g-row").translate([0,topoffset]);
 	for (var i = 0; i < col; i++) {
 		g.append("image")
-			.attr("href", "https://interactive.thestandnews.com/2021/11/leavehome/doot.jpg")
+			.attr("href", "doot.png?ghvjb")
 			.translate([i*w,0])
 			.attr("width", w)
 			.attr("height", h);
@@ -464,7 +491,7 @@ function gameover() {
 	d3.select(".g-gameover").classed("g-active", true)
 	window.timer.stop();
 
-	d3.select(".g-gameover").on("click", function(){
+	d3.select(".g-replay").on("click", function(){
 		d3.select(".g-gameover").classed("g-active", false);
 		start();
 	})
@@ -524,7 +551,7 @@ function start() {
 							if (parent.attr("transform")) {
 								var atop = parent.attr("transform").split("(")[1].split(",")[1].replace(")", "");
 								var aleft = el.attr("transform").split("(")[1].split(",")[0];
-								var a = svg.append("image").attr("href", "https://interactive.thestandnews.com/2021/11/leavehome/explode.png").translate([aleft, atop]).attr("width", w).attr("height", h);
+								var a = svg.append("image").attr("href", "explode.png").translate([aleft, atop]).attr("width", w).attr("height", h);
 
 								setTimeout(function(){
 									a.remove();

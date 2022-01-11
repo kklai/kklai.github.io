@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.2.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.2" baseProfile="tiny" id="g-map-Artboard_1-1-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 x="0px" y="0px" viewBox="0 0 768 1024" overflow="visible" xml:space="preserve">
+<g>
+	<radialGradient id="step1_2_" cx="456.786" cy="432.0399" r="72.9598" gradientUnits="userSpaceOnUse">
+		<stop  offset="0" style="stop-color:#CC0000"/>
+		<stop  offset="0.1347" style="stop-color:#CC0000;stop-opacity:0.8653"/>
+		<stop  offset="1" style="stop-color:#CC0000;stop-opacity:0"/>
+	</radialGradient>
+	<circle id="step1_1_" fill="url(#step1_2_)" cx="456.786" cy="432.04" r="72.96"/>
+</g>
+<style>
+#g-map-Artboard_1-1-img rect, #g-map-Artboard_1-1-img circle, #g-map-Artboard_1-1-img path, #g-map-Artboard_1-1-img line, #g-map-Artboard_1-1-img polyline { vector-effect: non-scaling-stroke; }
+</style>
+</svg>
+

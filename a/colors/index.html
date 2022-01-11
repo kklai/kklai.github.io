@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>2021 香港，如果感覺有顏色 | 互動專頁 | 立場新聞</title><link rel="icon" type="image/x-icon" href="/favicon.ico" /><meta name="viewport" content="width=device-width, initial-scale=1"><meta property="fb:pages" content="710476795704610" /><meta property="og:title" content="2021 香港，如果感覺有顏色 | 互動專頁 | 立場新聞" /><meta property="og:type" content="article" /><meta property="og:url" content="https://2021color.thestandnews.com/" /><meta property="og:image" content="https://assets.thestandnews.com/media/photos/color-14.png" /><meta property="og:site_name" content="立場新聞 Stand News" /><meta property="fb:app_id" content="1534089350179685" /><meta property="og:description" content="2021 是香港人噤聲、禁語的一年，如果不能用語言表達，你會用哪種顏色去形容你這一年的感覺呢？" /><meta name="description" content="2021 是香港人噤聲、禁語的一年，如果不能用語言表達，你會用哪種顏色去形容你這一年的感覺呢？" /><meta name="twitter:card" content="summary" /><meta name="twitter:site:id" content="2940460374" /><meta name="twitter:url" content="https://2021color.thestandnews.com/" /><meta name="twitter:title" content="2021 香港，如果感覺有顏色 | 互動專頁 | 立場新聞" /><meta name="twitter:description" content="2021 是香港人噤聲、禁語的一年，如果不能用語言表達，你會用哪種顏色去形容你這一年的感覺呢？" /><meta name="twitter:image" content="https://assets.thestandnews.com/media/photos/color-14.png" /><meta property="article:publisher" content="https://www.facebook.com/standnewshk" />
+
+	<style type="text/css">
+
+	html,body {
+		margin:  0;
+		padding:  0;
+		background: #333;
+		font-family: PingFang HK,Noto Sans TC,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+
+	}
+
+	.g-nav {
+	    background: #000;
+	    color: #fff;
+	    font-size: 25px;
+	    text-align: center;
+	    padding: 7px 0 5px 0;
+	    font-family: droid sans, helvetica neue, Helvetica, Arial, sans-serif;
+	    font-weight: 700;
+	    height:  20px;
+	}
+
+	.g-nav a {
+	    color: #fff;
+	}
+
+	.g-nav img {
+	    max-width: 110px;
+	    display: none;
+	}
+
+	.g-header {
+		text-align: center;
+		margin:  40px auto 25px auto;
+		color: #fff;
+	}
+
+	.g-body {
+		max-width: 600px;
+		margin: 0 auto;
+	}
+
+	.g-header-text {
+		font-size: 28px;
+		line-height: 1.3;		
+		font-weight: 700;
+		max-width: 330px;
+		font-weight: 700;
+		letter-spacing: 2px;
+		margin:  0 auto 10px auto;
+	}
+
+	@media screen and (min-width:  600px) {
+		.g-header-text {
+			font-size: 38px;
+			max-width: 430px;
+		}
+	}
+
+
+	.g-share-card {
+		/*background*/: #333;
+	}
+
+	.g-share-card canvas {
+		margin:  0 auto;
+		background: #fff;
+		display: block;
+	}
+
+	.g-share-cont {
+		margin: 15px auto;
+	}
+
+
+	.g-share-text {
+		text-align: center;
+		color:  #fff;
+		margin-bottom: 8px;
+		font-size: 13px;
+		opacity: 0.6;
+	}
+
+	.g-text-cont {
+		text-align: center;
+		margin-top: 50px;
+		color:  #fff;
+	}
+
+	.g-results-chart {
+		margin:  25px auto 100px auto;
+		position: relative;
+		
+	}
+
+	.g-results-chart canvas {
+		margin:  25px auto;
+		display: block;
+		opacity: 0.1;
+	}
+
+	.g-results-chart svg {
+		margin:  0 auto;
+		display: block;
+		position: absolute;
+		top:  0;
+		left: 20px;
+		overflow: visible;
+		border:  1px solid rgba(255,255,255,0.1);
+	}
+
+	.g-intro, .g-text {
+		padding:  0 16px;
+	}
+
+	.tooltip {
+	  top: -1000px;
+	  position: fixed;
+	  padding: 3px 6px;
+	  background: rgba(255, 255, 255, .90);
+	  /*border: 1px solid lightgray;*/
+	  pointer-events: none;
+	  text-shadow: 0px 0px 1px #fff;
+	}
+	.tooltip-hidden{
+	  opacity: 0;
+	  transition: all .3s;
+	  transition-delay: .1s;
+	}
+
+	circle.tooltipped {
+		stroke-width:  3 !important;
+	}
+
+	.g-box {
+		width:  20px;
+		height:  20px;
+		display: inline-block;
+		margin-right: 5px;
+		position: relative;
+		margin-bottom: 2px;
+
+	}
+
+	.g-color-box:after, .g-box:after {
+		content: '';
+	  width: 0;
+	  height: 0;
+	  border-style: solid;
+	  border-width: 0 0 3px 3px;
+	  border-color: transparent transparent #333 transparent;
+	  right: 0;
+	  bottom: 0;
+	  position: absolute;
+	  display: block;
+	}
+
+	.g-color-box:before, .g-box:before {
+		content: '';
+	  width: 0;
+	  height: 0;
+	  border-style: solid;
+	  border-width: 0 0 3px 3px;
+	  border-color: transparent transparent transparent #333;
+	  left: 0;
+	  top: 0;
+	  position: absolute;
+	  display: block;
+	}
+
+	.g-color-most, .g-color-most-count, .g-txt-color, .g-color-box, .g-color-text, .g-total-count, .g-text-summary {
+		display: inline;
+	}
+
+	.g-color-box {
+	    line-height: 0;
+	    width: 12px;
+	    height: 12px;
+	    display: inline-block;
+	    margin-right: 4px;
+	    position: relative;
+	    box-shadow: 0px 0px 3px rgb(255 255 255 / 20%);
+
+	}
+
+	.g-color-box:before {
+		border-width: 0 0 3px 3px;
+	}
+
+	.g-color-box:after {
+		border-width: 0 0 3px 3px;
+	}
+
+	.g-intro {
+		font-size: 15px;
+		max-width: 390px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.g-wrap {
+		display: inline;
+		white-space: nowrap;
+	}
+
+	.g-svg {
+		margin-top:  20px;
+		padding-left: 20px;
+	}
+
+
+
+	</style>
+</head>
+<body>
+
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v13.0&appId=1140640566402522&autoLogAppEvents=1" nonce="iSX7IDCX"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<div class="g-nav"><a href="https://thestandnews.com"><img src="https://polyu.thestandnews.com/images/standnews-logo.210a7a08.png" alt="立場新聞"></a></div>
+
+	<div class="g-body">
+
+	<div class="g-header">
+		<div class="g-header-inner">
+			<div class="g-header-text">2021 香港，<br>如果感覺有顏色</div>
+			<div class="g-intro">2021 是香港人噤聲、禁語的一年，如果不能用語言表達，你會用哪種顏色去形容你這一年的感覺呢？</div>
+			<div class="g-share-cont">
+			<div class="fb-like" data-href="https://2021color.thestandnews.com/" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="true"></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- <a id="downloadAnchorElem" style="display:none"></a> -->
+
+	<div class="g-share-text">↓分享你的選擇↓</div>
+	<div class="g-share-card"></div>
+
+	<div class="g-text-cont">
+	<div class="g-text">至今有 <div class="g-total-count"></div> 位讀者提交了他們的 2021 顏色。<div class='g-text-summary'>最多人選擇的是 <div class="g-color-most"></div>，<div class="g-color-most-count"></div> 人選擇。</div></div>
+	</div>
+
+	<div class="g-svg"></div>
+
+	<div class="g-results-chart"></div>
+
+	</div>
+
+	<script src="d3_.js"></script>
+	<script src="colors.js"></script>
+
+	<script>
+
+	// var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(colors));
+	// var dlAnchorElem = document.getElementById('downloadAnchorElem');
+	// dlAnchorElem.setAttribute("href",     dataStr     );
+	// dlAnchorElem.setAttribute("download", "scene.json");
+	// dlAnchorElem.click();
+
+
+
+	function drawResultCard() {
+
+		var isMobile = innerWidth < 460;
+
+		var sel = d3.select(".g-share-card").html("");
+		var width = sel.node().getBoundingClientRect().width - 40;
+		var height = isMobile ? width : width*630/1200;
+
+		var dpr = 2;
+
+		var canvas = sel.append("canvas").attr("width", width*2).attr("height", height*2);
+		canvas.style("width", width + "px").style("height", height + "px")
+		var ctx = canvas.node().getContext("2d");
+		ctx.scale(2,2)
+
+		var boxWidth = width;
+		var boxHeight = width*1112/1200;
+		ctx.fillStyle = "#fff";
+		ctx.fillStyle = "#000000"
+		ctx.fillRect(0,0,width,height)
+		ctx.fillStyle = "#000000"
+		ctx.strokeStyle = "rgba(0,0,0,0.16)";
+		ctx.lineWidth = 5;
+
+		var hi = [1,2];
+
+		var sources = {
+			mobile: isMobile ? "2021color-mobile.png" : "2021color-desktop.png?r2t43veh"
+		}
+
+		function loadImages(sources, callback) {
+			var images = {};
+			var loadedImages = 0;
+			var numImages = 0;
+
+			for(var src in sources) {
+				numImages++;
+			}
+
+			for (var src in sources) {
+				images[src] = new Image();
+				images[src].onload = function() {
+					if(++loadedImages >= numImages) {
+					  callback(images);
+					}
+				};
+				images[src].src = sources[src];
+			}
+		}
+
+		loadImages(sources, function(images){
+			var imw = width*(136/1200)
+			var imh = imw*125/136;
+			// ctx.drawImage(images.logo, width-imw, 0, imw, imh);
+			// ctx.drawImage(images.text, 0, 0, width, height);
+			ctx.drawImage(images.mobile, 0, 0, width, height);
+
+			var targetWidth = width*275/1200;
+			var colortxt = sessionStorage.getItem("sncolor") ? sessionStorage.getItem("sncolor") : colors[colors.length - 1].color;
+
+			fitTextOnCanvas(colortxt.toUpperCase(),"Helvetica",height);
+			    
+			function fitTextOnCanvas(text,fontface,yPosition){
+			    var fontsize=35;
+			    var targetHeight = isMobile ? height*(66/1200) : height*100/1200;
+
+			    do{
+			        fontsize--;
+			        ctx.font="700 "+ fontsize+"px "+fontface;
+			    }while(ctx.measureText(text).fontBoundingBoxAscent>targetHeight)
+
+			    // draw the text
+			    ctx.fillStyle = isMobile ? "#fff" : "#9e9f9f";
+			    var textw = ctx.measureText(text).width;
+			   
+			    if (isMobile) {
+			    	ctx.shadowColor="rgba(0,0,0,0.3)";
+			    	ctx.shadowBlur=7;	
+			    }
+			    
+			    if (isMobile) {
+			    	ctx.fillText(text,10,height-ctx.measureText(text).fontBoundingBoxAscent);
+			    } else {
+			    	ctx.fillText(text,width*802/1200+15,height-ctx.measureText(text).fontBoundingBoxAscent);	
+			    }	    
+			}
+		})
+	}
+
+	drawResultCard();
+
+	function drawChart() {
+
+		colors = colors.filter(d => d.color != "transparent" && d.color && d.color != "gray" && d.color.indexOf("#") > -1)
+		var sel = d3.select(".g-results-chart").html("");
+		sel.style("width", d3.select(".g-share-card canvas").style("width"))
+
+		var grouped = d3.nest().key(d => d.color).entries(colors);
+		grouped.sort((a,b) => b.values.length - a.values.length);
+
+		var most = grouped.filter(d => d.values.length == grouped[0].values.length);
+
+		function numberWithCommas(x) {
+		    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+
+		d3.select(".g-total-count").text(numberWithCommas(colors.length))
+
+		if (most[0].values.length == 1) {
+			d3.select(".g-text-summary").style("display", "none");
+		} else {
+			d3.select(".g-text-summary").style("display", "inline");
+			var tt = d3.select(".g-color-most").html("");
+
+			most.forEach(function(d,i){
+				var wrap = tt.append("div.g-wrap");
+				wrap.append("div.g-color-box").style("background-color", d.key)
+				var str = d.key.toUpperCase();
+				if (most.length > 1 && i < most.length - 1) {
+					str += "、"
+				}
+				wrap.append("div.g-color-text").text(str)
+			})
+
+			d3.select(".g-color-most-count").html(most.length > 1 ? "各有 " + numberWithCommas(most[0].values.length) : "有 " + numberWithCommas(most[0].values.length))
+		}
+
+		var rgbArr = [];
+		colors.forEach(function(d){
+
+			if (d.color && d.color.toLowerCase() == "#ffffff") {
+				d.pos = "0,0"
+			}
+			if (d.color && d.color.toLowerCase() == "#000000") {
+				d.pos = "1,1"
+			}
+
+			if (d.pos) {
+				d.x = +Math.abs(d.pos.split(",")[0]);
+				d.y = +Math.abs(d.pos.split(",")[1]);
+					
+			}
+			
+			
+		})
+
+		colors = colors.filter(d => d.x && d.y)
+
+		colors.sort((a,b) => a.y - b.y)
+		colors.sort((a,b) => a.x - b.x)
+
+	
+		// colors.forEach(function(d){
+		// 	sel.append("div.g-box").attr("data-id", JSON.stringify(d)).style("background", d.color)
+		// })
+		
+		
+		function drawsvg() {
+			var sel = d3.select(".g-svg").html("");
+			var width = sel.node().getBoundingClientRect().width - 40;
+			var height = width;
+
+			var svg = sel.append("svg").attr("width", width).attr("height", height);
+
+			var w = width/Math.ceil(Math.sqrt(colors.length));
+			var h = w;
+
+			var x = 0;
+			var y = 0;
+
+			colors.forEach(function(d,i){
+
+				svg.append("rect")
+					.attr("width", w)
+					.attr("height", h)
+					.style("fill", d.color)
+					.translate([x,y])
+					.style("stroke", "rgba(255,255,255,0.5)")
+					.style("stroke-width", 0.2)
+
+				x += w;
+
+				if ((x+w) > width) {
+					x = 0;
+					y += w;
+				}
+
+			})
+
+
+			
+
+
+		}
+		
+		drawsvg();
+		
+
+	}
+
+	drawChart();
+
+	// window.history.pushState("", "", '/');
+
+
+
+	</script>
+
+
+
+</body>
+</html>

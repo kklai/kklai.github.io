@@ -1,0 +1,299 @@
+.g-body {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  font-family: droid sans, helvetica neue, Helvetica, Arial, sans-serif;
+  color: #444;
+}
+.g-kicker {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.g-kicker .g-inner {
+  display: inline;
+  padding: 0 2px 5px 2px;
+  border-bottom: 1px solid #d3d3d3;
+}
+.g-header .g-headline {
+  font-family: droid sans, helvetica neue, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  margin: 0 auto 25px auto;
+  font-size: 32px;
+  line-height: 1.8;
+  max-width: 720px;
+}
+.g-subhed {
+  font-family: droid sans, helvetica neue, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  margin: 60px auto 25px auto;
+  font-size: 24px;
+  max-width: 600px;
+}
+.g-text {
+  font-family: droid sans, helvetica neue, Helvetica, Arial, sans-serif;
+  max-width: 600px;
+  margin: 16px auto;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #444;
+}
+.g-bold {
+  font-weight: 700;
+}
+.g-graphic {
+  margin: 25px auto;
+}
+.g-graphic-text {
+  font-family: droid sans, helvetica neue, Helvetica, Arial, sans-serif;
+}
+.g-image {
+  margin: 35px auto;
+}
+.g-image img {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+.g-image .g-credit {
+  margin-top: 10px;
+  font-size: 13px;
+  text-align: center;
+  color: #999;
+  display: block;
+}
+.g-refer {
+  border: 1px solid #ececec;
+  border-radius: 5px;
+  background: rgba(253, 232, 0, 0.05);
+  padding: 10px 20px;
+  max-width: 460px;
+  margin: 35px auto;
+}
+.g-refer .g-text {
+  font-size: 12px;
+  margin: 0;
+  line-height: 1.5;
+}
+.g-refer .g-text:first-child {
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+.g-refer .g-bullet:before {
+  content: "•";
+  position: absolute;
+  margin-left: -10px;
+}
+.g-break {
+  margin: 50px auto;
+  text-align: center;
+}
+.g-break em {
+  margin-right: 40px;
+  text-align: center;
+}
+.g-break em:last-child {
+  margin-right: 0;
+}
+.cover-image-wrapper.mobile,
+.author-wrapper {
+  display: none !important;
+}
+.g-promo {
+  max-width: 600px;
+  margin: 25px auto;
+  padding: 25px 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.g-promo a {
+  color: #444;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.g-promo a:hover {
+  opacity: 0.6;
+}
+.g-promo .g-promo-asset-cont,
+.g-promo .g-promo-text-cont {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+}
+@media screen and (min-width: 600px) {
+  .g-promo .g-promo-asset-cont {
+    width: calc(68% - 10px);
+  }
+}
+@media screen and (min-width: 600px) {
+  .g-promo .g-promo-text-cont {
+    width: calc(32% - 10px);
+  }
+}
+.g-promo .g-promo-text-cont {
+  margin-right: 10px;
+}
+.g-promo .g-promo-tag {
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.g-promo .g-promo-hed {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+@media screen and (min-width: 460px) {
+  .g-promo .g-promo-hed {
+    max-width: none;
+  }
+}
+.g-promo .g-promo-text {
+  margin-bottom: 10px;
+  font-size: 15px;
+  padding: 0 16px;
+}
+@media screen and (min-width: 460px) {
+  .g-promo .g-promo-text {
+    padding: 0;
+  }
+}
+.g-promo .g-youtube-cont {
+  width: 100%;
+  padding-bottom: 56%;
+  position: relative;
+}
+.g-promo .g-youtube-cont iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.g-promo .g-img-cont img {
+  width: 100%;
+}
+.g-promo .g-mobile-hed {
+  display: inline;
+}
+@media screen and (min-width: 460px) {
+  .g-promo .g-mobile-hed {
+    display: none;
+  }
+}
+.g-promo .g-desktop-hed {
+  display: none;
+}
+@media screen and (min-width: 460px) {
+  .g-promo .g-desktop-hed {
+    display: block;
+  }
+}
+.g-note {
+  font-size: 13px;
+  text-align: center;
+  color: #999;
+}
+.g-ymt-chart {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.g-ymt-chart .g-building-name {
+  font-size: 12px;
+}
+.g-ymt-chart path.domain {
+  display: none;
+}
+.g-ymt-chart .g-chart-each {
+  display: inline-block;
+  width: 30%;
+}
+.g-ymt-chart svg {
+  overflow: visible;
+  padding-bottom: 10px;
+  margin-bottom: 25px;
+}
+.g-ymt-chart text {
+  font-size: 9px;
+}
+.two-col-cont {
+  max-width: 600px;
+  margin: 0 auto;
+}
+@media screen and (min-width: 600px) {
+  .g-graphic.two-col {
+    width: calc(50% - 3px);
+    display: inline-block;
+  }
+}
+.g-ymt-map {
+  max-width: 600px;
+  margin: 0 auto;
+  display: block;
+}
+.g-ymt-map tspan:first-child {
+  font-weight: 700;
+}
+.g-ymt-map .g-road-names {
+  opacity: 0.6;
+}
+.g-ymt-map .g-road-names tspan:first-child {
+  font-weight: normal;
+}
+.g-ymt-map .g-dont-bold tspan:first-child {
+  font-weight: normal;
+}
+.g-ymt-map .g-circle-stroke,
+.g-ymt-map .g-black-stroke {
+  stroke: #000 !important;
+}
+.g-ymt-map .g-key {
+  margin-bottom: 8px;
+}
+.g-ymt-map .g-key .g-key-each {
+  display: inline-block;
+  margin-right: 20px;
+}
+.g-ymt-map .g-key .g-key-each .g-circle,
+.g-ymt-map .g-key .g-key-each .g-text {
+  display: inline-block;
+  vertical-align: middle;
+}
+.g-ymt-map .g-key .g-key-each .g-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  border: 2px solid #000;
+}
+.g-ymt-map .g-key .g-key-each .g-text {
+  font-size: 12px;
+  line-height: 0;
+  margin: 0;
+}
+.tooltip {
+  font-family: droid sans, helvetica neue, Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  top: -1000px;
+  position: fixed;
+  padding: 4px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid lightgray;
+  pointer-events: none;
+}
+.tooltip-hidden {
+  opacity: 0;
+  transition: all 0.3s;
+  transition-delay: 0.1s;
+}
+@media (max-width: 590px) {
+  div.tooltip {
+    bottom: -1px;
+    width: calc(100%);
+    left: -1px !important;
+    right: -1px !important;
+    top: auto !important;
+    width: auto !important;
+  }
+}
+.g-graphic-hed {
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
