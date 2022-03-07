@@ -1,0 +1,1 @@
+var bb2 = {"type":"Topology","arcs":[[[0,0],[58,0],[0,125],[67,0],[0,-125],[-125,0]]],"transform":{"scale":[0.008,0.006632757179383105],"translate":[113.81011962890625,21.76970289940967]},"objects":{"bb":{"type":"GeometryCollection","geometries":[{"arcs":[[0]],"type":"Polygon"}]}}}
