@@ -1,0 +1,26 @@
+body,html {
+	font-family: arial, sans-serif;
+	font-weight: lighter;
+}
+
+h1 {
+	margin: 60px auto 25px auto;
+}
+
+h1, h3 {
+	text-align: center;
+}
+
+.g-group {
+	margin: 50px auto 0 auto;
+}
+
+.g-chart {
+	max-width: 720px;
+	margin:  0 auto;
+}
+
+svg {
+	overflow: visible;
+	padding-bottom: 100px;
+}
