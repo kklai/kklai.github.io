@@ -35,9 +35,11 @@
 
             var did = input[i].did ? input[i].did : "";
 
+            var pub = input[i].pub ? '  /   ' + input[i].pub : "";
+
             row = Math.floor(i/3) + 1;
 
-            var str = '<div class="span4" id="' + input[i].link.split("/")[input[i].link.split("/").length - 1].replace(".html", "") + '"><p class="date">' + date + '</p> <a href="' + input[i].link + '" target="_blank"><h2>' + input[i].title + '</h2>';
+            var str = '<div class="span4" id="' + input[i].link.split("/")[input[i].link.split("/").length - 1].replace(".html", "") + '"><p class="date">' + date + ' <span class="pub">' + pub + '</span></p> <a href="' + input[i].link + '" target="_blank"><h2>' + input[i].title + '</h2>';
 
             if (input[i].vidlink) {
               str += '<div class="wrapper vid-wrapper"><video autoplay loop playsinline muted src="img/video/' + input[i].vidlink + '"></div></a>';
@@ -97,12 +99,13 @@
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
         <!-- <div class="clip"></div> -->
-        <h1>K.K. Rebecca Lai</h1>
-        <p>Visual Journalist</p>
-        <ul class="social">
+        <h1>Hello! I am K.K. Rebecca Lai.</h1>
+        <p>I worked on interactive graphics and data visualization at <a href="https://www.nytimes.com/2021/12/29/world/asia/hong-kong-stand-news-arrest.html">Stand News Hong Kong</a> and <a href="https://www.nytimes.com/by/kk-rebecca-lai">The New York Times</a>. I also run <a href="https://www.lkk-store.com/">an online store</a> and do <a href="https://www.lkk-store.com/lkk-map/">a whole lot of hiking</a>. You can check out some of my favorite work below.</p>
+        <p>I am looking for freelance work and would love to chat! You can find me at kkrebeccalai at gmail or on <a href='http://twitter.com/kkrebeccalai'>Twitter</a>.</p>
+        <!-- <ul class="social">
           <li><a href="mailto:kkrebeccalai@gmail.com" target="_blank"><i class="icon-envelope"></i></a></li>
           <li><a href="http://twitter.com/kkrebeccalai" target="_blank"><i class="icon-twitter-sign"></i></a></li>
-        </ul>
+        </ul> -->
       </div>
 
       <div id="work">
