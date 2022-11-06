@@ -84,6 +84,8 @@ function saveFile(auth) {
     if (err) return console.log('The API returned an error: ' + err);
     const rows = res.data.values;
 
+    // console.log(rows[1])
+
     if (rows.length) {
 
       var out = [];
