@@ -9,6 +9,7 @@
   width: 100%;
   font-family: droid sans, helvetica neue, Helvetica, Arial, sans-serif;
   color: #444;
+  padding-top: 60px;
 }
 .g-kicker {
   text-align: center;
@@ -301,8 +302,45 @@
   margin-top: 0;
   margin-bottom: 5px;
 }
+.g-nav {
+  position: fixed;
+  z-index: 99999999999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: #000;
+}
+
+.g-nav img {
+  height: 30px;
+  display: block;
+  margin: 0 auto;
+  padding-top: 5px;
+}
+
+@media screen and (min-width: 600px) {
+  .g-nav {
+    height: 50px;
+  }
+  .g-nav img {
+    height: 40px;
+  }
+}
+
+.g-hed {
+  text-align: center;
+  font-weight: 700;
+  font-size: 30px;
+}
+
+.g-byline {
+  text-align: center;
+  color: #999;
+  font-size: 12px;
+}
 </style>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><div class="g-body"><div class="g-text">油麻地佐敦一帶近日成為武漢肺炎重災區，1 月 1 日起，全港約四分一新增個案來自油尖旺區，當中逾半來自「指定區域」，即東至彌敦道，西至渡船街，北至甘肅街，南至佐敦道的範圍。</div><div class="g-text">繼上星期劃出指定區域作強制檢測後，政府今日（19 日）公布再在範圍內劃出「核心區」，當中約 70 幢大廈均須強制檢測。</div><div class="g-graphic ymt-chart"><div class="g-text g-graphic-hed">1月至今確診本地個案地區分佈</div><div class="g-ymt-chart" data-id=""></div></div><div class="g-text">食物及衞生局上週（15 日）在油麻地佐敦區劃出指定區域，區內大廈凡有一宗確診個案，全幢大廈居民便須強制檢測。截至 1 月 18 日區內已有 37 幢大廈被納入其中， 13,400 名居民接受檢測。</div><div class="g-text">隨著疫情持續反覆，政府再宣佈更嚴格措施。在新「核心區」範圍內，即北至北海街、東到廟街兩旁、南至寧波街、西至新填地街兩旁的大廈，不論有否確診個案，均須強制檢測。</div><div class="g-text">《立場》分析衞生署數據，顯示有多棟鄰近「指定區域」的大廈亦有居民確診，但因不在範圍內而沒被列為強制檢測大廈。</div><div class="g-graphic ymt-map"><div class="g-text g-graphic-hed">1月至今本地確診者居住或到訪過的建築物</div><div class="g-ymt-map" data-id="dots-only"></div></div><div class="g-text">不少居於「指定區域」的確診者，足跡亦遍及「指定區域」以外。如個案編號 9552 及 9553 、均住在「指定區域」內的外判清潔工人，確診前曾於「指定區域」內外的多個公廁工作。</div><div class="two-col-cont"><div class="g-graphic ymt-map two-col"><div class="g-text g-graphic-hed">個案編號 9552 居住或到訪過的建築物</div><div class="g-ymt-map two-col" data-id="cleaning-staff-9552"></div></div><div class="g-graphic ymt-map two-col"><div class="g-text g-graphic-hed">個案編號 9553 居住或到訪過的建築物</div><div class="g-ymt-map two-col" data-id="cleaning-staff-9553"></div></div></div><div class="g-text">部分油尖旺「指定區域」的確診者，曾走訪全港多區各處。例如至少兩名將軍澳–藍田隧道的地盤工人住在「指定區域」內，確診前到過地盤上班。</div><div class="g-graphic ymt-map"><div class="g-text g-graphic-hed">「指定區域」確診人士居住或到訪過的區外建築物</div><div class="g-ymt-map" data-id="construction"></div></div></div><script src="d3_.js"></script><script src="topojson.min.js"></script><script src="cases-processed.js?awrsht"></script><script src="cases.js?aergh"></script><script src="hk_districts.js"></script><script src="innerlines.js"></script><script src="district.js"></script><script src="roads.js"></script><script src="shape.js?awetrsyduf"></script><script src="shape_fix.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><div class="g-nav"><img src="../../img/snlogo.png"></div><div class="g-body"><div class="g-subhed g-hed">【武漢肺炎】油尖旺成疫區　「指定區域」個案佔逾半　地圖分析確診者足跡</div><div class="g-text g-byline">立場新聞 2021/01/19</div><div class="g-text">油麻地佐敦一帶近日成為武漢肺炎重災區，1 月 1 日起，全港約四分一新增個案來自油尖旺區，當中逾半來自「指定區域」，即東至彌敦道，西至渡船街，北至甘肅街，南至佐敦道的範圍。</div><div class="g-text">繼上星期劃出指定區域作強制檢測後，政府今日（19 日）公布再在範圍內劃出「核心區」，當中約 70 幢大廈均須強制檢測。</div><div class="g-graphic ymt-chart"><div class="g-text g-graphic-hed">1月至今確診本地個案地區分佈</div><div class="g-ymt-chart" data-id=""></div></div><div class="g-text">食物及衞生局上週（15 日）在油麻地佐敦區劃出指定區域，區內大廈凡有一宗確診個案，全幢大廈居民便須強制檢測。截至 1 月 18 日區內已有 37 幢大廈被納入其中， 13,400 名居民接受檢測。</div><div class="g-text">隨著疫情持續反覆，政府再宣佈更嚴格措施。在新「核心區」範圍內，即北至北海街、東到廟街兩旁、南至寧波街、西至新填地街兩旁的大廈，不論有否確診個案，均須強制檢測。</div><div class="g-text">《立場》分析衞生署數據，顯示有多棟鄰近「指定區域」的大廈亦有居民確診，但因不在範圍內而沒被列為強制檢測大廈。</div><div class="g-graphic ymt-map"><div class="g-text g-graphic-hed">1月至今本地確診者居住或到訪過的建築物</div><div class="g-ymt-map" data-id="dots-only"></div></div><div class="g-text">不少居於「指定區域」的確診者，足跡亦遍及「指定區域」以外。如個案編號 9552 及 9553 、均住在「指定區域」內的外判清潔工人，確診前曾於「指定區域」內外的多個公廁工作。</div><div class="two-col-cont"><div class="g-graphic ymt-map two-col"><div class="g-text g-graphic-hed">個案編號 9552 居住或到訪過的建築物</div><div class="g-ymt-map two-col" data-id="cleaning-staff-9552"></div></div><div class="g-graphic ymt-map two-col"><div class="g-text g-graphic-hed">個案編號 9553 居住或到訪過的建築物</div><div class="g-ymt-map two-col" data-id="cleaning-staff-9553"></div></div></div><div class="g-text">部分油尖旺「指定區域」的確診者，曾走訪全港多區各處。例如至少兩名將軍澳–藍田隧道的地盤工人住在「指定區域」內，確診前到過地盤上班。</div><div class="g-graphic ymt-map"><div class="g-text g-graphic-hed">「指定區域」確診人士居住或到訪過的區外建築物</div><div class="g-ymt-map" data-id="construction"></div></div></div><script src="d3_.js"></script><script src="topojson.min.js"></script><script src="cases-processed.js?awrsht"></script><script src="cases.js?aergh"></script><script src="hk_districts.js"></script><script src="innerlines.js"></script><script src="district.js"></script><script src="roads.js"></script><script src="shape.js?awetrsyduf"></script><script src="shape_fix.js"></script>
 <script>
 window.stopit = d3.timer(function(){
 	d3.selectAll(".article-content-wrap:not(:first-child)").remove();
