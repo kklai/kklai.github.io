@@ -11,10 +11,11 @@
 			padding: 0;
 			text-align: center;
 			font-family: arial, sans-serif;
-			padding-bottom: 100px;
 			line-height: 1.6;
-			color: #fff;
+		}
 
+		img {
+			width: 100%;
 		}
 
 		.g-background {
@@ -23,259 +24,96 @@
 			height: 100%;
 			top: 0;
 			left: 0;
-			background: url(confetti4.gif);
-			filter: saturate(50%);
-			background-size: 50%;
-/*			opacity: 0.3;*/
+			background: url(background.png);
+			background-size: 100% 100%;
+			filter: blur(6px);
 			z-index: -1;
 		}
 		
 		.g-frame-outer {
-			max-width: 600px;
-			max-height: 600px;
-			margin: 100px auto 50px auto;
+			max-width: 800px;
+			max-height: 800px;
+			margin: 0 auto;
 			position: relative;
 
 		}
 
-		.g-frame {
-			position: relative;
-			margin-left: auto;
-			margin-right: auto;
-			width: calc(100% - 90px);
-			padding: 0 20px;
-			padding-bottom: calc(100% - 50px);
-			border: 10px solid #ffffff;
-			box-shadow: 0px 0px 30px rgba(255,200,200,1);
-			user-select: none;
-			filter: saturate(110%);
-			overflow: hidden;
-/*			margin-top: 50px;*/
-		}
-
-		/*.g-frame:after {
-			content: "";
-			display: block;
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			transform: scale(0.96, 0.96) translate(0,-0.5%);
-		}*/
-
-
-		.g-frame img, canvas, #canvas, .g-info	{
+		#canvas, canvas	{
 			position: absolute;
 			bottom: 0;
 			left: 0;
 			width: 100%;
 			height: 100%;
-/*			mix-blend-mode: multiply;*/
 		}
 
-		#cp {
-/*			mix-blend-mode: hue;*/
-		}
-
-		canvas {
-/*			opacity: 0.9;*/
-			filter: saturate(1.8);/*
-			width: calc(100% + 13px);
-			height: calc(100% + 25px);*/
+		#canvas {
+			position: fixed;
+			top: 0;
+			left: 0;
+			filter: saturate(1.8);
+			opacity: 0.9;
 		}
 
 		#yuen {
-			transform: scale(1.2) translate(0,-1%);
-			filter: saturate(2);
-			mix-blend-mode: normal;
-			z-index: 99;
-/*			filter: invert(1);*/
+			width: 100%;
+			height: 100%;
+			filter: brightness(1.05);
 		}
 
 		.g-map {
-/*			border: 1px solid #000;*/
 			max-width: 600px;
 			margin: 0 auto;
-/*			background: #fff;*/
-
 		}
 
-		img {
-			width: 100%;
-		}
 
 		.g-hed {
 			margin: 80px auto 25px auto;
 			font-weight: 700;
-
+			font-size: 24px;
+			line-height: 1.2;
 		}
 
 		.g-hed-inner {
 			display: inline-block;
-			border-bottom: 2px solid #ff9696;
+			border-bottom: 2px solid #000;
 		}
-
-		/*.g-cn {
-			font-family: "MYuenHK";
-		}*/
 
 		.g-time {
 			display: inline-block;
-			border-bottom: 2px dotted #ff9696;
+			border-bottom: 2px dotted #000;
 			margin-bottom: 5px;
 		}
 
-
 		.g-block {
 			margin: 25px auto;
+			font-size: 18px;
 		}
-
 
 		.g-map-img {
-			max-width: 600px;
-			margin: -40px auto;
-			filter: invert(1);
+			max-width: 800px;
+			width: 100%;
+			margin-top: 25px;
 		}
 
-
-		.g-lamhead, .g-yuenhead {
-			position: absolute;
-			top: 0;
-			left: 0;
-			height: auto;
-			z-index: 10;
-			animation: shake 1.5s;
-			animation-iteration-count: infinite;
-
-		}
-
-		.g-lamhead img, .g-yuenhead img {
-			position: relative;
-
-		}
-
-		.g-yuenhead {
-			top: 36%;
-			right: 17%;
-			left: auto;
-			width: 40px;
-			animation: shake2 1.5s;
-			animation-iteration-count: infinite;
-		}
-		.g-lamhead {
-			width: 40px;
-			top: 35%;
-			left: 17%;
-		}
-
-		@media screen and (min-width: 600px) {
-			.g-yuenhead {
-				top: 35%;
-				right: 15%;
-				left: auto;
-				width: 63px;
-			}
-
-			.g-lamhead {
-				top: 32%;
-				left: 15%;
-				width: 66px;
-			}
-
-		}
-
-
-		@keyframes shake {
-		  0% { transform: translate(1px, 1px) rotate(0deg); }
-		  10% { transform: translate(-1px, -2px) rotate(-1deg); }
-		  20% { transform: translate(-3px, 0px) rotate(1deg); }
-		  30% { transform: translate(3px, 2px) rotate(0deg); }
-		  40% { transform: translate(1px, -1px) rotate(1deg); }
-		  50% { transform: translate(-1px, 2px) rotate(-1deg); }
-		  60% { transform: translate(-3px, 1px) rotate(0deg); }
-		  70% { transform: translate(3px, 1px) rotate(-1deg); }
-		  80% { transform: translate(-1px, -1px) rotate(1deg); }
-		  90% { transform: translate(1px, 2px) rotate(0deg); }
-		  100% { transform: translate(1px, -2px) rotate(-1deg); }
-		  /*0% {transform: rotate(10deg);}
-		  25% {transform: rotate(-10deg);}
-		  50% {transform: rotate(20deg);}
-		  75% {transform: rotate(-5deg);}
-		  100% {transform: rotate(0deg);*/
-		}
-
-		@keyframes shake2 {
-		  0% { transform: translate(1px, -2px) rotate(5deg); }
-		  10% { transform: translate(1px, 1px) rotate(10deg); }
-		  20% { transform: translate(-1px, -2px) rotate(3deg); }
-		  30% { transform: translate(-3px, 0px) rotate(13deg); }
-		  40% { transform: translate(3px, 2px) rotate(5deg); }
-		  50% { transform: translate(1px, -1px) rotate(3deg); }
-		  60% { transform: translate(-1px, 2px) rotate(5deg); }
-		  70% { transform: translate(-3px, 1px) rotate(13deg); }
-		  80% { transform: translate(3px, 1px) rotate(3deg); }
-		  90% { transform: translate(-1px, -1px) rotate(5deg); }
-		  100% { transform: translate(1px, 2px) rotate(3deg); }
-		  /*0% {transform: rotate(10deg);}
-		  25% {transform: rotate(-10deg);}
-		  50% {transform: rotate(20deg);}
-		  75% {transform: rotate(-5deg);}
-		  100% {transform: rotate(0deg);*/
-		}
-
-
-		  
 
 	</style>
+
 </head>
 <body>
 	<div class="g-background"></div>
 
 	<div class="g-frame-outer">
 		<div class="g-frame">
-			<!-- <img src="confetti.gif" id="confetti"> -->
-			<!-- <img src="frame.png"> -->
-			<img src="cpgifblack.gif" id="cp">
-			<!-- <img src="firework.gif"> -->
-			<div id="canvas">
-				<canvas></canvas>
-			</div>
-			<!-- <div class="g-info">
-				<div class="g-hed">
-					<p class="g-cn">跟我們慶祝</p>
-					<p class="g-en">Celebrate With Us!</p>
-				</div>
-
-				<div class="g-names">
-					<div class="g-left">
-						<p class="g-cn">阮穎彤</p>
-						<p class="g-en">Stephanie Yuen</p>
-					</div>
-					<div class="g-right">
-						<p class="g-cn">林安樂</p>
-						<p class="g-en">Daniel Lam</p>
-					</div>
-				</div>
-
-				<div class="g-dates">
-					<p class="g-cn">二零二三年三月二十六日</p>
-					<p class="g-en">March 26, 2022</p>
-				</div>
-
-				
-
-			</div> -->
-			<img src="yuen.png" id="yuen">
-			<div class="g-lamhead">
-				<img src="lamhead.png">
-			</div>
-			<div class="g-yuenhead">
-				<img src="yuenhead.png">
-			</div>
+			<video src="yuen.mp4" id="yuen" autoplay playsinline muted loop poster="yuen.png"></video> 
 		</div>
 	</div>
 
+	<div id="canvas">
+		<canvas></canvas>
+	</div>
 
-	<div class="g-section">	
+
+<!-- 	<div class="g-section">	
 		<div class="g-hed">
 			<div class="g-hed-inner">
 				<div class="g-cn">敬請回覆</div>
@@ -286,14 +124,14 @@
 			<div class="g-cn">如果你將會參加呢個婚禮，記住覆機呀！</div>
 			<div class="g-en">If you planning to attend the wedding, please let us know :)</div>
 		</div>
-	</div>
+	</div> -->
 
 	
 
 	<div class="g-section">	
 		<div class="g-hed">
 			<div class="g-hed-inner">
-				<div class="g-cn">當日行程</div>
+				<div class="g-cn">行程</div>
 				<div class="g-en">Itinerary</div>
 			</div>
 		</div>
@@ -301,7 +139,7 @@
 			<div class="g-time">7 p.m.</div>
 			<div class="g-cn">中環碼頭上船</div>
 			<div class="g-en">Board at Central Pier</div>
-			<img class='g-map-img' src="map.png">
+			<video class='g-map-img' src="map.mp4" autoplay muted playsinline loop poster="map.png"></video>
 		</div>
 
 		<div class="g-block">
