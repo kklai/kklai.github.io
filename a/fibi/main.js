@@ -2,8 +2,8 @@ console.clear();
 
 function drawAudio(url, filename) {
   if (!url) {
-    url = "audio/230116_0080_U-Bahn.wav"
-    filename = "230116_0080_U-Bahn.wav"
+    url = "audio/230116_0080_U-Bahn.mp3"
+    filename = "230116_0080_U-Bahn.mp3"
   }
   document.querySelector(".audio").innerHTML = "";
   document.querySelector(".track-name").innerHTML = filename;
