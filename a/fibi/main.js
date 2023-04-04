@@ -9,8 +9,8 @@ function drawAudio(url, filename) {
   document.querySelector(".track-name").innerHTML = filename;
   var audioTrack = WaveSurfer.create({
     container: ".audio",
-    waveColor: "#eee",
-    progressColor: "#eee",
+    waveColor: "#000",
+    progressColor: "#cc0000",
     barWidth: 1,
     normalize: true,
 
@@ -106,9 +106,8 @@ function drawGraph(dist) {
       .attr("r", r)
   })
 
-
   drawDots(dist, dotcount);
-  drawBeeswarm(dist, dotcount);
+  // drawBeeswarm(dist, dotcount);
 
 }
 
@@ -121,9 +120,14 @@ function drawDots(dist, dotcount) {
   dist.forEach(function(d){
     cum += d;
     cumulativeDist.push(cum);
-  })
+  });
 
-  var svg = d3.select(".svga");
+  var cont = d3.select(".g-a3-cont");
+  var contw = cont.node().getBoundingClientRect().width;
+  var conth = contw*29.7/42;
+
+  var r = Math.sqrt((contw*conth)*((314.16)/(124740))/Math.PI)*2;
+  var svg = d3.select(".g-letter.g-active");
   var path = svg.select("path").node();
   var length = path.getTotalLength();
   var circleg = svg.selectAppend("g.cirlceg").html("");
@@ -144,9 +148,20 @@ function drawDots(dist, dotcount) {
     var a = circleg.append("g")
       .attr("transform", "translate(" + pt.x + "," + pt.y + ")")
     a.append("circle")
-      .style("fill", "#0000ff")
-      .attr("r", 5)
+      // .style("fill", "#0000ff")
+      .style("fill", "none")
+      .style("stroke", "#0000ff")
+      .style("stroke-width", 2)
+      .attr("r", r)
   })
+
+  d3.select(".g-canvas-cont").html("");
+
+
+  html2canvas(document.querySelector(".g-a3-cont")).then(canvas => {
+      document.querySelector(".g-canvas-cont").appendChild(canvas)
+  });
+
 }
 
 function drawBeeswarm(dist, dotcount) {
@@ -215,8 +230,6 @@ function drawBeeswarm(dist, dotcount) {
     .nodes(nodes)
     .on("tick", ticked);
 
-  console.log(simulation)
-
 }
 
 document.querySelector('.sample-button').addEventListener('click', (e) => {
@@ -224,15 +237,47 @@ document.querySelector('.sample-button').addEventListener('click', (e) => {
   drawAudio()
 });
 
+let profileAud;
+let profileAudURL;
+
 document.querySelector('.upload-audio-button').addEventListener('click', (e) => {
   e.preventDefault();
-  const profileAud = document.querySelector('input.profile-aud').files[0];
-  const profileAudURL = URL.createObjectURL(profileAud);
+  profileAud = document.querySelector('input.profile-aud').files[0];
+  profileAudURL = URL.createObjectURL(profileAud);
   drawAudio(profileAudURL, profileAud.name)
 });
 
 
+d3.selectAll(".g-select").on("click", function(){
+
+  var el = d3.select(this);
+  var letter = el.attr("data-letter");
+
+  d3.selectAll(".g-select").classed("g-active", false);
+  d3.select(".g-select-" + letter.toLowerCase()).classed("g-active", true);
+
+  d3.select(".g-canvas-cont").html("");
+  d3.selectAll(".g-letter").classed("g-active", false);
+  d3.select("#" + letter.toLowerCase()).classed("g-active", true);
+
+  if (profileAud) {
+    drawAudio(profileAudURL, profileAud.name)
+  } else {
+    drawAudio();
+  }
+
+})
+
+// document.querySelector('.g-print').addEventListener('click', (e) => {
+//   e.preventDefault();
+
+// });
+
+
 drawAudio();
+
+
+
 
 
 
