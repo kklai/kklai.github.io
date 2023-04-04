@@ -125,8 +125,6 @@ function drawDots(dist, dotcount) {
   var length = path.getTotalLength();
   var circleg = svg.selectAppend("g.cirlceg").html("");
 
-  console.log(dotcount)
-
   // var dotdens = [];
   // var cum = 0;
   // dotcount.forEach(function(d){
@@ -154,7 +152,6 @@ function drawDots(dist, dotcount) {
   dotcount.forEach(function(d,i){
 
     for (var j = 0; j < d; j++) {
-      console.log(j, j/d, (i*(1+(j/d))))
       var pt = path.getPointAtLength((((i+j/d)/dotcount.length))*length);
       var a = circleg.append("g")
         .attr("data-group", i)
