@@ -80,6 +80,7 @@ function drawAudio(url, filename) {
 function drawGraph(dist) {
   var max = d3.max(dist);
   var min = d3.min(dist);
+  console.log(max, min)
   var sel = d3.select(".g-bar-chart").html("");
   var audioCont = d3.select(".audio");
   var width = audioCont.node().getBoundingClientRect().width;
@@ -125,34 +126,10 @@ function drawDots(dist, dotcount) {
   var length = path.getTotalLength();
   var circleg = svg.selectAppend("g.cirlceg").html("");
 
-  // var dotdens = [];
-  // var cum = 0;
-  // dotcount.forEach(function(d){
-  //   d = d/10
-  //   var range = d3.range(1,d+1);
-  //   range.forEach(function(a){
-  //     cum += 1/d
-  //     dotdens.push(cum);
-  //   })
-  // })
-  // var totaldist = d3.sum(dotdens);
-  // dotdens.forEach(function(d,i){
-  //   var pt = path.getPointAtLength((d/cum)*length);
-  //   var a = circleg.append("g")
-  //     .attr("transform", "translate(" + pt.x + "," + pt.y + ")")
-  //   a.append("circle")
-  //     .style("fill", "#0000ff")
-  //     // .style("fill", "none")
-  //     // .style("stroke", "#0000ff")
-  //     // .style("stroke-width", 2)
-  //     .attr("r", r)
-  // })
-
-
   dotcount.forEach(function(d,i){
-
     for (var j = 0; j < d; j++) {
       var pt = path.getPointAtLength((((i+j/d)/dotcount.length))*length);
+    // var pt = path.getPointAtLength((((i)/dotcount.length))*length);
       var a = circleg.append("g")
         .attr("data-group", i)
         .attr("class", "g-circle g-group-" + i)
@@ -161,17 +138,13 @@ function drawDots(dist, dotcount) {
       a.append("circle")
         .attr("r", r)  
     }
-    
   })
 
   d3.selectAll(".g-circle").on("click", function(){
-
     var el = d3.select(this);
     var group = el.attr("data-group");
-    
     d3.selectAll(".g-circle").style("fill", "#0000ff")
     d3.selectAll(".g-group-" + group).style("fill", "#000")
-
   })
 
 }
@@ -287,6 +260,19 @@ document.querySelector('.g-print').addEventListener('click', (e) => {
   html2canvas(document.querySelector(".g-a3-cont")).then(canvas => {
       document.querySelector(".g-canvas-cont").appendChild(canvas)
   });
+
+});
+
+
+document.querySelector('.g-update').addEventListener('click', (e) => {
+  e.preventDefault();
+  var dots = d3.select("#dotfrequency").node().value;
+  if (isNaN(+dots)) {
+    alert("Please enter a number.")
+  } else {
+    numberOfPoints = +dots;
+    drawAudio();
+  }
 
 });
 

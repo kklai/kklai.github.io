@@ -36,37 +36,44 @@
 
     <div class="g-step g-step-2">
       <h2>2. Waveform</h2>
+
+      <p>Dot frequency</p>
+      <div class="g-frequency"><input id="dotfrequency" type="" value="20"></div>
+      <button class="g-update">Update</div>
+
       <div class="track-name"></div>
-      <div class="audio-container">
 
-        <div class="audio"></div>
-
-        <div class="buttons">
-          <span class="play-btn btn">
-            <i class="fas fa-play"></i>
-            <i class="fas fa-pause"></i>
-          </span>
-
-          <span class="stop-btn btn">
-            <i class="fas fa-stop"></i>
-          </span>
-
-          <span class="mute-btn btn">
-            <i class="fas fa-volume-up"></i>
-            <i class="fas fa-volume-mute"></i>
-          </span>
-
-          <input
-            type="range"
-            min="0"
-            max="1"
-            step="0.1"
-            value="0.5"
-            class="volume-slider"
-          />
-        </div>
-
+      <div class="g-bar-chart-wrapper">
         <div class="g-bar-chart"></div>
+        <div class="audio-container">
+
+          <div class="audio"></div>
+
+          <div class="buttons">
+            <span class="play-btn btn">
+              <i class="fas fa-play"></i>
+              <i class="fas fa-pause"></i>
+            </span>
+
+            <span class="stop-btn btn">
+              <i class="fas fa-stop"></i>
+            </span>
+
+            <span class="mute-btn btn">
+              <i class="fas fa-volume-up"></i>
+              <i class="fas fa-volume-mute"></i>
+            </span>
+
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.1"
+              value="0.5"
+              class="volume-slider"
+            />
+          </div>
+        </div>
       </div>
     </div>
 
