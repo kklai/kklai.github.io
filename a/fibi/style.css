@@ -1,9 +1,10 @@
 body {
-    background: #000;
-    color: #ececec;
+/*    background: #000;*/
+/*    color: #ececec;*/
     font-family: arial, sans-serif;text-align: center;
     text-align: center;
     padding-bottom: 50vh;
+    font-weight: 100;
 }
 
 h1 {
@@ -32,11 +33,25 @@ button, input::file-selector-button {
   color: #ececec;
   box-shadow: none;
   border: 1px solid #333;
+  font-size: 15px;
 }
 
-input {
-  background: rgba(255,255,255,0.1);
-  padding: 0 20px;
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.g-input-cont {
+  background: rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.g-step-1 input {
+  padding: 40px 20px;
+  width: 100%;
+  text-align: center;
+  max-width: 200px;
 }
 
 input::file-selector-button {
@@ -59,11 +74,11 @@ button:hover {
   font-family: "Roboto", sans-serif;
   position: relative;
   border-radius: 10px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .audio-container .audio {
-  background: #222;
+  background: rgba(0,0,0,0.1);
   width: 100%;
   height: 130px;
 }
@@ -115,9 +130,9 @@ svg {
 
 .g-step-3 svg {
   display: block;
-  max-width: 500px;
-  margin: 25px auto;
   overflow: visible;
+  position: absolute;
+  top: 0;
 }
 
 svg text{
@@ -130,4 +145,46 @@ svg text{
   top: 8px;
   left: 0;
   z-index: 10;
+}
+
+.g-a3-outer-cont {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+    border: 1px solid #666;
+}
+
+.g-a3-cont {
+  width: 100%;
+  padding-bottom: 70.7142857%;
+/*  background: #000;*/
+}
+
+.g-step-3 svg.g-letter {
+  display: none;
+}
+
+.g-step-3 svg.g-letter.g-active {
+  display: block;
+}
+
+.g-canvas-cont {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.g-selector {
+  margin: 10px auto;
+  user-select: none;
+}
+
+.g-selector .g-select {
+  display: inline;
+  cursor: pointer;
+  opacity: 0.3;
+}
+
+.g-selector .g-select.g-active {
+  opacity: 1;
 }
