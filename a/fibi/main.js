@@ -256,10 +256,10 @@ d3.select(".g-guide-button").on("click", function(){
   var status = el.text();
 
   if (status == "Show guide") {
-    d3.select(".guideg").style("display", "block");
+    d3.selectAll(".guideg").style("display", "block");
     el.text("Hide guide");
   } else {
-    d3.select(".guideg").style("display", "none");
+    d3.selectAll(".guideg").style("display", "none");
     el.text("Show guide");
   }
 
