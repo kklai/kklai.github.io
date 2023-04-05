@@ -80,7 +80,6 @@ function drawAudio(url, filename) {
 function drawGraph(dist) {
   var max = d3.max(dist);
   var min = d3.min(dist);
-  console.log(max, min)
   var sel = d3.select(".g-bar-chart").html("");
   var audioCont = d3.select(".audio");
   var width = audioCont.node().getBoundingClientRect().width;
@@ -121,10 +120,15 @@ function drawDots(dist, dotcount) {
   var contw = cont.node().getBoundingClientRect().width;
   var conth = contw*29.7/42;
   var r = Math.sqrt((contw*conth)*((314.16)/(124740))/Math.PI)*2;
+
+  // d3.selectAll(".g-letter").classed("g-active", false);
+  // d3.select(".g-letter#z").classed("g-active", true);
+
   var svg = d3.select(".g-letter.g-active");
   var path = svg.select("path").node();
   var length = path.getTotalLength();
   var circleg = svg.selectAppend("g.cirlceg").html("");
+  var guideg = svg.selectAppend("g.guideg").html("");
 
   dotcount.forEach(function(d,i){
     for (var j = 0; j < d; j++) {
@@ -147,74 +151,44 @@ function drawDots(dist, dotcount) {
     d3.selectAll(".g-group-" + group).style("fill", "#000")
   })
 
-}
 
-function drawBeeswarm(dist, dotcount) {
+  var pts = [0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1];
+  var guidegpath = guideg.append("g")
+  var guidegcircle = guideg.append("g")
+  pts.forEach(function(d,i){
+    var pt = path.getPointAtLength(d*length);
+    var a = guidegcircle.append("g")
+      .translate([pt.x, pt.y]);
+    a.append("circle")
+      .attr("r", 10)
+      .attr("fill", "red")
 
-  var max = d3.max(dist);
-  var min = d3.min(dist);
-  var totaldist = d3.sum(dist)
-  var cumulativeDist = [];
-  var cum = 0;
-  dist.forEach(function(d){
-    cum += d;
-    cumulativeDist.push(cum);
+    a.append("text")
+      .text(d)
+      .translate([20,20])
+      .style("fill", "red")
+      .style("font-weight", "bold")
+      .style("font-size", "20px")
+
+    // if (pts[i+1]) {
+    //   var nextpt = path.getPointAtLength(pts[i+1]*length)
+    //   var midpt = path.getPointAtLength(((pts[i] + pts[i+1])/2)*length)
+    //   var midpt2 = path.getPointAtLength((((pts[i] + pts[i+1])/2)*1.1)*length)
+
+    //   guidegpath.append("path")
+    //     .style("stroke", "rgba(255,255,255,0.7)")
+    //     .style("stroke-dasharray", "10 10")
+    //     .style("stroke-width", 5)
+    //     .attr("d", "M" + pt.x + "," + pt.y + " L" + nextpt.x + "," + nextpt.y);
+
+    //   guidegpath.append("path")
+    //     .style("stroke", "rgba(255,0,0,0.3)")
+    //     .style("stroke-dasharray", "10 10")
+    //     .style("stroke-width", 3)
+    //     .attr("d", "M" + pt.x + "," + pt.y + " L" + nextpt.x + "," + nextpt.y);
+    // }
+
   })
-
-  var svg = d3.select(".beeswarm");
-  var path = svg.select("path").node();
-  var length = path.getTotalLength();
-  var circleg = svg.selectAppend("g.cirlceg").html("");
-
-  var dotdens = [];
-  var cum = 0;
-  dotcount.forEach(function(d){
-    d = d/5;
-    var range = d3.range(1,d+1);
-    range.forEach(function(a){
-      cum += 1/d
-      dotdens.push(cum);
-    })
-  })
-  var totaldist = d3.sum(dotdens);
-  var nodes = [];
-  dotdens.forEach(function(d,i){
-    var pt = path.getPointAtLength((d/cum)*length);
-
-    nodes.push({x: pt.x, y: pt.y, r: 5});
-
-    // circleg.append("circle")
-    //   .style("fill", "#0000ff")
-    //   .attr("r", 5)
-    //   .attr("cx", pt.x)
-    //   .attr("cy", pt.y)
-  })
-
-  var node = svg.append("g")
-    .attr("class", "nodes")
-    .selectAll("circle")
-    .data(nodes)
-    .enter().append("circle")
-    .attr("r", function(d){  return d.r })
-    .style("fill", "#0000ff")
-
-
-  var simulation = d3.forceSimulation()
-      .force("collide",d3.forceCollide(d => d.r))
-      // .force("charge", d3.forceManyBody())
-      .force("y", d3.forceY(d => d.y))
-      .force("x", d3.forceX(d => d.x))
-
-  var ticked = function() {
-      node
-          .attr("cx", function(d) { return d.x; })
-          .attr("cy", function(d) { return d.y; });
-  } 
-
-  simulation
-    .nodes(nodes)
-    .on("tick", ticked);
-
 }
 
 document.querySelector('.sample-button').addEventListener('click', (e) => {
@@ -276,6 +250,20 @@ document.querySelector('.g-update').addEventListener('click', (e) => {
 
 });
 
+
+d3.select(".g-guide-button").on("click", function(){
+  var el = d3.select(this).select(".g-inner");
+  var status = el.text();
+
+  if (status == "Show guide") {
+    d3.select(".guideg").style("display", "block");
+    el.text("Hide guide");
+  } else {
+    d3.select(".guideg").style("display", "none");
+    el.text("Show guide");
+  }
+
+})
 
 drawAudio();
 

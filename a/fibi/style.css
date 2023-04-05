@@ -151,6 +151,30 @@ svg text{
   fill: #fff;
 }
 
+.guideg {
+  display: none;
+}
+
+.g-guide-button {
+  background: none;
+  color: #999;
+  border: none;
+  display: inline-block;
+  font-size: 11px;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.g-guide-button:hover {
+  background: none;
+  opacity: 0.8;
+}
+
+.g-guide-button .g-inner {
+  border-bottom: 1px dotted #000;
+  display: inline;
+}
+
 .g-bar-chart-wrapper {
   position: relative;
   max-width: 600px;
