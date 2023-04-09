@@ -151,26 +151,28 @@ svg text{
   fill: #fff;
 }
 
+
+
 .guideg {
   display: none;
 }
 
-.g-guide-button {
+.g-light-button {
   background: none;
   color: #999;
   border: none;
   display: inline-block;
   font-size: 11px;
   padding: 0;
-  margin: 0 0 20px 0;
+  margin: 0 0 20px 10px;
 }
 
-.g-guide-button:hover {
+.g-light-button:hover {
   background: none;
   opacity: 0.8;
 }
 
-.g-guide-button .g-inner {
+.g-light-button .g-inner {
   border-bottom: 1px dotted #000;
   display: inline;
 }
@@ -205,6 +207,11 @@ svg text{
   width: 100%;
   padding-bottom: 70.7142857%;
 /*  background: #000;*/
+  background-size: cover;
+}
+
+.g-a3-cont.show-guide {
+  background-image: url(png/guide_a.png);
 }
 
 .g-step-3 svg.g-letter {

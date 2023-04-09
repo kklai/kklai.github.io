@@ -1,6 +1,7 @@
 console.clear();
 
 var numberOfPoints = 20;
+var chartType = "normal";
 
 function drawAudio(url, filename) {
   if (!url) {
@@ -110,8 +111,11 @@ function drawGraph(dist) {
       .attr("r", r)
   })
 
-  drawDots(dist, dotcount);
-  // drawBeeswarm(dist, dotcount);
+  if (chartType == "normal") {
+    drawDots(dist, dotcount);
+  } else {
+    drawBeeswarm(dist, dotcount);  
+  }
 
 }
 
@@ -138,6 +142,9 @@ function drawDots(dist, dotcount) {
         .attr("data-group", i)
         .attr("class", "g-circle g-group-" + i)
         .attr("transform", "translate(" + pt.x + "," + pt.y + ")")
+        // .style("stroke", "#0000ff")
+        // .style("fill", "none")
+        // .style("stroke-dasharray", "4 4")
         .style("fill", "#0000ff")
       a.append("circle")
         .attr("r", r)  
@@ -151,7 +158,11 @@ function drawDots(dist, dotcount) {
     d3.selectAll(".g-group-" + group).style("fill", "#000")
   })
 
+  drawGuide(path, length, guideg);
+  showGuide();
+}
 
+function drawGuide(path, length, guideg) {
   var pts = [0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1];
   var guidegpath = guideg.append("g")
   var guidegcircle = guideg.append("g")
@@ -160,34 +171,16 @@ function drawDots(dist, dotcount) {
     var a = guidegcircle.append("g")
       .translate([pt.x, pt.y]);
     a.append("circle")
-      .attr("r", 10)
+      .attr("r", 3)
       .attr("fill", "red")
+      // .attr("stroke", "red")
 
     a.append("text")
-      .text(d)
-      .translate([20,20])
+      .text(d*100 + "%")
+      .translate([5,5])
       .style("fill", "red")
-      .style("font-weight", "bold")
-      .style("font-size", "20px")
-
-    // if (pts[i+1]) {
-    //   var nextpt = path.getPointAtLength(pts[i+1]*length)
-    //   var midpt = path.getPointAtLength(((pts[i] + pts[i+1])/2)*length)
-    //   var midpt2 = path.getPointAtLength((((pts[i] + pts[i+1])/2)*1.1)*length)
-
-    //   guidegpath.append("path")
-    //     .style("stroke", "rgba(255,255,255,0.7)")
-    //     .style("stroke-dasharray", "10 10")
-    //     .style("stroke-width", 5)
-    //     .attr("d", "M" + pt.x + "," + pt.y + " L" + nextpt.x + "," + nextpt.y);
-
-    //   guidegpath.append("path")
-    //     .style("stroke", "rgba(255,0,0,0.3)")
-    //     .style("stroke-dasharray", "10 10")
-    //     .style("stroke-width", 3)
-    //     .attr("d", "M" + pt.x + "," + pt.y + " L" + nextpt.x + "," + nextpt.y);
-    // }
-
+      // .style("font-weight", "bold")
+      .style("font-size", "18px")
   })
 }
 
@@ -209,7 +202,8 @@ document.querySelector('.upload-audio-button').addEventListener('click', (e) => 
 
 d3.selectAll(".g-select").on("click", function(){
 
-  var el = d3.select(this);
+  d3.select(".g-a3-cont").style("background-image", "none")
+  var el = d3.select(this); 
   var letter = el.attr("data-letter");
 
   d3.selectAll(".g-select").classed("g-active", false);
@@ -225,6 +219,8 @@ d3.selectAll(".g-select").on("click", function(){
     drawAudio();
   }
 
+  // d3.select(".g-guide-button .g-select").text("Show guide")
+  // d3.selectAll(".guideg").style("display", "none");
 })
 
 document.querySelector('.g-print').addEventListener('click', (e) => {
@@ -247,25 +243,107 @@ document.querySelector('.g-update').addEventListener('click', (e) => {
     numberOfPoints = +dots;
     drawAudio();
   }
-
 });
 
 
 d3.select(".g-guide-button").on("click", function(){
-  var el = d3.select(this).select(".g-inner");
-  var status = el.text();
+    showGuide(true);
+})
 
-  if (status == "Show guide") {
-    d3.selectAll(".guideg").style("display", "block");
-    el.text("Hide guide");
-  } else {
-    d3.selectAll(".guideg").style("display", "none");
-    el.text("Show guide");
-  }
+d3.select(".g-beeswarm-button").on("click", function(){
+    console.log("hi")
+    if (chartType == "normal") {
+      chartType = "beeswarm";
+      drawAudio();
+      d3.select(".g-beeswarm-button .g-inner").text("Back to linear");
+    } else {
+      chartType = "normal"
+      drawAudio();
+      d3.select(".g-beeswarm-button .g-inner").text("Try beeswarm");
+    }
+
 
 })
 
+function showGuide(clicked) {
+  var el = d3.select(".g-guide-button .g-inner");
+  var status = el.text();
+  var letter = d3.select(".g-letter.g-active");
+  console.log()
+
+  console.log(status)
+
+  if (status == "Show guide" && clicked) {
+    d3.selectAll(".guideg").style("display", "block");
+    d3.select(".g-a3-cont").style("background-image", "url(png/guide_" + letter.attr("id") + ".png")
+    el.text("Hide guide");
+  } else if (status == "Hide guide" && clicked) {
+    d3.selectAll(".guideg").style("display", "none");
+    d3.select(".g-a3-cont").style("background-image", "none")
+    el.text("Show guide");
+  } else if (status == "Hide guide") {
+    d3.selectAll(".guideg").style("display", "block");
+    d3.select(".g-a3-cont").style("background-image", "url(png/guide_" + letter.attr("id") + ".png")
+    el.text("Hide guide");
+  }
+}
+
 drawAudio();
+
+
+function drawBeeswarm(dist, dotcount) {
+
+  var cont = d3.select(".g-a3-cont");
+  var contw = cont.node().getBoundingClientRect().width;
+  var conth = contw*29.7/42;
+  var r = Math.sqrt((contw*conth)*((314.16)/(124740))/Math.PI)*2;
+
+  // d3.selectAll(".g-letter").classed("g-active", false);
+  // d3.select(".g-letter#z").classed("g-active", true);
+
+  var svg = d3.select(".g-letter.g-active");
+  var path = svg.select("path").node();
+  var length = path.getTotalLength();
+  var circleg = svg.selectAppend("g.cirlceg").html("");
+  var guideg = svg.selectAppend("g.guideg").html("");
+
+  var nodes = [];
+  dotcount.forEach(function(d,i){
+    for (var j = 0; j < d; j++) {
+      var pt = path.getPointAtLength((((i+j/d)/dotcount.length))*length);
+      nodes.push({x: pt.x, y: pt.y, r: r});
+    }
+  })
+
+  var node = circleg.append("g")
+    .attr("class", "nodes")
+    .selectAll("circle")
+    .data(nodes)
+    .enter().append("circle")
+    .attr("r", function(d){  return d.r })
+    .style("fill", "#0000ff")
+
+
+  var simulation = d3.forceSimulation()
+      .force("collide",d3.forceCollide(d => d.r))
+      // .force("charge", d3.forceManyBody())
+      .force("y", d3.forceY(d => d.y))
+      .force("x", d3.forceX(d => d.x))
+
+  var ticked = function() {
+      node
+          .attr("cx", function(d) { return d.x; })
+          .attr("cy", function(d) { return d.y; });
+  } 
+
+  simulation
+    .nodes(nodes)
+    .on("tick", ticked);
+
+
+  drawGuide(path, length, guideg);
+  showGuide();
+}
 
 
 
