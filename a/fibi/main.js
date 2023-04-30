@@ -98,7 +98,7 @@ function drawGraph(dist) {
     var h = (y(0) - y(d));
     var each = svg.append("g")
       .translate([x(i),height/2 - h/2])
-      .attr("fill", "#0000ff")
+      .attr("fill", "#ff0000")
     var dots = Math.floor(h/(r*2));
     dots = dots == 0 ? 1 : dots;
 
@@ -145,7 +145,7 @@ function drawDots(dist, dotcount) {
         // .style("stroke", "#0000ff")
         // .style("fill", "none")
         // .style("stroke-dasharray", "4 4")
-        .style("fill", "#0000ff")
+        .style("fill", "#ff0000")
       a.append("circle")
         .attr("r", r)  
     }
@@ -178,7 +178,7 @@ function drawGuide(path, length, guideg) {
     a.append("text")
       .text(d*100 + "%")
       .translate([5,5])
-      .style("fill", "red")
+      .style("fill", "#752201")
       // .style("font-weight", "bold")
       .style("font-size", "18px")
   })
@@ -321,7 +321,7 @@ function drawBeeswarm(dist, dotcount) {
     .data(nodes)
     .enter().append("circle")
     .attr("r", function(d){  return d.r })
-    .style("fill", "#0000ff")
+    .style("fill", "#ff0000")
 
 
   var simulation = d3.forceSimulation()
