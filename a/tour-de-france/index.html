@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Add 3D terrain to a map</title>
+		<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+		<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+		<script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+		<script src="path.js"></script>
+		<style>
+			body { margin: 0; padding: 0; }
+			#map { 
+				position: fixed; top: 0; bottom: 0; width: 100%; }
+
+			.g-scrolly-items {
+				position: relative;
+				top: 0;
+				left: 0;
+				pointer-events: none;
+			}
+			.g-item {
+				padding: 50vh 10vh 50vh 10vh;
+			}
+
+			.g-item-inner {
+				background: rgba(0,0,0,0.5);
+				display: inline-block;
+				padding: 10px;
+				color: #fff;
+				font-family: "nyt-franklin", arial, sans-serif;
+			}
+
+			h1 {
+				margin: 0 0 10px 0;
+				line-height: 1;
+			}
+
+			p {
+				margin: 0;
+			}
+
+			#france-map {
+				width: 180px;
+				margin: 0 auto;
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="map"></div>
+
+		<div class="g-scrolly-items">
+			<div class="g-item">
+				<div class="g-item-inner">
+					<img id="france-map" src="france.png">
+					<h1>L'Alpe d'Huez</h1>
+					<p class="g-intro">The most iconic climb of the Tour de France</p>
+				</div>
+			</div>
+
+			<div class="g-item">
+				<div class="g-item-inner">This is the a second slide</div>
+			</div>
+		</div>
+		 
+		<script>
+
+			var coords = [];
+
+			data.latlng.forEach(function(d){
+				coords.push(d.reverse())
+			})
+
+			mapboxgl.accessToken = 'pk.eyJ1Ijoia2tsYWkiLCJhIjoiY2xpdW5waDR0MDFnYjNma2FpcGEyZ2ZnZyJ9.ktLfKDQWrpgZ63TB68_ffw';
+			const map = new mapboxgl.Map({
+				container: 'map',
+				zoom: 13,
+				center: [6.050707092081194, 45.07525466720522],
+				pitch: 40,
+				bearing: 50,
+				// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+				style: 'mapbox://styles/kklai/cliw2cyhu00nx01r8btxgfxz4'
+			});
+			 
+			map.on('style.load', () => {
+				// map.addSource('mapbox-dem', {
+				// 	'type': 'raster-dem',
+				// 	'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+				// 	'tileSize': 256,
+				// 	'maxzoom': 14
+				// });
+				// add the DEM source as a terrain layer with exaggerated height
+				// map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 0.5 });
+
+				map.addSource('route', {
+					'type': 'geojson',
+						'data': {
+						'type': 'Feature',
+						'geometry': {
+						'type': 'LineString',
+						'coordinates': coords
+						}
+					}
+				});
+
+				map.addLayer({
+					'id': 'route',
+					'type': 'line',
+					'source': 'route',
+					'layout': { 'line-join': 'round', 'line-cap': 'round' },
+					'paint': { 'line-color': '#ffcc00', 'line-width': 4 }
+				});
+			});
+		</script>
+	</body>
+</html>
