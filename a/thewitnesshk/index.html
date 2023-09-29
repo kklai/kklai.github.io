@@ -6,11 +6,15 @@
 	<title></title>
 
 	<style type="text/css">
+
+		html,body {
+			text-align: center;
+			font-family: arial, sans-serif;
+		}
+
 		.g-paypal-form {
 			max-width: 140px;
 			margin: 0 auto;
-			text-align: center;
-			font-family: arial, sans-serif;
 		}
 
 		.g-paypal-form .g-pay-button {
@@ -20,16 +24,71 @@
 			margin-top: 10px;
 		}
 
+		.g-stripe-form {
+			margin-bottom: 25px;
+		}
+
+		.g-button {
+			max-width: 140px;
+			background: #ffc439;
+			border-radius: 10px;
+			padding: 15px 0;
+			margin: 10px auto;
+		}
+
+		.g-stripe-form a, .g-stripe-form a:visited {
+			text-decoration: none;
+			color: #333;
+			font-weight: 700;
+		}
+
+		.g-stripe-form a:hover {
+			color: #fff;
+			text-shadow: 0 0 3px rgba(0,0,0,0.5);
+		}
+
 	</style>
 </head>
 <body>
-	<script async src="https://js.stripe.com/v3/pricing-table.js"></script>
-	<stripe-pricing-table pricing-table-id="prctbl_1NlVHKEg7f6tN7sciDotXz9i"
-	publishable-key="pk_live_51N3d8DEg7f6tN7scIcNc6q4RGZLXN3nQyAB9napnOz8dvgcHXmGB0Gwuf4acsp82cvTHlu9jiyZV5YSdxcG1m1YP0011dHOoL6">
-	</stripe-pricing-table>
-
-
 	
+
+	<div class="g-stripe-form">
+		<div>Choose amount</div>
+		<select id="stripeSelect" onchange="updateStripe()">
+		  <option value="2000">
+		    1 - $2,000.00 HKD
+		  </option>
+		  <option value="4000">
+		    2 -  $4,000.00 HKD
+		  </option>
+		  <option value="6000">
+		    3 -  $6,000.00 HKD
+		  </option>
+		  <option value="8000">
+		    4 -  $8,000.00 HKD
+		  </option>
+		</select>
+		<a id="stripe-link" href="https://buy.stripe.com/fZeeYobq931y2BO6oB"><div class="g-button">Pay with Card</div></a>
+	</div>
+	<script type="text/javascript">
+		
+		var links = {
+			"2000": "https://buy.stripe.com/fZeeYobq931y2BO6oB",
+			"4000": "https://buy.stripe.com/7sI2bC65PeKg6S4bIU",
+			"6000": "https://buy.stripe.com/aEU5nO9i145CdgsaEP",
+			"8000": "https://buy.stripe.com/8wM17yam559Gcco28i"
+		}
+
+		function updateStripe() {
+			var x = document.getElementById("stripeSelect").value;
+			document.getElementById("stripe-link").href = links[x]
+		}
+
+	</script>
+
+
+
+
 	<div class="g-paypal-form">
 	<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
 	  <input type="hidden" name="cmd" value="_s-xclick" />
