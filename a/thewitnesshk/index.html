@@ -1,21 +1,23 @@
 <style type="text/css">
 	.stripe-form {
-		max-width: 140px;
 		margin: 0 auto;
 		font-family: arial, sans-serif;
 	}
 
 	.stripe-form select {
 		margin-top: 5px;
-		padding: 5px;
-		font-size: 14px;
+		width: 190px;
+		height: 45px;
+		font-size: 17px;
+		margin: 10px auto 20px auto;
+		display: block;
 	}
 
 	.stripe-button {
-		max-width: 140px;
-		background: #ffc439;
-		border-radius: 10px;
-		padding: 15px 0;
+		background: #635bff;
+		color: #fff;
+		border-radius: 23px;
+		padding: 10px 0;
 		margin: 10px auto;
 		text-align: center;			
 	}
@@ -32,7 +34,6 @@
 	}
 </style>
 <div class="stripe-form">
-	<div>Choose amount</div>
 	<select id="stripeSelect" onchange="updateStripe()">
 	  <option value="2000">
 	    $2,000.00 HKD
