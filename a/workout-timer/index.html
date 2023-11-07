@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+
+	<style type="text/css">
+		html, body {
+			padding: 0;
+			margin: 0;
+			font-family: arial, sans-serif;
+			text-align: center;
+			background: #709fb4;
+		}
+		
+		.g-start {
+			margin: 0 auto;
+			background: #ff6011;
+			color: #fff;
+			text-align: center;
+			max-width: 300px;
+			border-radius: 30px;
+			padding: 10px;
+			letter-spacing: 1px;
+			cursor: pointer;
+		}	
+
+		.g-title {
+			text-transform: uppercase;
+			padding: 10px;
+			font-weight: 700;
+		}
+
+	</style>
+</head>
+<body>	
+
+	<div class="g-workouts"></div>
+	<div class="g-start">START</div>
+
+	<script src="d3_.js"></script>
+	<script type="text/javascript">	
+		var url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRcE6eMm9wwlLlbME9gkK3BcOpFunrDi4LRZEnXQNnGphcqxZ_W7VpJFpFkmazaYC4TVnk2NapI_52E/pub?gid=0&single=true&output=tsv';
+		let data = {};
+		let workouts = [];
+		fetch(url)
+		  .then(response => response.text())
+		  .then(function(results){
+		  	let lines = results.split("\r\n");
+		  	lines.forEach(function(d, linei){
+		  		let cell = d.split("\t")
+		  		cell.forEach(function(a,i){
+		  			if (i == 1) {
+
+		  				if (linei == 0) {
+		  					workouts.push(a);
+		  					data[workouts[i-1]] = { values: [] }
+		  				} else if (linei == 1) {
+		  					data[workouts[i-1]].duration = a;
+		  				} else if (linei == 2) {
+		  					data[workouts[i-1]].rest = a;
+		  				} else {
+		  					data[workouts[i-1]].values.push(a)
+		  				}
+		  			}
+		  		})
+		  	})
+
+
+		  	let cont = d3.select(".g-workouts").html("");
+		  	cont.appendMany("div.g-title", workouts)
+		  		.text(d => d)
+
+		  	let startButton = d3.select(".g-start");
+		  	startButton.on("click", function(d){
+		  		console.log("start")
+		  		startTimer();
+		  	})
+
+		  	function startTimer() {
+		  		var startTime = Date.now();
+		  		setInterval(function() {
+		  		    var delta = Date.now() - startTime;
+		  		    console.log(Math.floor(delta / 1000));
+		  		    console.log(new Date().toUTCString());
+		  		}, 1000);
+
+		  	}
+
+		  });
+
+	</script>
+
+</body>
+</html>
