@@ -16,16 +16,17 @@
 		.g-chart {
 			padding-right: 20px;
 			padding-left: 20px;
-			max-width: 1050px;
+			max-width: 720px;
 			margin: 50px auto;
 		}
 
 		.g-chart-cont {
 			margin-bottom: 25px;
+			position: relative;
 		}
 
 		svg {
-			overflow: visible;
+			overflow: hidden;
 		}
 
 		text {
@@ -42,15 +43,16 @@
 			stroke: #d3d3d3;
 		}
 
-		.x.axis {
+		.axis {
 			font-size: 9px;
+			pointer-events: none;
 		}
 
-		.x.axis line {
+		.axis line {
 			stroke: #999;
 		}
 
-		.x.axis text {
+		.axis text {
 			fill: #999;
 		}
 
@@ -61,6 +63,7 @@
 		  background: rgba(255, 255, 255, .90);
 		  border: 1px solid lightgray;
 		  pointer-events: none;
+		  font-size: 13px;
 		}
 		.tooltip-hidden{
 		  opacity: 0;
@@ -81,12 +84,50 @@
 
 		circle {
 			stroke: #fff;
+			stroke-width: 0.5;
 			fill: rgba(255,0,0,0.3);
 		}
 
 		circle.tooltipped {
 			stroke: #000;
 			stroke-width: 2;
+		}
+
+		.y.axis line {
+			stroke: #000;
+		}
+
+		.y.axis .tick:nth-child(3) line {
+			stroke: orange;
+			stroke-width: 2;
+		}
+
+		path.domain {
+			display: none;
+		}
+
+		.g-title {
+			text-align: center;
+			margin-bottom: 25px;
+		}
+
+		.g-axis-title {
+			position: absolute;
+			top: 0;
+			left: 0;
+			font-size: 13px;
+			font-weight: 700;
+		}
+
+		.g-axis-title.x {
+			top: 100%;
+			width: 100%;
+			text-align: center;
+		}
+
+		.g-axis-title.y {
+			transform: rotate(-90deg);
+			top: 50%;
 		}
 
 	</style>
@@ -97,70 +138,76 @@
 
 	<script src="https://kklai.github.io/js/d3_.js"></script>
 	<script type="text/javascript">
-		
+
 		d3.select('body').selectAppend('div.tooltip')
-		d3.loadData("aig-data.csv", function(err, res){
+
+		d3.loadData("aig-data-filtered.csv", function(err, res){
 
 			let data = res[0];
-			let keywords = d3.nest().key(d => d.keyword).entries(data)
+			data.forEach(function(d,i){
+				let date = new Date(d["DOA"].split("-")[0], d["DOA"].split("-")[1]-1, 1);
+				// date.setDate(date.getDate() + 1)
+				d.date = date;
+			})
+
 			let cont = d3.select(".g-chart").html("");
 			let width = cont.node().getBoundingClientRect().width;
-			let height = 50;
+			let height = 400;
 			let margin = {
 				top: 5,
-				left: 60,
-				bottom: 0,
-				right: 0
+				left: 32,
+				bottom: 30,
+				right: 5
 			}
 
-			data.forEach(function(d,i){
-				data[i]["TD-DOA"] = +d["TD-DOA"];
-			})
-			let extent = d3.extent(data.map(d => d["TD-DOA"]));
-			let x = d3.scaleLinear().domain([0,extent[1]]).range([0,width-margin.left-margin.right]);
-			let xAxis = d3.axisBottom(x).tickValues([0,500,1000,1500,2000,2500]);
+			let sel = cont.append("div.g-chart-cont");
 
-			let group2vals = ["Normal", "DS", "Legal"];
+			sel.append("div.g-title").text("Relationship between MAB and RTW")
+			sel.append("div.g-axis-title.y").text("MAB")
+			sel.append("div.g-axis-title.x").text("DOA, Grouped by Year and Month")
 
-			keywords.forEach(function(group){
+			let svg = sel.append("svg").attr("width", width).attr("height", height).append("g").translate([margin.left,margin.top]);
 
-				let keyword = group.key;
-				let sel = cont.append("div.g-chart-cont");
+			width = width - margin.left - margin.right;
+			height = height - margin.top - margin.bottom;
 
-				sel.append("div.g-title").text(keyword);
+			let extent = d3.extent(data.map(d => d.date));
+			let x = d3.scaleLinear().domain(extent).range([0,width]);
+			let format = d3.timeFormat("%Y");
+			let xAxis = d3.axisBottom(x).tickFormat(d => format(d)).tickValues([
+				new Date(2013,1,0), 
+				new Date(2014,1,0), 
+				new Date(2015,1,0),
+				new Date(2016,1,0),
+				new Date(2017,1,0),
+				new Date(2018,1,0),
+				new Date(2019,1,0),
+				new Date(2020,1,0),
+				new Date(2021,1,0)
+			]);
+			// .tickValues([0,500,1000,1500,2000,2500]);
 
-				let svg = sel.append("svg").attr("width", width).attr("height", height).append("g").translate([0,margin.top]);
+			let y = d3.scaleLinear().domain([-90,1000]).range([height,0]);
+			let yAxis = d3.axisLeft(y).tickValues([-90,0,1000]).tickSize(width)
 
-				group2vals.forEach(function(group2,i){
-					let g = svg.append("g").translate([0,i*15]);
-					let filtered = group.values.filter(d => d.group == group2);
-
-					g.append("text")
-						.translate([0,2])
-						.text(group2)
-
-					let g2 = g.append("g").translate([margin.left,0])
-					g2.appendMany("circle", filtered)
-						.attr("r", 4)
-						.translate(d => [x(d["TD-DOA"]),0])
-						.call(d3.attachTooltip)
-						.on('mouseover', function(d){
-							d3.select(this).raise()
-						})
-
-
-					if (i == 2) {
-						g2.append("g.x.axis")
-							.translate([0,5])
-							.call(xAxis)
-					}
+			let g = svg.append("g");
+			g.appendMany("circle", data)
+				.attr("r", 3)
+				.translate(d => [x(d.date),y(d["MAB-RTW"])])
+				.call(d3.attachTooltip)
+				.on('mouseover', function(d){
+					d3.select(this).raise()
+					d3.select('.tooltip').html("<b>" + d["DOA"] + "</b><br>MAB-RTW: " + d["MAB-RTW"])
 				})
 
-				
+			svg.append("g.x.axis")
+				.translate([0,height])
+				.call(xAxis)
 
+			svg.append("g.y.axis")
+				.translate([width,0])
+				.call(yAxis)
 
-
-			})
 
 
 		})
