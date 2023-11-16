@@ -17,7 +17,7 @@
 			padding-right: 20px;
 			padding-left: 20px;
 			max-width: 720px;
-			margin: 50px auto;
+			margin: 50px auto 100px auto;
 		}
 
 		.g-chart-cont {
@@ -35,8 +35,9 @@
 
 		.g-title {
 			font-weight: 700;
-			margin-bottom: 5px;
-			font-size: 14px;
+			margin-bottom: 10px;
+			font-size: 18px;
+			text-align: center;
 		}
 
 		path.domain {
@@ -85,7 +86,6 @@
 		circle {
 			stroke: #fff;
 			stroke-width: 0.5;
-			fill: rgba(255,0,0,0.3);
 		}
 
 		circle.tooltipped {
@@ -97,18 +97,8 @@
 			stroke: #000;
 		}
 
-		.y.axis .tick:nth-child(3) line {
-			stroke: orange;
-			stroke-width: 2;
-		}
-
 		path.domain {
 			display: none;
-		}
-
-		.g-title {
-			text-align: center;
-			margin-bottom: 25px;
 		}
 
 		.g-axis-title {
@@ -130,83 +120,206 @@
 			top: 50%;
 		}
 
+
+		.g-key {
+			font-size: 12px;
+			text-align: center;
+			margin: 0 auto 25px auto;
+		}
+
+		.g-key-each {
+			display: inline-block;
+			margin-right: 10px;
+		}
+
+		.g-key-dot {
+			width: 5px;
+			height: 5px;
+			border-radius: 100%;
+			display: inline-block;
+			vertical-align: middle;
+			margin-right: 5px;
+		}
+
+		.g-key-label {
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		.g-key-size {
+			margin-top: 10px;
+		}
+
 	</style>
 </head>
 <body>
 
-	<div class="g-chart"></div>
+	<div class="g-chart g-chart-1"></div>
+	<div class="g-chart g-chart-2"></div>
 
 	<script src="https://kklai.github.io/js/d3_.js"></script>
 	<script type="text/javascript">
 
 		d3.select('body').selectAppend('div.tooltip')
 
+		let colors = {
+			"Low Risk": "rgba(0,150,0,0.7)",
+			"High Risk": "rgba(0,100,150,0.7)",
+			"Legal Case": "rgba(255,0,0,0.7)"
+		}
+
 		d3.loadData("aig-data-filtered.csv", function(err, res){
 
 			let data = res[0];
 			data.forEach(function(d,i){
-				let date = new Date(d["DOA"].split("-")[0], d["DOA"].split("-")[1]-1, 1);
-				// date.setDate(date.getDate() + 1)
+				let date = new Date(d["DOA"].split("/")[2], d["DOA"].split("/")[0]-1, 1);
 				d.date = date;
+				d.sortOrder = d["Risk Group"] == "Legal Case" ? 3 : d["Risk Group"] == "High Risk" ? 2 : d["Risk Group"] == "Low Risk" ? 1 : 0; 
 			})
 
-			let cont = d3.select(".g-chart").html("");
-			let width = cont.node().getBoundingClientRect().width;
-			let height = 400;
-			let margin = {
-				top: 5,
-				left: 32,
-				bottom: 30,
-				right: 5
-			}
+			data = data.sort((a,b) => a.sortOrder - b.sortOrder);
 
-			let sel = cont.append("div.g-chart-cont");
+			function drawChart(div, sizeCircles) {
+				let cont = d3.select(div).html("");
+				let width = cont.node().getBoundingClientRect().width;
+				let height = 400;
+				let margin = {
+					top: 5,
+					left: 32,
+					bottom: 30,
+					right: 5
+				}
 
-			sel.append("div.g-title").text("Relationship between MAB and RTW")
-			sel.append("div.g-axis-title.y").text("MAB")
-			sel.append("div.g-axis-title.x").text("DOA, Grouped by Year and Month")
+				let sel = cont.append("div.g-chart-cont");
 
-			let svg = sel.append("svg").attr("width", width).attr("height", height).append("g").translate([margin.left,margin.top]);
+				sel.append("div.g-title").text("Relationship between MAB and RTW")
+				sel.append("div.g-axis-title.y").text("MAB")
+				sel.append("div.g-axis-title.x").text("DOA, Grouped by Year and Month")
 
-			width = width - margin.left - margin.right;
-			height = height - margin.top - margin.bottom;
+				let keycont = sel.append("div.g-key")
 
-			let extent = d3.extent(data.map(d => d.date));
-			let x = d3.scaleLinear().domain(extent).range([0,width]);
-			let format = d3.timeFormat("%Y");
-			let xAxis = d3.axisBottom(x).tickFormat(d => format(d)).tickValues([
-				new Date(2013,1,0), 
-				new Date(2014,1,0), 
-				new Date(2015,1,0),
-				new Date(2016,1,0),
-				new Date(2017,1,0),
-				new Date(2018,1,0),
-				new Date(2019,1,0),
-				new Date(2020,1,0),
-				new Date(2021,1,0)
-			]);
-			// .tickValues([0,500,1000,1500,2000,2500]);
+				let svg = sel.append("svg").attr("width", width).attr("height", height).append("g").translate([margin.left,margin.top]);
 
-			let y = d3.scaleLinear().domain([-90,1000]).range([height,0]);
-			let yAxis = d3.axisLeft(y).tickValues([-90,0,1000]).tickSize(width)
+				width = width - margin.left - margin.right;
+				height = height - margin.top - margin.bottom;
 
-			let g = svg.append("g");
-			g.appendMany("circle", data)
-				.attr("r", 3)
-				.translate(d => [x(d.date),y(d["MAB-RTW"])])
-				.call(d3.attachTooltip)
-				.on('mouseover', function(d){
-					d3.select(this).raise()
-					d3.select('.tooltip').html("<b>" + d["DOA"] + "</b><br>MAB-RTW: " + d["MAB-RTW"])
+				let extent = d3.extent(data.map(d => d.date));
+				let x = d3.scaleLinear().domain(extent).range([0,width]);
+				let format = d3.timeFormat("%Y");
+				let xAxis = d3.axisBottom(x).tickFormat(d => format(d)).tickValues([
+					new Date(2013,1,0), 
+					new Date(2014,1,0), 
+					new Date(2015,1,0),
+					new Date(2016,1,0),
+					new Date(2017,1,0),
+					new Date(2018,1,0),
+					new Date(2019,1,0),
+					new Date(2020,1,0),
+					new Date(2021,1,0)
+				]);
+
+				let y = d3.scaleLinear().domain([-90,1000]).range([height,0]);
+				let yAxis = d3.axisLeft(y).tickValues([-90,0,1000]).tickSize(width)
+
+				let r = d3.scaleSqrt().domain([1,1095]).range([1,8])
+
+
+				let keys = ["Low Risk", "High Risk", "Legal Case"]
+
+				keys.forEach(function(key,i){
+					let k = keycont.append("div")
+						.attr("class", "g-key-each")
+						
+					k.append("div")
+						.attr("class", "g-key-dot")
+						.style("background", colors[key].replace("0.7", "1"))
+
+					k.append("div")
+						.attr("class", "g-key-label")
+						.text(key)
+						.style("color", colors[key].replace("0.7", "1"))
+
 				})
 
-			svg.append("g.x.axis")
-				.translate([0,height])
-				.call(xAxis)
+				if (sizeCircles) {
 
-			svg.append("g.y.axis")
-				.translate([width,0])
-				.call(yAxis)
+					let sizes = [[1,"1 day"], [365,"1 year"], [1095,"3 years"]]
+
+					let key2 = keycont.append("div")
+						.attr("class", "g-key-size");
+
+					let k = key2.append("div")
+						.attr("class", "g-key-each")
+
+					k.append("div.g-key-label")
+						.text("Total SL")
+						.style("font-weight", 700)
+
+
+					sizes.forEach(function(size){
+						let k = key2.append("div")
+							.attr("class", "g-key-each")
+
+						k.append("div")
+							.attr("class", "g-key-dot")
+							.style("border", "1px solid #000")
+							.style("width", (r(size[0])*2) + "px")
+							.style("height", (r(size[0])*2) + "px")
+
+						k.append("div")
+							.attr("class", "g-key-label")
+							.text(size[1])
+
+					})
+
+				}
+
+
+
+				let g = svg.append("g");
+				g.appendMany("circle", data)
+					.attr("fill", d => colors[d["Risk Group"]] ? colors[d["Risk Group"]] : "none")
+					.attr("r", d => sizeCircles ? r(d["Total SL"]) : 2.5)
+					.translate(d => [x(d.date),y(d["MAB-RTW"])])
+					.call(d3.attachTooltip)
+					.on('mouseover', function(d){
+						d3.select(this).raise()
+						d3.select('.tooltip').html("<b>" + d["DOA"] + "</b><br>MAB-RTW: " + d["MAB-RTW"] + "<br>Total SL: " + d["Total SL"])
+					})
+
+				svg.append("g.x.axis")
+					.translate([0,height])
+					.call(xAxis)
+
+				svg.append("g.y.axis")
+					.translate([width,0])
+					.call(yAxis)
+
+				let mean = d3.mean(data, d => d["MAB-RTW"]);
+				svg.append("path")
+					.attr("d",`M3,${y(mean)} L${width},${y(mean)}`)
+					.style("stroke", "#000")
+					.style("stroke-width", 2)
+
+				let meantext = svg.append("text")
+					.attr("text-anchor", "end")
+					.attr("transform", `translate(0,${y(mean)})`)
+				
+				meantext.append("tspan")
+					.attr("x", 0)
+					.attr("y", 0)
+					.text("Mean")
+
+				meantext.append("tspan")
+					.attr("x", 0)
+					.attr("y", 12)
+					.text(Math.round(mean))
+
+
+			}
+ 
+			drawChart(".g-chart-1")
+			drawChart(".g-chart-2", true)
 
 
 
