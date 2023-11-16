@@ -163,9 +163,9 @@
 		d3.select('body').selectAppend('div.tooltip')
 
 		let colors = {
-			"Low Risk": "rgba(0,150,0,0.7)",
-			"High Risk": "rgba(0,100,150,0.7)",
-			"Legal Case": "rgba(255,0,0,0.7)"
+			"Low Risk": "rgba(40,179,75,0.7)",
+			"High Risk": "rgba(26,153,206,0.7)",
+			"Legal Case": "rgba(205,32,39,0.7)"
 		}
 
 		d3.loadData("aig-data-filtered.csv", function(err, res){
@@ -226,6 +226,13 @@
 
 				let keys = ["Low Risk", "High Risk", "Legal Case"]
 
+				let k = keycont.append("div")
+					.attr("class", "g-key-each")
+
+				k.append("div.g-key-label")
+					.text("Risk Group")
+					.style("font-weight", 700)
+
 				keys.forEach(function(key,i){
 					let k = keycont.append("div")
 						.attr("class", "g-key-each")
@@ -254,7 +261,6 @@
 					k.append("div.g-key-label")
 						.text("Total SL")
 						.style("font-weight", 700)
-
 
 					sizes.forEach(function(size){
 						let k = key2.append("div")
