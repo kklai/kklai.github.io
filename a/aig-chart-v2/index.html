@@ -34,7 +34,7 @@
 
 		.g-title {
 			font-weight: 700;
-			margin-bottom: 5px;
+			margin-bottom: 20px;
 			font-size: 14px;
 		}
 
@@ -81,6 +81,7 @@
 
 		circle {
 			stroke: #fff;
+			stroke-width: 0.2;
 			fill: rgba(255,0,0,0.3);
 		}
 
@@ -99,7 +100,7 @@
 	<script type="text/javascript">
 		
 		d3.select('body').selectAppend('div.tooltip')
-		d3.loadData("aig-data.csv", function(err, res){
+		d3.loadData("aig-data-filtered.csv", function(err, res){
 
 			let data = res[0];
 			let keywords = d3.nest().key(d => d.keyword).entries(data)
@@ -108,59 +109,69 @@
 			let height = 50;
 			let margin = {
 				top: 5,
-				left: 60,
+				left: 80,
 				bottom: 0,
 				right: 0
 			}
 
 			data.forEach(function(d,i){
-				data[i]["TD-DOA"] = +d["TD-DOA"];
+				data[i]["Total SL"] = +d["Total SL"];
 			})
-			let extent = d3.extent(data.map(d => d["TD-DOA"]));
+			let extent = d3.extent(data.map(d => d["Total SL"]));
 			let x = d3.scaleLinear().domain([0,extent[1]]).range([0,width-margin.left-margin.right]);
-			let xAxis = d3.axisBottom(x).tickValues([0,500,1000,1500,2000,2500]);
+			let xAxis = d3.axisBottom(x).tickValues([0,500,1000,1500]);
 
-			let group2vals = ["Normal", "DS", "Legal"];
+			let colors = {
+				"Low Risk": "rgba(40,179,75,0.7)",
+				"High Risk": "rgba(26,153,206,0.7)",
+				"Legal Case": "rgba(205,32,39,0.7)"
+			}
 
-			keywords.forEach(function(group){
+			let groups = Object.keys(colors);
 
-				let keyword = group.key;
-				let sel = cont.append("div.g-chart-cont");
+			let sel = cont.append("div.g-chart-cont");
 
-				sel.append("div.g-title").text(keyword);
+			sel.append("div.g-title").text("Total SL");
 
-				let svg = sel.append("svg").attr("width", width).attr("height", height).append("g").translate([0,margin.top]);
+			let svg = sel.append("svg").attr("width", width).attr("height", height).append("g").translate([0,margin.top]);
 
-				group2vals.forEach(function(group2,i){
-					let g = svg.append("g").translate([0,i*15]);
-					let filtered = group.values.filter(d => d.group == group2);
+			groups.forEach(function(group,i){
+				let g = svg.append("g").translate([0,i*30]);
+				let filtered = data.filter(d => d["Risk Group"] == group);
+				filtered = filtered.sort((a,b) => a["Total SL"] - b["Total SL"])
 
-					g.append("text")
-						.translate([0,2])
-						.text(group2)
+				g.append("text")
+					.translate([0,2])
+					.text(group)
 
-					let g2 = g.append("g").translate([margin.left,0])
-					g2.appendMany("circle", filtered)
-						.attr("r", 4)
-						.translate(d => [x(d["TD-DOA"]),0])
-						.call(d3.attachTooltip)
-						.on('mouseover', function(d){
-							d3.select(this).raise()
-						})
+				let g2 = g.append("g").translate([margin.left,0])
+				g2.appendMany("circle", filtered)
+					.attr("r", 4)
+					.style("fill", colors[group])
+					.translate(d => [x(d["Total SL"]),0])
+					.call(d3.attachTooltip)
 
-
-					if (i == 2) {
-						g2.append("g.x.axis")
-							.translate([0,5])
-							.call(xAxis)
-					}
-				})
-
+				let mean = Math.round(d3.mean(filtered, d => d["Total SL"]));
 				
+				let meang = g2.append("g")
+					.translate([x(mean),0])
+				meang.append("path")
+					.style("stroke", "#000")
+					.style("stroke-width", 1.5)
+					.attr("d", "M0,-6 L0,7")
+
+				meang.append("text")
+					.translate([-5,-10])
+					.text(i == 0 ? "Mean: " + mean + " days" : mean + " days")
 
 
-
+				if (i == 2) {
+					g2.append("g.x.axis")
+						.translate([0,5])
+						.call(xAxis)
+				}
 			})
+
 
 
 		})
