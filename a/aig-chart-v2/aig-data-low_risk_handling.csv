@@ -1,0 +1,5 @@
+Risk Group,COUNTA of Claim_No,AVERAGE of Feature No. A,AVERAGE of Feature No. B,AVERAGE of Claim Type 1,AVERAGE of Claim Type 2,AVERAGE of Claim Type 3
+High Risk,3585,40.07,232.95,36.24,124.72,128.66
+Legal Case,307,47.13,617.41,39.86,446.49,163.64
+Low Risk,13858,42.65,158.01,40.84,88.71,112.80
+Grand Total,17750,42.21,337.11,39.95,127.96,122.37
