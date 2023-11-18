@@ -154,6 +154,7 @@
 </head>
 <body>
 
+	<div class="g-chart g-chart-last"></div>
 	<div class="g-chart g-chart-mab"></div>
 	<div class="g-chart g-chart-rtw"></div>
 	<div class="g-chart g-chart-1"></div>
@@ -187,9 +188,15 @@
 
 				let mab = div.indexOf("mab") > -1
 				let rtw = div.indexOf("rtw") > -1
+				let last = div.indexOf("last") > -1
 
-				let varname = mab ? "MAB" : rtw ? "RTW" : ["MAB-RTW"];
-				data = data.filter(d => d[varname] > 0);
+				let varname = mab ? "MAB" : rtw ? "RTW" : last ? "Last Transaction Date_Final Payment - DOA" : ["MAB-RTW"];
+
+				data.forEach(function(d){
+					d[varname] = + +d[varname] 
+				})
+
+				data = data.filter(d => +d[varname] > 0);
 
 				let cont = d3.select(div).html("");
 				let width = cont.node().getBoundingClientRect().width;
@@ -203,7 +210,7 @@
 
 				let sel = cont.append("div").attr("class", "g-chart-cont");
 
-				sel.append("div").attr("class", "g-title").text(mab ? "MAB" : rtw ? "RTW" : "Relationship between MAB and RTW")
+				sel.append("div").attr("class", "g-title").text(mab ? "MAB" : rtw ? "RTW" : last ? varname : "Relationship between MAB and RTW")
 				// sel.append("div").attr("class", "g-axis-title y").text(mab ? "MAB" : rtw ? "RTW" : "")
 				sel.append("div").attr("class", "g-axis-title x").text("DOA, Grouped by Year and Month")
 
@@ -231,8 +238,7 @@
 
 
 				let yextent = d3.extent(data, d => +d[varname]);
-				yextent = [0,1200]
-				console.log(yextent)
+				yextent = last ? [0,2000] : [0,1200]
 
 				let y = d3.scaleLinear().domain(yextent).range([height,0]);
 				let yAxis = d3.axisLeft(y).tickSize(width).ticks(4)
@@ -308,7 +314,7 @@
 					.append("circle")
 					.attr("fill", d => colors[d["Risk Group"]] ? colors[d["Risk Group"]] : "none")
 					.attr("r", d => sizeCircles ? r(d["Total SL"]) : 2.5)
-					.attr("transform", d => `translate(${x(d.date)},${mab ? y(d.MAB) : rtw ? y(d.RTW) : y(d["MAB-RTW"])})`)
+					.attr("transform", d => `translate(${x(d.date)},${y(d[varname])})`)
 					.on('mouseover', function(event,d){
 						tooltip.classed("tooltip-hidden", false)
 						d3.select(this).classed("tooltipped", true);
@@ -340,7 +346,6 @@
 				groups.forEach(function(group, groupi){
 					let filtered = data.filter(d => d["Risk Group"] == group);
 					let mean = d3.mean(filtered, d => d[varname]);
-					console.log(div, group, mean)
 
 					svg.append("path")
 						.attr("d",`M3,${y(mean)} L${width},${y(mean)}`)
@@ -392,18 +397,17 @@
 			}
  
 
- 			drawChart(".g-chart-mab")
- 			drawChart(".g-chart-rtw")
-			drawChart(".g-chart-1")
-			drawChart(".g-chart-2", true)
-
+			function drawAll() {
+				drawChart(".g-chart-last")	
+	 			drawChart(".g-chart-mab")
+	 			drawChart(".g-chart-rtw")
+				drawChart(".g-chart-1")
+				drawChart(".g-chart-2", true)	
+			}
+ 			
+ 			drawAll();
 			window.addEventListener('resize', function(event) {
-			     
-     			drawChart(".g-chart-mab")
-     			drawChart(".g-chart-rtw")
-    			drawChart(".g-chart-1")
-    			drawChart(".g-chart-2", true)
-    			
+				drawAll();
 			}, true);
 
 
