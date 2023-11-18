@@ -94,7 +94,7 @@
 		}
 
 		.y.axis line {
-			stroke: #000;
+			stroke: rgba(0,0,0,0.5);
 		}
 
 		path.domain {
@@ -116,8 +116,8 @@
 		}
 
 		.g-axis-title.y {
-			transform: rotate(-90deg);
-			top: 50%;
+/*			transform: rotate(-90deg);*/
+			top: 15%;
 		}
 
 
@@ -154,6 +154,8 @@
 </head>
 <body>
 
+	<div class="g-chart g-chart-mab"></div>
+	<div class="g-chart g-chart-rtw"></div>
 	<div class="g-chart g-chart-1"></div>
 	<div class="g-chart g-chart-2"></div>
 
@@ -164,9 +166,9 @@
 		let tooltip = d3.select('body').append('div').attr("class", "tooltip tooltip-hidden")
 
 		let colors = {
-			"Low Risk": "rgba(40,179,75,0.7)",
-			"High Risk": "rgba(26,153,206,0.7)",
-			"Legal Case": "rgba(205,32,39,0.7)"
+			"Low Risk": "rgba(255,220,0,1)",
+			"High Risk": "rgba(26,190,255,1)",
+			"Legal Case": "rgba(255,0,0,1)"
 		}
 
 		d3.csv("aig-data-filtered.csv").then(data => {
@@ -180,6 +182,10 @@
 			data = data.sort((a,b) => a.sortOrder - b.sortOrder);
 
 			function drawChart(div, sizeCircles) {
+
+				let mab = div.indexOf("mab") > -1
+				let rtw = div.indexOf("rtw") > -1
+
 				let cont = d3.select(div).html("");
 				let width = cont.node().getBoundingClientRect().width;
 				let height = 400;
@@ -192,8 +198,8 @@
 
 				let sel = cont.append("div").attr("class", "g-chart-cont");
 
-				sel.append("div").attr("class", "g-title").text("Relationship between MAB and RTW")
-				sel.append("div").attr("class", "g-axis-title y").text("MAB")
+				sel.append("div").attr("class", "g-title").text(mab ? "MAB" : rtw ? "RTW" : "Relationship between MAB and RTW")
+				// sel.append("div").attr("class", "g-axis-title y").text(mab ? "MAB" : rtw ? "RTW" : "")
 				sel.append("div").attr("class", "g-axis-title x").text("DOA, Grouped by Year and Month")
 
 				let keycont = sel.append("div").attr("class", "g-key")
@@ -218,8 +224,13 @@
 					new Date(2021,1,0)
 				]);
 
-				let y = d3.scaleLinear().domain([-90,1000]).range([height,0]);
-				let yAxis = d3.axisLeft(y).tickValues([-90,0,1000]).tickSize(width)
+
+				let yextent = mab ? d3.extent(data, d => d.MAB) : rtw ? d3.extent(data, d => d.RTW) : [-90,1000]
+
+				let y = d3.scaleLinear().domain(yextent).range([height,0]);
+				let yAxis = d3.axisLeft(y).tickSize(width).ticks(4)
+
+				//.tickValues([-90,0,1000])
 
 				let r = d3.scaleSqrt().domain([1,1095]).range([1,8])
 
@@ -290,7 +301,7 @@
 					.append("circle")
 					.attr("fill", d => colors[d["Risk Group"]] ? colors[d["Risk Group"]] : "none")
 					.attr("r", d => sizeCircles ? r(d["Total SL"]) : 2.5)
-					.attr("transform", d => `translate(${x(d.date)},${y(d["MAB-RTW"])})`)
+					.attr("transform", d => `translate(${x(d.date)},${mab ? y(d.MAB) : rtw ? y(d.RTW) : y(d["MAB-RTW"])})`)
 					.on('mouseover', function(event,d){
 						tooltip.classed("tooltip-hidden", false)
 						d3.select(this).classed("tooltipped", true);
@@ -308,11 +319,13 @@
 						tooltip.classed("tooltip-hidden", true)
 					})
 
-				svg.append("g.x.axis")
+				svg.append("g")
+					.attr("class", "x axis")
 					.attr("transform", `translate(0,${height})`)
 					.call(xAxis)
 
-				svg.append("g.y.axis")
+				svg.append("g")
+					.attr("class", "y axis")
 					.attr("transform", `translate(${width},0)`)
 					.call(yAxis)
 
@@ -339,6 +352,8 @@
 
 			}
  
+ 			drawChart(".g-chart-mab")
+ 			drawChart(".g-chart-rtw")
 			drawChart(".g-chart-1")
 			drawChart(".g-chart-2", true)
 
