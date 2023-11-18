@@ -198,7 +198,7 @@
 					top: 5,
 					left: 32,
 					bottom: 30,
-					right: 5
+					right: 150
 				}
 
 				let sel = cont.append("div").attr("class", "g-chart-cont");
@@ -231,6 +231,7 @@
 
 
 				let yextent = d3.extent(data, d => +d[varname]);
+				yextent = [0,1200]
 				console.log(yextent)
 
 				let y = d3.scaleLinear().domain(yextent).range([height,0]);
@@ -336,7 +337,7 @@
 					.call(yAxis)
 
 
-				groups.forEach(function(group){
+				groups.forEach(function(group, groupi){
 					let filtered = data.filter(d => d["Risk Group"] == group);
 					let mean = d3.mean(filtered, d => d[varname]);
 					console.log(div, group, mean)
@@ -353,22 +354,36 @@
 
 					let meantext = svg.append("text")
 						.attr("text-anchor", "start")
-						.attr("transform", `translate(0,${y(mean)})`)
+						.attr("transform", function(){
+							if (mab) {
+								return `translate(${width+5},${y(mean)+4})`
+							} else if (rtw) {
+								return `translate(${width+5},${y(mean)+4})`
+							} else {
+								if (groupi == 1) {
+									return `translate(${width+5},${y(mean)+3})`
+								} else if (group == "Low Risk") {
+									return `translate(${width+5},${y(mean)+10})`
+
+								} else {
+									return `translate(${width+5},${y(mean)})`
+								}
+							}
+						})
 					
 					meantext.append("tspan")
 						.attr("x", 0)
-						.attr("y", -3)
+						.attr("y", 0)
 						.style("stroke", "#fff")
 						.style("stroke-width", 3)
 						.text(group + ": " + Math.round(mean))
 
 					meantext.append("tspan")
 						.attr("x", 0)
-						.attr("y", -3)
+						.attr("y", 0)
 						.style("fill", colors[group])
-						.style("filter", "brightness(70%)")
+						.style("filter", "brightness(80%)")
 						.text(group + ": " + Math.round(mean))
-
 
 				})
 				
@@ -376,11 +391,20 @@
 
 			}
  
+
  			drawChart(".g-chart-mab")
  			drawChart(".g-chart-rtw")
 			drawChart(".g-chart-1")
 			drawChart(".g-chart-2", true)
 
+			window.addEventListener('resize', function(event) {
+			     
+     			drawChart(".g-chart-mab")
+     			drawChart(".g-chart-rtw")
+    			drawChart(".g-chart-1")
+    			drawChart(".g-chart-2", true)
+    			
+			}, true);
 
 
 		})
