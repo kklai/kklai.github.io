@@ -26,6 +26,7 @@
 
 		svg {
 			overflow: visible;
+			margin-top: 15px;
 		}
 
 		text {
@@ -34,8 +35,13 @@
 
 		.g-title {
 			font-weight: 700;
-			margin-bottom: 20px;
 			font-size: 14px;
+		}
+
+		.g-num {
+			font-size: 12px;
+			font-style: italic;
+			margin: 3px auto 0;
 		}
 
 		path.domain {
@@ -94,102 +100,208 @@
 </head>
 <body>
 
-	<div class="g-chart"></div>
+	<div class="g-chart g-chart-v1"></div>
+	<div class="g-chart g-chart-v2"></div>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 	<script type="text/javascript">
 			
 		d3.selectAll("div.tooltip").remove();
 		let tooltip = d3.select('body').append('div').attr("class", "tooltip tooltip-hidden")
-		d3.csv("aig-data-filtered.csv").then(data => {
 
-			let cont = d3.select(".g-chart").html("");
-			let width = cont.node().getBoundingClientRect().width;
-			let height = 50;
-			let margin = {
-				top: 5,
-				left: 80,
-				bottom: 0,
-				right: 0
-			}
+		let colors = {
+			"Low Risk": "rgba(255,220,0,1)",
+			"High Risk": "rgba(26,190,255,1)",
+			"Legal Case": "rgba(255,0,0,1)"
+		}
 
-			data.forEach(function(d,i){
-				data[i]["Total SL"] = +d["Total SL"];
-			})
-			let extent = d3.extent(data.map(d => d["Total SL"]));
-			let x = d3.scaleLinear().domain([0,extent[1]]).range([0,width-margin.left-margin.right]);
-			let xAxis = d3.axisBottom(x).tickValues([0,500,1000,1500]);
+		function chartv1() {
+			d3.csv("aig-data-filtered.csv").then(data => {
 
-			let colors = {
-				"Low Risk": "rgba(40,179,75,0.7)",
-				"High Risk": "rgba(26,153,206,0.7)",
-				"Legal Case": "rgba(205,32,39,0.7)"
-			}
-
-			let groups = Object.keys(colors);
-
-			let sel = cont.append("div").attr("class", "g-chart-cont");
-
-			sel.append("div").attr("class", "g-title").text("Total SL");
-
-			let svg = sel.append("svg").attr("width", width).attr("height", height).append("g").attr("transform", `translate(0,${margin.top})`);
-
-			groups.forEach(function(group,i){
-				let g = svg.append("g").attr("transform", `translate(0,${i*30})`);
-				let filtered = data.filter(d => d["Risk Group"] == group);
-				filtered = filtered.sort((a,b) => a["Total SL"] - b["Total SL"])
-
-				g.append("text")
-					.attr("transform", "translate(0,2)")
-					.text(group)
-
-				let g2 = g.append("g").attr("transform", `translate(${margin.left},0)`)
-				g2.selectAll("circle")
-					.data(filtered)
-					.enter()
-					.append("circle")
-					.attr("r", 4)
-					.style("fill", colors[group])
-					.attr("transform", d => `translate(${x(d["Total SL"])},0)`)
-					.on("mouseover", function(event,d){
-						tooltip.classed("tooltip-hidden", false)
-						d3.select(this).classed("tooltipped", true);
-						let htmlstr = '';
-						Object.keys(d).forEach(function(a){
-							htmlstr += `<div>${a}: ${d[a]}</div>`;
-						})
-						tooltip.html(htmlstr)
-					})
-					.on("mousemove", d => tooltip.style("top", (event.pageY+10)+"px").style("left",(event.pageX+10)+"px"))
-					.on("mouseout", function(event,d){
-						d3.select(this).classed("tooltipped", false);
-						tooltip.classed("tooltip-hidden", true)
-					})
-
-				let mean = Math.round(d3.mean(filtered, d => d["Total SL"]));
-				
-				let meang = g2.append("g")
-					.attr("transform", `translate(${x(mean)},0)`)
-				meang.append("path")
-					.style("stroke", "#000")
-					.style("stroke-width", 1.5)
-					.attr("d", "M0,-6 L0,7")
-
-				meang.append("text")
-					.attr("transform","translate(-5,-10)")
-					.text(i == 0 ? "Mean: " + mean + " days" : mean + " days")
-
-
-				if (i == 2) {
-					g2.append("g.x.axis")
-						.attr("transform", "translate(0,5)")
-						.call(xAxis)
+				let cont = d3.select(".g-chart").html("");
+				let width = cont.node().getBoundingClientRect().width;
+				let height = 50;
+				let margin = {
+					top: 5,
+					left: 80,
+					bottom: 0,
+					right: 100
 				}
+
+				data.forEach(function(d,i){
+					data[i]["Total SL"] = +d["Total SL"];
+				})
+				let extent = d3.extent(data.map(d => d["Total SL"]));
+				let x = d3.scaleLinear().domain([0,extent[1]]).range([0,width-margin.left-margin.right]);
+				let xAxis = d3.axisBottom(x).tickValues([0,500,1000,1500]);
+
+				let groups = Object.keys(colors);
+
+				let sel = cont.append("div").attr("class", "g-chart-cont");
+
+				sel.append("div").attr("class", "g-title").text("Total SL");
+
+				let svg = sel.append("svg").attr("width", width).attr("height", height).append("g").attr("transform", `translate(0,${margin.top})`);
+
+				groups.forEach(function(group,i){
+					let g = svg.append("g").attr("transform", `translate(0,${i*30})`);
+					let filtered = data.filter(d => d["Risk Group"] == group);
+					filtered = filtered.sort((a,b) => a["Total SL"] - b["Total SL"])
+
+					g.append("text")
+						.attr("transform", "translate(0,2)")
+						.text(group)
+
+					let g2 = g.append("g").attr("transform", `translate(${margin.left},0)`)
+					g2.selectAll("circle")
+						.data(filtered)
+						.enter()
+						.append("circle")
+						.attr("r", 4)
+						.style("fill", colors[group])
+						.attr("transform", d => `translate(${x(d["Total SL"])},0)`)
+						.on("mouseover", function(event,d){
+							tooltip.classed("tooltip-hidden", false)
+							d3.select(this).classed("tooltipped", true);
+							let htmlstr = '';
+							Object.keys(d).forEach(function(a){
+								htmlstr += `<div>${a}: ${d[a]}</div>`;
+							})
+							tooltip.html(htmlstr)
+						})
+						.on("mousemove", d => tooltip.style("top", (event.pageY+10)+"px").style("left",(event.pageX+10)+"px"))
+						.on("mouseout", function(event,d){
+							d3.select(this).classed("tooltipped", false);
+							tooltip.classed("tooltip-hidden", true)
+						})
+
+					let mean = Math.round(d3.mean(filtered, d => d["Total SL"]));
+					
+					let meang = g2.append("g")
+						.attr("transform", `translate(${x(mean)},0)`)
+					meang.append("path")
+						.style("stroke", "#000")
+						.style("stroke-width", 1.5)
+						.attr("d", "M0,-6 L0,7")
+
+					meang.append("text")
+						.attr("transform","translate(-5,-10)")
+						.text(i == 0 ? "Mean: " + mean + " days" : mean + " days")
+
+
+					if (i == 2) {
+						g2.append("g")
+							.attr("class", "x axis")
+							.attr("transform", "translate(0,10)")
+							.call(xAxis)
+					}
+				})
+			})
+		}
+
+
+		chartv1();
+
+
+		function chartv2() {
+
+			d3.csv("aig-data-low_risk_handling.csv").then(data => {
+
+				console.log(data)
+				let cont = d3.select(".g-chart-v2").html("");
+				let width = cont.node().getBoundingClientRect().width;
+				let rowheight = 20;
+				let height = rowheight*6 + 30;
+				let margin = {
+					top: 5,
+					left: 160,
+					bottom: 0,
+					right: 100
+				}
+
+				let groups = Object.keys(colors);
+
+				//"COUNTA of Claim_No",
+				let cols = ["AVERAGE of Feature No. A","AVERAGE of Feature No. B","AVERAGE of Claim Type 1","AVERAGE of Claim Type 2","AVERAGE of Claim Type 3"]
+
+				let sel = cont.append("div").attr("class", "g-chart-cont");
+
+				function numberWithCommas(x) {
+				    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+				}
+
+				groups.forEach(function(group){
+
+					let filtered = data.filter(d => d["Risk Group"] == group)[0];
+
+					sel.append("div").attr("class", "g-title").text(group);
+					sel.append("div").attr("class", "g-num").text("COUNTA of Claim_No: " + numberWithCommas(filtered["COUNTA of Claim_No"]));
+					let svg = sel.append("svg").attr("width", width).attr("height", height).append("g").attr("transform", `translate(0,${margin.top})`);
+					
+					let nums = []
+					cols.forEach(function(col){
+						nums.push(+filtered[col]);
+					})	
+
+					//[0,d3.extent(nums)[1]]
+					let x = d3.scaleLinear().domain([0,650]).range([0,width-margin.left-margin.right]);
+					let xAxis = d3.axisBottom(x).ticks(5);
+
+					cols.forEach(function(col,i){
+
+						let g = svg.append("g").attr("transform", `translate(0,${i*rowheight})`);
+						g.append("text")
+							.attr("transform", "translate(0,4)")
+							.text(col)
+
+						let g2 = g.append("g").attr("transform", `translate(${margin.left},0)`)
+						g2.append("path")
+							.style("stroke", "#efefef")
+							.attr("d", `M0,0L${width-margin.left-margin.right},0`)
+
+						g2.append("circle")
+							.attr("r", 5)
+							.style("fill", colors[group])
+							.attr("transform", d => `translate(${x(filtered[col])},0)`)
+							// .on("mouseover", function(event,d){
+							// 	tooltip.classed("tooltip-hidden", false)
+							// 	d3.select(this).classed("tooltipped", true);
+							// 	let htmlstr = filtered[col];
+							// 	tooltip.html(htmlstr)
+							// })
+							// .on("mousemove", d => tooltip.style("top", (event.pageY+10)+"px").style("left",(event.pageX+10)+"px"))
+							// .on("mouseout", function(event,d){
+							// 	d3.select(this).classed("tooltipped", false);
+							// 	tooltip.classed("tooltip-hidden", true)
+							// })
+
+						g2.append("text")
+							.attr("transform", d => `translate(${x(filtered[col])+9},4.5)`)
+							.text(numberWithCommas(Math.round(filtered[col])))
+
+						if (i == cols.length - 1) {
+							g2.append("g")
+								.attr("class", "x axis")
+								.attr("transform", "translate(0,15)")
+								.call(xAxis)
+						}
+					})
+				})
+				
 			})
 
+		}
 
+		function drawAll(){
+			chartv1();
+			chartv2();
+		}
 
-		})
+		drawAll()
+		window.addEventListener('resize', function(event) {
+		    drawAll()
+		}, true);
+		
 
 	</script>
 </body>
