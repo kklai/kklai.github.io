@@ -171,6 +171,8 @@
 			"Legal Case": "rgba(255,0,0,1)"
 		}
 
+		let groups = Object.keys(colors);
+
 		d3.csv("aig-data-filtered.csv").then(data => {
 
 			data.forEach(function(d,i){
@@ -179,12 +181,15 @@
 				d.sortOrder = d["Risk Group"] == "Legal Case" ? 3 : d["Risk Group"] == "High Risk" ? 2 : d["Risk Group"] == "Low Risk" ? 1 : 0; 
 			})
 
-			data = data.sort((a,b) => a.sortOrder - b.sortOrder);
+			data = data.sort((a,b) => a.sortOrder - b.sortOrder);			
 
 			function drawChart(div, sizeCircles) {
 
 				let mab = div.indexOf("mab") > -1
 				let rtw = div.indexOf("rtw") > -1
+
+				let varname = mab ? "MAB" : rtw ? "RTW" : ["MAB-RTW"];
+				data = data.filter(d => d[varname] > 0);
 
 				let cont = d3.select(div).html("");
 				let width = cont.node().getBoundingClientRect().width;
@@ -225,7 +230,8 @@
 				]);
 
 
-				let yextent = mab ? d3.extent(data, d => d.MAB) : rtw ? d3.extent(data, d => d.RTW) : [-90,1000]
+				let yextent = d3.extent(data, d => +d[varname]);
+				console.log(yextent)
 
 				let y = d3.scaleLinear().domain(yextent).range([height,0]);
 				let yAxis = d3.axisLeft(y).tickSize(width).ticks(4)
@@ -329,25 +335,43 @@
 					.attr("transform", `translate(${width},0)`)
 					.call(yAxis)
 
-				let mean = d3.mean(data, d => d["MAB-RTW"]);
-				svg.append("path")
-					.attr("d",`M3,${y(mean)} L${width},${y(mean)}`)
-					.style("stroke", "#000")
-					.style("stroke-width", 2)
 
-				let meantext = svg.append("text")
-					.attr("text-anchor", "end")
-					.attr("transform", `translate(0,${y(mean)})`)
+				groups.forEach(function(group){
+					let filtered = data.filter(d => d["Risk Group"] == group);
+					let mean = d3.mean(filtered, d => d[varname]);
+					console.log(div, group, mean)
+
+					svg.append("path")
+						.attr("d",`M3,${y(mean)} L${width},${y(mean)}`)
+						.style("stroke", "#fff")
+						.style("stroke-width", 5)
+
+					svg.append("path")
+						.attr("d",`M3,${y(mean)} L${width},${y(mean)}`)
+						.style("stroke", colors[group])
+						.style("stroke-width", 3)
+
+					let meantext = svg.append("text")
+						.attr("text-anchor", "start")
+						.attr("transform", `translate(0,${y(mean)})`)
+					
+					meantext.append("tspan")
+						.attr("x", 0)
+						.attr("y", -3)
+						.style("stroke", "#fff")
+						.style("stroke-width", 3)
+						.text(group + ": " + Math.round(mean))
+
+					meantext.append("tspan")
+						.attr("x", 0)
+						.attr("y", -3)
+						.style("fill", colors[group])
+						.style("filter", "brightness(70%)")
+						.text(group + ": " + Math.round(mean))
+
+
+				})
 				
-				meantext.append("tspan")
-					.attr("x", 0)
-					.attr("y", 0)
-					.text("Mean")
-
-				meantext.append("tspan")
-					.attr("x", 0)
-					.attr("y", 12)
-					.text(Math.round(mean))
 
 
 			}
