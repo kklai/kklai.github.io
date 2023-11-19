@@ -100,8 +100,12 @@
 </head>
 <body>
 
-	<div class="g-chart g-chart-v1"></div>
-	<div class="g-chart g-chart-v2"></div>
+	<div class="g-chart" data-attr="Total SL"></div>
+	<div class="g-chart" data-attr="RTW"></div>
+	<div class="g-chart" data-attr="MAB"></div>
+	<div class="g-chart" data-attr="Low Risk"></div>
+	<div class="g-chart" data-attr="High Risk"></div>
+	<div class="g-chart" data-attr="Legal Case"></div>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 	<script type="text/javascript">
@@ -115,191 +119,115 @@
 			"Legal Case": "rgba(255,0,0,1)"
 		}
 
-		function chartv1() {
+		function drawChart() {
 			d3.csv("aig-data-filtered.csv").then(data => {
 
-				let cont = d3.select(".g-chart").html("");
-				let width = cont.node().getBoundingClientRect().width;
-				let height = 50;
-				let margin = {
-					top: 5,
-					left: 80,
-					bottom: 0,
-					right: 100
-				}
 
-				data.forEach(function(d,i){
-					data[i]["Total SL"] = +d["Total SL"];
+				let allkeys = Object.keys(data[0])
+				data.forEach(function(d){
+					allkeys.forEach(function(key){
+						if (key != "Risk Group") {
+							d[key] = +d[key]
+						}						
+					})
 				})
-				let extent = d3.extent(data.map(d => d["Total SL"]));
-				let x = d3.scaleLinear().domain([0,extent[1]]).range([0,width-margin.left-margin.right]);
-				let xAxis = d3.axisBottom(x).tickValues([0,500,1000,1500]);
 
-				let groups = Object.keys(colors);
+				d3.selectAll(".g-chart").each(function(){
+					let cont = d3.select(this).html("");
+					let varname = cont.attr("data-attr");
+					let groups = Object.keys(colors);
+					let groupedByRisk = true;
+					let filteredData = data;
 
-				let sel = cont.append("div").attr("class", "g-chart-cont");
-
-				sel.append("div").attr("class", "g-title").text("Total SL");
-
-				let svg = sel.append("svg").attr("width", width).attr("height", height).append("g").attr("transform", `translate(0,${margin.top})`);
-
-				groups.forEach(function(group,i){
-					let g = svg.append("g").attr("transform", `translate(0,${i*30})`);
-					let filtered = data.filter(d => d["Risk Group"] == group);
-					filtered = filtered.sort((a,b) => a["Total SL"] - b["Total SL"])
-
-					g.append("text")
-						.attr("transform", "translate(0,2)")
-						.text(group)
-
-					let g2 = g.append("g").attr("transform", `translate(${margin.left},0)`)
-					g2.selectAll("circle")
-						.data(filtered)
-						.enter()
-						.append("circle")
-						.attr("r", 4)
-						.style("fill", colors[group])
-						.attr("transform", d => `translate(${x(d["Total SL"])},0)`)
-						.on("mouseover", function(event,d){
-							tooltip.classed("tooltip-hidden", false)
-							d3.select(this).classed("tooltipped", true);
-							let htmlstr = '';
-							Object.keys(d).forEach(function(a){
-								htmlstr += `<div>${a}: ${d[a]}</div>`;
-							})
-							tooltip.html(htmlstr)
-						})
-						.on("mousemove", d => tooltip.style("top", (event.pageY+10)+"px").style("left",(event.pageX+10)+"px"))
-						.on("mouseout", function(event,d){
-							d3.select(this).classed("tooltipped", false);
-							tooltip.classed("tooltip-hidden", true)
-						})
-
-					let mean = Math.round(d3.mean(filtered, d => d["Total SL"]));
-					
-					let meang = g2.append("g")
-						.attr("transform", `translate(${x(mean)},0)`)
-					meang.append("path")
-						.style("stroke", "#000")
-						.style("stroke-width", 1.5)
-						.attr("d", "M0,-6 L0,7")
-
-					meang.append("text")
-						.attr("transform","translate(-5,-10)")
-						.text(i == 0 ? "Mean: " + mean + " days" : mean + " days")
-
-
-					if (i == 2) {
-						g2.append("g")
-							.attr("class", "x axis")
-							.attr("transform", "translate(0,10)")
-							.call(xAxis)
+					if (groups.indexOf(varname) > -1) {
+						groups = ["Feature No. A", "Feature No. B", "Claim Type 1", "Claim Type 2", "Claim Type 3"];
+						groupedByRisk = false;
+					} else {
+						filteredData = data.filter(d => d[varname] > 0)
 					}
-				})
-			})
-		}
+
+					let width = cont.node().getBoundingClientRect().width;
+					let rowheight = 25;
+					let height = rowheight*groups.length;
+					let margin = {
+						top: 5,
+						left: 80,
+						bottom: 0,
+						right: 100
+					}
 
 
-		chartv1();
+					let x = d3.scaleLinear().domain([0,2600]).range([0,width-margin.left-margin.right]);
+					let xAxis = d3.axisBottom(x).tickValues([0,500,1000,1500,2000,2500]);
 
+					let sel = cont.append("div").attr("class", "g-chart-cont");
 
-		function chartv2() {
+					sel.append("div").attr("class", "g-title").text(varname);
 
-			d3.csv("aig-data-low_risk_handling.csv").then(data => {
-
-				console.log(data)
-				let cont = d3.select(".g-chart-v2").html("");
-				let width = cont.node().getBoundingClientRect().width;
-				let rowheight = 20;
-				let height = rowheight*6 + 30;
-				let margin = {
-					top: 5,
-					left: 160,
-					bottom: 0,
-					right: 100
-				}
-
-				let groups = Object.keys(colors);
-
-				//"COUNTA of Claim_No",
-				let cols = ["AVERAGE of Feature No. A","AVERAGE of Feature No. B","AVERAGE of Claim Type 1","AVERAGE of Claim Type 2","AVERAGE of Claim Type 3"]
-
-				let sel = cont.append("div").attr("class", "g-chart-cont");
-
-				function numberWithCommas(x) {
-				    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-				}
-
-				groups.forEach(function(group){
-
-					let filtered = data.filter(d => d["Risk Group"] == group)[0];
-
-					sel.append("div").attr("class", "g-title").text(group);
-					sel.append("div").attr("class", "g-num").text("COUNTA of Claim_No: " + numberWithCommas(filtered["COUNTA of Claim_No"]));
 					let svg = sel.append("svg").attr("width", width).attr("height", height).append("g").attr("transform", `translate(0,${margin.top})`);
-					
-					let nums = []
-					cols.forEach(function(col){
-						nums.push(+filtered[col]);
-					})	
 
-					//[0,d3.extent(nums)[1]]
-					let x = d3.scaleLinear().domain([0,650]).range([0,width-margin.left-margin.right]);
-					let xAxis = d3.axisBottom(x).ticks(5);
+					groups.forEach(function(group,groupi){
+						let g = svg.append("g").attr("transform", `translate(0,${groupi*rowheight})`);
+						let riskgroup = groupedByRisk ? group : varname;
+						let filtered = groupedByRisk ? filteredData.filter(d => d["Risk Group"] == group) : filteredData.filter(d => d[group] > 0 && d["Risk Group"] == riskgroup);
+						let varuse = groupedByRisk ? varname : group;
+						filtered = filtered.sort((a,b) => a[varuse] - b[varuse])
 
-					cols.forEach(function(col,i){
-
-						let g = svg.append("g").attr("transform", `translate(0,${i*rowheight})`);
 						g.append("text")
-							.attr("transform", "translate(0,4)")
-							.text(col)
+							.attr("transform", "translate(0,5)")
+							.text(group)
 
 						let g2 = g.append("g").attr("transform", `translate(${margin.left},0)`)
-						g2.append("path")
-							.style("stroke", "#efefef")
-							.attr("d", `M0,0L${width-margin.left-margin.right},0`)
+						g2.selectAll("circle")
+							.data(filtered)
+							.enter()
+							.append("circle")
+							.attr("r", 4)
+							.style("fill", colors[riskgroup])
+							.attr("transform", d => `translate(${x(d[varuse])},0)`)
+							.on("mouseover", function(event,d){
+								tooltip.classed("tooltip-hidden", false)
+								d3.select(this).classed("tooltipped", true);
+								let htmlstr = '';
+								Object.keys(d).forEach(function(a){
+									htmlstr += `<div>${a}: ${d[a]}</div>`;
+								})
+								tooltip.html(htmlstr)
+							})
+							.on("mousemove", d => tooltip.style("top", (event.pageY-window.pageYOffset+10)+"px").style("left",(event.pageX)+"px"))
+							.on("mouseout", function(event,d){
+								d3.select(this).classed("tooltipped", false);
+								tooltip.classed("tooltip-hidden", true)
+							})
 
-						g2.append("circle")
-							.attr("r", 5)
-							.style("fill", colors[group])
-							.attr("transform", d => `translate(${x(filtered[col])},0)`)
-							// .on("mouseover", function(event,d){
-							// 	tooltip.classed("tooltip-hidden", false)
-							// 	d3.select(this).classed("tooltipped", true);
-							// 	let htmlstr = filtered[col];
-							// 	tooltip.html(htmlstr)
-							// })
-							// .on("mousemove", d => tooltip.style("top", (event.pageY+10)+"px").style("left",(event.pageX+10)+"px"))
-							// .on("mouseout", function(event,d){
-							// 	d3.select(this).classed("tooltipped", false);
-							// 	tooltip.classed("tooltip-hidden", true)
-							// })
+						let mean = Math.round(d3.mean(filtered, d => d[varuse]));
+						
+						let meang = g2.append("g")
+							.attr("transform", `translate(${x(mean)},0)`)
+						meang.append("path")
+							.style("stroke", "#000")
+							.style("stroke-width", 1.5)
+							.attr("d", "M0,-6 L0,7")
 
-						g2.append("text")
-							.attr("transform", d => `translate(${x(filtered[col])+9},4.5)`)
-							.text(numberWithCommas(Math.round(filtered[col])))
+						meang.append("text")
+							.attr("transform","translate(-5,-8)")
+							.style("font-size", "11px")
+							.text(groupi == 0 ? "Mean: " + mean + " days" : mean + " days")
 
-						if (i == cols.length - 1) {
+						if (groupi == groups.length-1) {
 							g2.append("g")
 								.attr("class", "x axis")
-								.attr("transform", "translate(0,15)")
+								.attr("transform", "translate(0,10)")
 								.call(xAxis)
 						}
 					})
 				})
-				
 			})
-
 		}
 
-		function drawAll(){
-			chartv1();
-			chartv2();
-		}
-
-		drawAll()
+		drawChart()
 		window.addEventListener('resize', function(event) {
-		    drawAll()
+		    drawChart()
 		}, true);
 		
 
