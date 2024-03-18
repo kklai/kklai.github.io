@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        html, body {
+            padding: 0;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .g-chart-conatiner {
+            max-width: 1050px;
+        }
+
+        text {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+        }
+
+        .g-dot {
+            fill: rgba(255,0,0,0.5);
+            stroke: rgba(255,0,0,1);
+        }
+
+        .g-dot.g-highlight {
+            stroke: #000;
+            stroke-width: 2;
+        }
+
+        .tooltip {
+            top: -1000px;
+            position: fixed;
+            padding: 10px;
+            background: rgba(255, 255, 255, .90);
+            border: 1px solid lightgray;
+            pointer-events: none;
+        }
+        .tooltip-hidden{
+            opacity: 0;
+            transition: all .3s;
+            transition-delay: .1s;
+        }
+
+        @media (max-width: 590px){
+            div.tooltip{
+                bottom: -1px;
+                width: calc(100%);
+                left: -1px !important;
+                right: -1px !important;
+                top: auto !important;
+                width: auto !important;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="g-chart-container"></div>
+<div class='tooltip'></div>
+
+<script src="https://kklai.github.io/js/d3_.js"></script>
+<script>
+
+    d3.loadData("sheet.csv", function(err, res){
+        let data = res[0];
+        data = data.filter(d => d.runtimeMinutes)
+
+        let grouped = d3.nest().key(d => d.startYear).entries(data);
+        
+        grouped.forEach(function(group){
+            group.grouped2 = d3.nest().key(d => d.runtimeMinutes).entries(group.values);
+        })
+
+        let sel = d3.select(".g-chart-container").html("");
+        let width = sel.node().getBoundingClientRect().width;
+        let rowHeight = 8;
+        let rowMargin = 3;
+        let height = grouped.length*rowHeight + grouped.length*rowMargin + 20;
+
+        let svg = sel.append("svg").attr("width", width).attr("height", height);
+        let leftMargin = 50;
+
+        let x = d3.scaleLinear().domain(d3.extent(data.map(d => +d.runtimeMinutes))).range([0,width - leftMargin - 10]);
+
+        let sizes = grouped.map(d => d.grouped2.length)
+        let r = d3.scaleSqrt().domain(d3.extent(sizes)).range([2,10]);
+
+        grouped.forEach(function(group,i){
+
+            let row = svg.append("g").translate([0, i*rowHeight + i*rowMargin]);
+            row.append("text").translate([0,10]).text(group.key);
+
+            let rowg = row.append("g").translate([leftMargin,0]);
+
+            rowg.appendMany("circle.g-dot", group.grouped2)
+                .attr("r", d => r(d.values.length))
+                .translate(d => [x(+d.key),rowHeight-3])
+                .call(d3.attachTooltip)
+                .on('mouseover', function(d){
+                    d3.select(this).classed("g-highlight", true)
+                    let list = d.values.map(d => d.title);
+                    d3.select('.tooltip').html("<b>片長: " + d.key + "</b><br>" + list.join("<br>")) 
+                })
+                .on('mouseout', function(d){
+                    d3.select(this).classed("g-highlight", false)
+                })
+
+        })
+
+
+    })
+
+</script>
+    
+</body>
+</html>
