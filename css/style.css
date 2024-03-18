@@ -16,16 +16,24 @@ a, a:visited {
 	width: 100%;
 }
 
-.hero-unit {
+.hero-unit, .g-button-cont {
 	max-width: 600px;
-	margin: 0 20px;
+	margin: 0 20px 50px 20px;
 	padding: 0 10px;
-  padding-bottom: 0;
+  	padding-bottom: 0;
+}
+
+.g-button-cont {
+	margin-bottom: 60px;
 }
 
 @media screen and (min-width: 600px) {
-	.hero-unit {
-		margin: 0 auto 100px auto;
+	.hero-unit, .g-button-cont {
+		margin: 0 auto 80px auto;
+	}
+
+	.g-button-cont {
+		margin-bottom: 40px;
 	}
 }
 
@@ -200,11 +208,6 @@ a, a:visited {
 		display: none;
 	}
 
-}
-
-.span4 .wrapper {
-	border: 1px solid #ececec;
-	margin: 0 0 10px 0;
 }
 
 .span4 h2 {
@@ -421,4 +424,50 @@ p.date {
   font: 100 12px/1.2 'Open Sans', sans-serif;
   margin-bottom: 0;
   color: #999;
+}
+
+.g-button {
+	display: inline;
+	color: #999;
+	cursor: pointer;
+}
+
+.g-button.g-active {
+	color: #fff;
+	text-decoration: underline;
+}
+
+#archive .span4 {
+	margin: 0 auto 10px auto;
+}
+
+#archive .date {
+	margin-top: -3px;
+}
+
+#archive h2 {
+	padding-bottom: 0;
+	border: none;
+	margin-right: 10px;
+	font-size: 16px;
+    line-height: 1.2;
+    font-weight: 100;
+}
+
+#archive .text-wrap {
+	display: inline-block;
+	vertical-align: top;
+	width: calc(100% - 65px);
+}
+
+#archive .img-cont {
+	width: 60px;
+	height: 60px;
+	overflow: hidden;
+	position: relative;
+	background-size: cover;
+	background-position: center;
+	display: inline-block;
+	border: 0.5px solid rgba(255,255,255,0.3);
+	box-shadow: 0 0 1px rgba(255,255,255,0.5);
 }

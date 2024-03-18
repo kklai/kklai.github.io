@@ -8,23 +8,22 @@
     <meta name="author" content="">
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="data/rows.js"></script>
+    <script src="js/d3_.js"></script>
+    <script src="data/archive.js"></script>
+    <script src="data/work.js"></script>
     <script src="js/script.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
         var row_number;
-        function addRows(input) {
+        function addRows(input, id) {
           row_number = Math.floor(input.length / 3) + 1;
           for (var i = 0; i < row_number; i ++) {
-            $('#work').append("<div class='row'></div>");
+            $('#' + id).append("<div class='row'></div>");
           }
         }
-
         var months = ["Jan.", "Feb.", "March", "April", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."];
-        function fillPage(input) {
-
-          input = input.filter(d => d.did);
-
+        function fillPage(input, type) {
+          input = type == "archive" ? input.filter(d => d.dead != '1') : input.filter(d => d.did);
           for (var i = 0; i < input.length; i++) {
             if (input[i].link.indexOf("https://www.nytimes.com/interactive/") > -1 && !input[i].date) {
               date = input[i].link.split("https://www.nytimes.com/interactive/")[1].split("/");
@@ -32,39 +31,72 @@
             } else {
               date = input[i].date;
             }
-
             var did = input[i].did ? input[i].did : "";
-
             var pub = input[i].pub ? '  /   ' + input[i].pub : "";
-
             row = Math.floor(i/3) + 1;
 
-            var str = '<div class="span4" id="' + input[i].link.split("/")[input[i].link.split("/").length - 1].replace(".html", "") + '"><p class="date">' + date + ' <span class="pub">' + pub + '</span></p> <a href="' + input[i].link + '" target="_blank"><h2>' + input[i].title + '</h2>';
+            var str = '';
+            if (type == 'work') {
 
-            if (input[i].vidlink) {
-              str += '<div class="wrapper vid-wrapper"><video autoplay loop playsinline muted src="img/video/' + input[i].vidlink + '"></div></a>';
+              str = '<div class="span4" id="' + input[i].link.split("/")[input[i].link.split("/").length - 1].replace(".html", "") + '"><p class="date">' + date + ' <span class="pub">' + pub + '</span></p> <a href="' + input[i].link + '" target="_blank"><h2>' + input[i].title + '</h2>';
+            
+              if (input[i].vidlink) {
+                str += '<div class="wrapper vid-wrapper"><video autoplay loop playsinline muted src="img/video/' + input[i].vidlink + '"></div></a>';
+              } else {
+                str += '<div class="wrapper"><img class="g-desktop" src="img/thumbnail/' + input[i].imglink + '.jpg"><img class="g-mobile" src="img/thumbnail/' + input[i].imglink + '-m.jpg"></div></a>';
+              }
+              str += '<p class="body-text"><span class="g-small">WHAT I DID</span>' + input[i].did + "</p>"
+              str += '<p class="body-text">' + input[i].description + "</p>"
+
             } else {
-              str += '<div class="wrapper"><img class="g-desktop" src="img/thumbnail/' + input[i].imglink + '.jpg"><img class="g-mobile" src="img/thumbnail/' + input[i].imglink + '-m.jpg"></div></a>';
+              str = '<div class="span4" id="' + input[i].link.split("/")[input[i].link.split("/").length - 1].replace(".html", "") + '">';
+              str += '<a href="' + input[i].link + '" target="_blank"><div class="text-wrap"><p class="date">' + date + ' <span class="pub">' + pub + '</span></p> <h2>' + input[i].title + '</h2></div>';
+              if (input[i].imglink.indexOf('http') > -1) {
+                str += "<div class='img-cont' style='background-image: url(" + input[i].imglink + ");'></div>"; 
+              } else {
+                str += "<div class='img-cont' style='background-image: url(../img/thumbnail/" + input[i].imglink + ".jpg);'></div>"; 
+              }
             }
-
-
-            str += '<p class="body-text"><span class="g-small">WHAT I DID</span>' + input[i].did + "</p>"
-            str += '<p class="body-text">' + input[i].description + "</p>"
-            str += '</div>';
-
-
-            $('#work .row:nth-child(' + row + ')').append(str);
+          
+            str += '</a></div>';
+            $('#' + type + ' .row:nth-child(' + row + ')').append(str);
           }
-          footer();
         }
 
         function footer() {
           $('footer').append('<p>&copy; KK Rebecca Lai</p>');
         }
+        footer();
+        addRows(work, "work");
+        fillPage(work, "work");
 
-        addRows(data);
-        fillPage(data);
+        addRows(archive, "archive");
+        fillPage(archive, "archive");
+
+
+        // $("#work").hide();
+        // $("#archive").show();
+
+        $("#work").show();
+        $("#archive").hide();
+      
+        d3.selectAll(".g-button").on("click", function(){
+          d3.selectAll(".g-button").classed("g-active", false);
+          d3.select(this).classed("g-active", true);
+          let type = d3.select(this).attr("data-id");
+          if (type == "work") {
+            $("#work").show();
+            $("#archive").hide();
+          } else {
+            $("#work").hide();
+            $("#archive").show();
+          }
+        })
+
       })
+
+      
+
     </script>
 
     <!-- styles -->
@@ -100,15 +132,20 @@
       <div class="hero-unit">
         <!-- <div class="clip"></div> -->
         <h1>Hello!</h1>
-        <p> I am K.K. Rebecca Lai. I work on interactive graphics <a href="https://www.nytimes.com/by/kk-rebecca-lai">The New York Times</a> and previously at <a href="https://www.nytimes.com/2021/12/29/world/asia/hong-kong-stand-news-arrest.html">Stand News Hong Kong</a>. I also run <a href="https://www.lkk-store.com/">an online store</a> and do <a href="https://www.lkk-store.com/lkk-map/">a whole lot of hiking</a>. If any of my work interests you, I would love to chat! You can find me at kkrebeccalai at gmail or on <a href='http://twitter.com/kkrebeccalai'>Twitter</a>.</p>
+        <p> I am K.K. Rebecca Lai. I work on interactive graphics at <a href="https://www.nytimes.com/by/kk-rebecca-lai">The New York Times</a> and previously at <a href="https://www.nytimes.com/2021/12/29/world/asia/hong-kong-stand-news-arrest.html">Stand News Hong Kong</a>. I also run <a href="https://www.lkk-store.com/">an online store</a> and do <a href="https://www.lkk-store.com/lkk-map/">a whole lot of hiking</a> and running. If any of my work interests you, I would love to chat! You can find me at kkrebeccalai at gmail or on <a href='http://twitter.com/kkrebeccalai'>Twitter</a>.</p>
         <!-- <ul class="social">
           <li><a href="mailto:kkrebeccalai@gmail.com" target="_blank"><i class="icon-envelope"></i></a></li>
           <li><a href="http://twitter.com/kkrebeccalai" target="_blank"><i class="icon-twitter-sign"></i></a></li>
         </ul> -->
       </div>
 
-      <div id="work">
+      <div class="g-button-cont">
+        <div class="g-button g-active" data-id="work">Featured</div> / <div class="g-button" data-id="archive">Full archive</div>
       </div>
+
+      <div id="work"></div>
+      <div id="archive"></div>
+
     </div> <!-- /container -->
     <footer></footer>
   </body>
