@@ -133,15 +133,12 @@ img {
 
 
 input {
-    margin-right: 5px;
     font-size: 22px;
     background: #ececec;
     box-shadow: none;
     border: 1px solid #555;
     border-radius: 3px;
-    display: inline-block;
-    vertical-align: middle;
-    padding: 10px 15px;
+    padding: 10px 0;
     text-align: center;
 }
 
@@ -159,7 +156,7 @@ input {
     content: "✘";
     display: block;
     position: absolute;
-    right: 0;
+    right: 20px;
     top: 50%;
     transform: translate(0, -50%);
     font-size: 30px;
