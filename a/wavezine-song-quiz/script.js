@@ -22,7 +22,7 @@ d3.loadData("quiz.csv", function(err, res){
     use.forEach(function(d,i){
 
         let cont = sel.append("div.g-quiz-item.g-quiz-item-" + i).append("div.g-quiz-item-inner");
-        cont.append("div.g-num").text(i+1)
+        cont.append("div.g-num").text(i+1 + " / " + use.length)
         cont.append("div.g-hint").style("background-image", `url(${d['Hint (Photo)']})`).append("div.g-answer").append("div.g-answer-inner");
 
         let qsplit = d.Question.split("Ｘ").join("<span class='guess'></span>").split("//").join("<br>");
