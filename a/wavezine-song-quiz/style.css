@@ -1,0 +1,162 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+    font-family: "Arial", sans-serif;
+}
+
+.g-top-cont {
+    padding-bottom: 10px;
+}
+
+.logo {
+    width: 100px;
+    margin: 0 auto;
+    display: block;
+    padding-top: 10px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 40px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+img {
+    width: 100%;
+}
+
+.g-quiz-cont {
+    text-align: center;
+}
+
+.g-quiz-item {
+    margin: 50px auto;
+}
+
+.g-num {
+    background-color: #7ed0e0;
+    border: 1px solid #7ed0e0;
+    color: #000;
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    display: block;
+    font-size: 22px;
+    line-height: 1.4;
+    font-weight: 500;
+    margin: 15px auto;
+}
+
+.g-hint {
+    overflow: hidden;
+    padding: 0 20px;
+    margin: 0 auto 20px auto;
+    max-height: 500px;
+    max-width: 600px;
+}
+
+/* .g-hint-inner {
+    width: 100%;
+    padding-bottom: 100%;
+    position: relative;
+}
+
+.g-hint img {
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+} */
+
+.g-next-button {
+    letter-spacing: 2px;
+}
+
+.g-button-inner {
+    background-color: #7ed0e0;
+    color: #000;
+    border-radius: 8px;
+    padding: 3px 10px;
+    margin: 0 auto;
+}
+
+.g-q {
+    font-size: 32px;
+    line-height: 1.2;
+    padding: 0 15px;
+    margin-top: 30px;
+}
+
+.guess {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(125, 208, 224, 0.5);
+    border: 1px solid #7ed0e0;
+    display: inline-block;
+    margin: 0 5px;
+    vertical-align: top;
+}
+
+
+input {
+    margin-right: 5px;
+    font-size: 22px;
+    background: #ececec;
+    box-shadow: none;
+    border: 1px solid #555;
+    border-radius: 3px;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 10px 15px;
+    text-align: center;
+}
+
+
+button {
+    background: #7ed0e0;
+    border: 1px solid #444;
+    color: #000;
+    font-size: 18px;
+    display: block;
+    margin: 15px auto;
+    border-radius: 0;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.correct {
+    background: #00ff00;
+}
+
+.wrong {
+    background: red;
+}
+
+
+button:hover {
+    opacity: 0.5;
+}
+
+.g-answer {
+    height: 25px;
+    margin: 10px auto;
+    opacity: 0.7;
+    font-size: 18px;
+}
+
+.g-summary {
+    padding: 50px;
+    border: 1px solid;
+    background-color: rgba(125, 208, 224, 0.5);
+    border: 1px solid #7ed0e0;
+    max-width: 500px;
+    margin: 0 auto 100px auto;
+    font-size: 32px;
+    line-height: 1.2;
+}
