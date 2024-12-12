@@ -1,0 +1,54 @@
+
+<div class="hed-cont">
+    <div class="kicker"><span><%- doc[0].content %></span></div>
+    <div class="hed"><%- doc[1].content %></div>
+
+</div>
+<div class="body">
+<% doc.forEach(function(item,i) { %>
+    <% if (i > 1) { %> 
+
+        <% if (item.type == 'graphic') { %>
+
+            <div class="overall-cont">
+                <% pos.forEach(function(layout){ %>
+                    <div class="overall overall-<%- layout.size %>">
+                        <% layout.pos = layout.pos.sort((a,b) => a.top_calc - b.top_calc) %>
+                        <% layout.pos.forEach(function(d,i) { %>
+                            <img class="overall-img img-<%- i %>" style="width: <%- d.width_calc*100 %>%; top: <%- d.top_calc*100 %>%; left: <%- d.left_calc*100 %>%;" src="img/<%- d.name %>.png" alt="">
+                        <% }) %> 
+                    </div>
+                <% }) %>
+            </div>
+
+        <% } else if (Array.isArray(item)) { %>
+
+            <% item.forEach(function(d,i) { %>
+                <div class="person-cont <%- i%2 == 0 ? 'img-left' : 'img-right' %>">
+
+                        <img src="img/<%- d[0].content %><%- d[1].content %>.png" alt="">
+                        <div class="text-cont">
+                            <div class="name"><%- d[1].content %></div>
+                            <% if (d[2]) { %>
+                                <div class="sentence"><%- d[2].content %></div>
+                            <% } %>
+
+                            <% if (d[3]) { %>
+                                <div class="desc"><%- d[3].content %></div>
+                            <% } %>
+                            
+                        </div>
+
+                   
+                </div>
+            <% }) %>
+
+        <% } else if (item.content != '********************************')  { %>
+
+            <div class="<%- item.type %>"><span><%- item.content %></span></div>
+
+        <% } %>
+
+    <% } %>
+<% }) %>
+</div>
