@@ -4,7 +4,7 @@
     "chokidar": "^4.0.1",
     "d3v4": "^4.2.2",
     "ejs": "^3.1.10",
-    "express": "^4.21.2",
+    "express": "^4.22.1",
     "googleapis": "^105.0.0",
     "minimist": "^1.2.8",
     "serve-index": "^1.9.1",
